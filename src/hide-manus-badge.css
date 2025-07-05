@@ -1,0 +1,53 @@
+/* Comprehensive Manus badge removal */
+a[href*="manus.space"],
+a[href*="manus"],
+*[class*="manus"],
+*[id*="manus"],
+div[style*="position: fixed"][style*="bottom"][style*="right"],
+div[style*="position:fixed"][style*="bottom"][style*="right"],
+*[style*="z-index: 999"],
+*[style*="z-index:999"],
+*[style*="z-index: 9999"],
+*[style*="z-index:9999"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Additional targeting for common badge patterns */
+div[style*="position: fixed"] a,
+div[style*="position:fixed"] a,
+*[style*="bottom: 20px"],
+*[style*="bottom:20px"],
+*[style*="right: 20px"],
+*[style*="right:20px"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide elements with Manus brand colors */
+*[style*="#4CAF50"],
+*[style*="rgb(76, 175, 80)"],
+*[style*="background-color: #4CAF50"],
+*[style*="background-color:rgb(76, 175, 80)"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Target any fixed positioned elements in bottom right quadrant */
+*[style*="position: fixed"][style*="bottom"][style*="right"] *,
+*[style*="position:fixed"][style*="bottom"][style*="right"] * {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+

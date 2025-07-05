@@ -1,0 +1,418 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* CRITICAL: Remove ALL borders except buttons */
+section, div:not(button):not([role="button"]):not(.btn):not([class*="button"]) {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Specifically target feature cards and sections */
+.bg-white:not(button):not([role="button"]):not(.btn):not([class*="button"]) {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Remove any blue borders specifically */
+*:not(button):not([role="button"]):not(.btn):not([class*="button"]) {
+  border-color: transparent !important;
+}
+
+/* Ensure sections have no borders */
+section * {
+  border: none !important;
+}
+
+/* Override any Tailwind border utilities except on buttons */
+.border:not(button):not([role="button"]):not(.btn):not([class*="button"]),
+.border-2:not(button):not([role="button"]):not(.btn):not([class*="button"]),
+.border-blue-600:not(button):not([role="button"]):not(.btn):not([class*="button"]),
+.border-blue-500:not(button):not([role="button"]):not(.btn):not([class*="button"]),
+.border-blue-400:not(button):not([role="button"]):not(.btn):not([class*="button"]) {
+  border: none !important;
+}
+
+/* Button contrast fixes */
+.bg-white.text-orange-600 {
+  background-color: #ffffff !important;
+  color: #ea580c !important;
+  border: 2px solid #ea580c !important;
+}
+
+.bg-white.text-pink-600 {
+  background-color: #ffffff !important;
+  color: #db2777 !important;
+  border: 2px solid #db2777 !important;
+}
+
+.bg-white.text-blue-600 {
+  background-color: #ffffff !important;
+  color: #2563eb !important;
+  border: 2px solid #2563eb !important;
+}
+
+.bg-white.text-green-600 {
+  background-color: #ffffff !important;
+  color: #16a34a !important;
+  border: 2px solid #16a34a !important;
+}
+
+/* Ensure proper contrast for all button states */
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb !important;
+}
+
+/* Border contrast fixes */
+.border-orange-600 {
+  border-color: #ea580c !important;
+}
+
+.border-pink-600 {
+  border-color: #db2777 !important;
+}
+
+.border-blue-600 {
+  border-color: #2563eb !important;
+}
+
+.border-green-600 {
+  border-color: #16a34a !important;
+}
+
+
+
+/* Enhanced Button contrast fixes */
+.bg-amber-600 {
+  background-color: #d97706 !important;
+  color: white !important;
+  border: 2px solid #d97706 !important;
+}
+
+.bg-amber-600:hover {
+  background-color: #b45309 !important;
+  border-color: #b45309 !important;
+}
+
+.text-amber-600 {
+  color: #d97706 !important;
+}
+
+/* CRITICAL BUTTON CONTRAST FIXES */
+/* Fix Start Free Analysis button */
+.bg-blue-600, 
+button[class*="bg-blue-600"],
+a[class*="bg-blue-600"] {
+  background-color: #1e40af !important;
+  color: white !important;
+  border: 2px solid #1e40af !important;
+  font-weight: 600 !important;
+}
+
+.bg-blue-600:hover,
+button[class*="bg-blue-600"]:hover,
+a[class*="bg-blue-600"]:hover {
+  background-color: #1e3a8a !important;
+  border-color: #1e3a8a !important;
+  color: white !important;
+}
+
+/* Fix all red buttons */
+.bg-red-600,
+button[class*="bg-red-600"],
+a[class*="bg-red-600"] {
+  background-color: #dc2626 !important;
+  color: white !important;
+  border: 2px solid #dc2626 !important;
+  font-weight: 600 !important;
+}
+
+.bg-red-600:hover,
+button[class*="bg-red-600"]:hover,
+a[class*="bg-red-600"]:hover {
+  background-color: #b91c1c !important;
+  border-color: #b91c1c !important;
+  color: white !important;
+}
+
+/* Fix all green buttons */
+.bg-green-600,
+button[class*="bg-green-600"],
+a[class*="bg-green-600"] {
+  background-color: #16a34a !important;
+  color: white !important;
+  border: 2px solid #16a34a !important;
+  font-weight: 600 !important;
+}
+
+.bg-green-600:hover,
+button[class*="bg-green-600"]:hover,
+a[class*="bg-green-600"]:hover {
+  background-color: #15803d !important;
+  border-color: #15803d !important;
+  color: white !important;
+}
+
+/* Fix all orange buttons */
+.bg-orange-600,
+button[class*="bg-orange-600"],
+a[class*="bg-orange-600"] {
+  background-color: #ea580c !important;
+  color: white !important;
+  border: 2px solid #ea580c !important;
+  font-weight: 600 !important;
+}
+
+.bg-orange-600:hover,
+button[class*="bg-orange-600"]:hover,
+a[class*="bg-orange-600"]:hover {
+  background-color: #c2410c !important;
+  border-color: #c2410c !important;
+  color: white !important;
+}
+
+/* Fix all purple buttons */
+.bg-purple-600,
+button[class*="bg-purple-600"],
+a[class*="bg-purple-600"] {
+  background-color: #9333ea !important;
+  color: white !important;
+  border: 2px solid #9333ea !important;
+  font-weight: 600 !important;
+}
+
+.bg-purple-600:hover,
+button[class*="bg-purple-600"]:hover,
+a[class*="bg-purple-600"]:hover {
+  background-color: #7c3aed !important;
+  border-color: #7c3aed !important;
+  color: white !important;
+}
+
+/* Fix all indigo buttons */
+.bg-indigo-600,
+button[class*="bg-indigo-600"],
+a[class*="bg-indigo-600"] {
+  background-color: #4f46e5 !important;
+  color: white !important;
+  border: 2px solid #4f46e5 !important;
+  font-weight: 600 !important;
+}
+
+.bg-indigo-600:hover,
+button[class*="bg-indigo-600"]:hover,
+a[class*="bg-indigo-600"]:hover {
+  background-color: #4338ca !important;
+  border-color: #4338ca !important;
+  color: white !important;
+}
+
+/* Fix all amber buttons */
+.bg-amber-600,
+button[class*="bg-amber-600"],
+a[class*="bg-amber-600"] {
+  background-color: #d97706 !important;
+  color: white !important;
+  border: 2px solid #d97706 !important;
+  font-weight: 600 !important;
+}
+
+.bg-amber-600:hover,
+button[class*="bg-amber-600"]:hover,
+a[class*="bg-amber-600"]:hover {
+  background-color: #b45309 !important;
+  border-color: #b45309 !important;
+  color: white !important;
+}
+
+/* Ensure all button text is white and bold */
+button, 
+.btn, 
+a[class*="bg-"]:not([class*="bg-white"]) {
+  color: white !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+/* White buttons with colored text - high contrast */
+.bg-white,
+button[class*="bg-white"],
+a[class*="bg-white"] {
+  background-color: white !important;
+  color: #1e40af !important;
+  border: 3px solid #1e40af !important;
+  font-weight: 700 !important;
+}
+
+.bg-white:hover,
+button[class*="bg-white"]:hover,
+a[class*="bg-white"]:hover {
+  background-color: #f8fafc !important;
+  color: #1e3a8a !important;
+  border-color: #1e3a8a !important;
+}
+
+/* CRITICAL: Remove Made with Manus badge */
+[href*="manus"], 
+*[class*="manus"], 
+*[id*="manus"],
+div[style*="position: fixed"][style*="bottom"][style*="right"],
+a[href*="manus.space"],
+*[data-manus],
+iframe[src*="manus"],
+script[src*="manus"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -9999 !important;
+}
+
+/* Additional badge removal targeting */
+div:has(a[href*="manus"]),
+div:has(*[class*="manus"]),
+div[class*="badge"],
+div[class*="watermark"],
+div[class*="branding"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Remove any fixed positioned elements in bottom right */
+div[style*="position:fixed"][style*="bottom:"][style*="right:"],
+div[style*="position: fixed"][style*="bottom: "][style*="right: "] {
+  display: none !important;
+}
+
+/* Target common badge patterns */
+*[class*="powered-by"],
+*[class*="made-with"],
+*[class*="created-by"],
+*[id*="powered-by"],
+*[id*="made-with"],
+*[id*="created-by"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
