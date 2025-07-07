@@ -1,20 +1,27 @@
 {
-  "functions": {
-    "api/sitemap.js": {
-      "maxDuration": 10
-    },
-    "api/index.js": {
-      "maxDuration": 10
-    }
-  },
   "rewrites": [
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
-    },
+    }
+  ],
+  "headers": [
     {
       "source": "/(.*)",
-      "destination": "/api/index"
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options", 
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
     }
   ]
 }
