@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chimehq.co/sitemap.xml
+
+# Allow all search engines to crawl the site
+Crawl-delay: 1
+
+# Disallow crawling of admin or private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
