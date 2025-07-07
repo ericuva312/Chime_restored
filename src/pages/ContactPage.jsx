@@ -18,6 +18,14 @@ const ContactPage = () => {
       setIsCalendlyLoaded(true)
       console.log('Calendly script loaded successfully')
       
+      // Track Calendly widget load in Google Analytics
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'calendly_widget_loaded', {
+          event_category: 'engagement',
+          event_label: 'Calendly Widget Loaded'
+        });
+      }
+      
       // Force Calendly to initialize
       if (window.Calendly && window.Calendly.initInlineWidget) {
         try {

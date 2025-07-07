@@ -26,6 +26,16 @@ const UltimateROICalculator = () => {
   const [results, setResults] = useState(null)
   const [showPersonalizedInsights, setShowPersonalizedInsights] = useState(false)
 
+  // Track ROI calculator start when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'roi_calculator_started', {
+        event_category: 'engagement',
+        event_label: 'ROI Calculator Started'
+      });
+    }
+  }, [])
+
   const industries = [
     { value: 'fashion', label: 'Fashion & Apparel', multiplier: 1.2, avgGrowth: '22%' },
     { value: 'electronics', label: 'Electronics & Tech', multiplier: 1.15, avgGrowth: '18%' },
@@ -65,6 +75,15 @@ const UltimateROICalculator = () => {
   }
 
   const calculateAdvancedROI = () => {
+    // Track ROI calculator completion in Google Analytics
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'roi_calculator_completed', {
+        event_category: 'conversion',
+        event_label: 'ROI Calculator Completed',
+        value: parseFloat(formData.monthlyRevenue) || 0
+      });
+    }
+
     const revenue = parseFloat(formData.monthlyRevenue) || 0
     const orders = parseFloat(formData.monthlyOrders) || 0
     const aov = parseFloat(formData.averageOrderValue) || 0
