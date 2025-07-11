@@ -701,6 +701,53 @@ className="text-sm text-blue-200">Clients achieving growth targets</div>
         </div>
       </section>
 
+      {/* How We Calculate Your Projected Revenue Growth Section - Moved above form */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">How We Calculate Your Projected Revenue Growth</h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Our projections are based on real client data and proven results
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
+              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
+                <BarChart3 className="w-8 h-8 text-blue-400" />
+              </div>
+              <div className="text-2xl font-bold text-blue-400 mb-4">1</div>
+              <h3 className="text-xl font-bold text-white mb-4">Industry Analysis</h3>
+              <p className="text-blue-100">
+                We analyze your industry's specific growth patterns and apply our proven multipliers based on 500+ successful implementations.
+              </p>
+            </div>
+            
+            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
+              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-blue-400" />
+              </div>
+              <div className="text-2xl font-bold text-blue-400 mb-4">2</div>
+              <h3 className="text-xl font-bold text-white mb-4">Business Profile</h3>
+              <p className="text-blue-100">
+                Your business stage, current challenges, and growth goals are factored into a personalized growth projection model.
+              </p>
+            </div>
+            
+            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
+              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
+                <Target className="w-8 h-8 text-blue-400" />
+              </div>
+              <div className="text-2xl font-bold text-blue-400 mb-4">3</div>
+              <h3 className="text-xl font-bold text-white mb-4">Conservative Estimates</h3>
+              <p className="text-blue-100">
+                We provide both conservative and optimistic scenarios, with our 15% minimum growth guarantee backing the conservative estimate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Calculator Form */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -780,52 +827,9 @@ className="text-sm text-blue-200">Clients achieving growth targets</div>
         </div>
       </section>
 
-      {/* How We Calculate Your Projected Revenue Growth Section - Moved below form */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">How We Calculate Your Projected Revenue Growth</h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Our projections are based on real client data and proven results
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
-              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
-                <BarChart3 className="w-8 h-8 text-blue-400" />
-              </div>
-              <div className="text-2xl font-bold text-blue-400 mb-4">1</div>
-              <h3 className="text-xl font-bold text-white mb-4">Industry Analysis</h3>
-              <p className="text-blue-100">
-                We analyze your industry's specific growth patterns and apply our proven multipliers based on 500+ successful implementations.
-              </p>
-            </div>
-            
-            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
-              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
-                <Users className="w-8 h-8 text-blue-400" />
-              </div>
-              <div className="text-2xl font-bold text-blue-400 mb-4">2</div>
-              <h3 className="text-xl font-bold text-white mb-4">Business Profile</h3>
-              <p className="text-blue-100">
-                Your business stage, current challenges, and growth goals are factored into a personalized growth projection model.
-              </p>
-            </div>
-            
-            <div className="bg-white/10 rounded-2xl p-8 border border-white/20">
-              <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6">
-                <Target className="w-8 h-8 text-blue-400" />
-              </div>
-              <div className="text-2xl font-bold text-blue-400 mb-4">3</div>
-              <h3 className="text-xl font-bold text-white mb-4">Conservative Estimates</h3>
-              <p className="text-blue-100">
-                We provide both conservative and optimistic scenarios, with our 15% minimum growth guarantee backing the conservative estimate.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
+
+
 
       {/* Growth Guarantee Section - Moved below form */}
       <section className="py-16">
@@ -866,3 +870,4 @@ export default EnhancedROICalculatorStreamlined;
 // Cache bust 1752254832
 // Auto-deployment test Fri Jul 11 13:32:52 EDT 2025
 // Auto-deployment test 2 Fri Jul 11 13:36:31 EDT 2025
+// Section moved above form Fri Jul 11 14:15:00 EDT 2025
