@@ -248,9 +248,9 @@ const EnhancedROICalculatorStreamlined = () => {
                     <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-2xl font-bold text-blue-400">3</span>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-4">Connect With Our Team</h3>
+                    <h3 className="text-xl font-bold text-white mb-4">Connect with Us</h3>
                     <p className="text-blue-100">
-                      One of our experts will reach out to review your results, answer any questions, and discuss your next steps for getting started with Chime.
+                      Schedule a call to review your results, answer any questions, and discuss your next steps for getting started.
                     </p>
                   </div>
                 </div>
