@@ -18,6 +18,8 @@ const EnhancedROICalculatorStreamlined = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
+  const [retryCount, setRetryCount] = useState(0);
   
   const [formData, setFormData] = useState({
     // Step 1: Business Metrics
@@ -107,6 +109,7 @@ const EnhancedROICalculatorStreamlined = () => {
     if (!validateStep(4)) return;
     
     setIsSubmitting(true);
+    setSubmitError('');
     
     try {
       console.log('Submitting form data:', formData);
@@ -117,17 +120,33 @@ const EnhancedROICalculatorStreamlined = () => {
         industry: formData.business_category
       };
       
-      // Submit to backend API
+      // Submit to backend API with timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      
       const response = await fetch('https://chime-roi-backend-production.up.railway.app/api/roi-calculator', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(submissionData)
+        body: JSON.stringify(submissionData),
+        signal: controller.signal
       });
       
+      clearTimeout(timeoutId);
+      
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        let errorMessage = 'Server error occurred. Please try again.';
+        
+        if (response.status === 500) {
+          errorMessage = 'Our servers are experiencing issues. We\'ve been notified and are working to fix this. Please try again in a few minutes.';
+        } else if (response.status === 404) {
+          errorMessage = 'Service temporarily unavailable. Please try again shortly.';
+        } else if (response.status >= 400 && response.status < 500) {
+          errorMessage = 'There was an issue with your submission. Please check your information and try again.';
+        }
+        
+        throw new Error(errorMessage);
       }
       
       const result = await response.json();
@@ -135,12 +154,40 @@ const EnhancedROICalculatorStreamlined = () => {
       
       if (result.success) {
         setIsSubmitted(true);
+        setRetryCount(0);
+        
+        // Track successful submission
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'roi_calculator_success', {
+            'event_category': 'engagement',
+            'event_label': 'form_submission'
+          });
+        }
       } else {
-        throw new Error(result.error || 'Submission failed');
+        throw new Error(result.error || 'Submission failed. Please try again.');
       }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('There was an error submitting your information. Please try again.');
+      
+      let userMessage = 'There was an error submitting your information. Please try again.';
+      
+      if (error.name === 'AbortError') {
+        userMessage = 'Request timed out. Please check your internet connection and try again.';
+      } else if (error.message) {
+        userMessage = error.message;
+      }
+      
+      setSubmitError(userMessage);
+      setRetryCount(prev => prev + 1);
+      
+      // Track submission errors
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'roi_calculator_error', {
+          'event_category': 'error',
+          'event_label': error.message || 'unknown_error',
+          'value': retryCount + 1
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -815,6 +862,40 @@ className="text-sm text-blue-200">Clients achieving growth targets</div>
               </button>
             )}
           </div>
+
+          {/* Error Display */}
+          {submitError && (
+            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-red-800">
+                    Submission Error
+                  </h3>
+                  <div className="mt-2 text-sm text-red-700">
+                    <p>{submitError}</p>
+                  </div>
+                  {retryCount > 0 && (
+                    <div className="mt-3">
+                      <button
+                        onClick={() => {
+                          setSubmitError('');
+                          handleSubmit();
+                        }}
+                        className="text-sm bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded-md transition-colors duration-200"
+                      >
+                        Try Again
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Security Notice */}
           <div className="text-center mt-8">
