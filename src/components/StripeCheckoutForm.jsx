@@ -23,15 +23,11 @@ const StripeCheckoutForm = ({ amount, planName, planType, customerData }) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount: amount,
             plan: planType,
-            planName: planName,
-            customer: customerData || {
-              name: 'Customer',
-              email: 'customer@example.com',
-              company: 'Company',
-              website: 'https://example.com'
-            }
+            name: customerData?.name || 'Customer',
+            email: customerData?.email || 'customer@example.com',
+            company: customerData?.company || 'Company',
+            website: customerData?.website || 'https://example.com'
           }),
         })
 
