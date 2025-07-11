@@ -15,43 +15,63 @@ const StripeCheckoutForm = ({ amount, planName, planType, customerData }) => {
         setLoading(true)
         setError('')
 
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://chime-roi-backend-production.up.railway.app'
+        
+        console.log('Creating checkout session with:', {
+          apiUrl,
+          planType,
+          customerData
+        })
+        
+        const requestData = {
+          plan: planType,
+          name: customerData?.name || 'Customer',
+          email: customerData?.email || 'customer@example.com',
+          company: customerData?.company || 'Company',
+          website: customerData?.website || 'https://example.com'
+        }
+        
+        console.log('Request data:', requestData)
         
         const response = await fetch(`${apiUrl}/api/create-checkout-session`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            plan: planType,
-            name: customerData?.name || 'Customer',
-            email: customerData?.email || 'customer@example.com',
-            company: customerData?.company || 'Company',
-            website: customerData?.website || 'https://example.com'
-          }),
+          body: JSON.stringify(requestData),
         })
 
+        console.log('Response status:', response.status)
+        console.log('Response headers:', Object.fromEntries(response.headers.entries()))
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          const errorText = await response.text()
+          console.error('Response error:', errorText)
+          throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`)
         }
 
         const data = await response.json()
+        console.log('Response data:', data)
         
         if (data.client_secret) {
           setClientSecret(data.client_secret)
+          console.log('✅ Client secret set successfully')
         } else {
           throw new Error('No client secret received')
         }
       } catch (err) {
         console.error('Error creating checkout session:', err)
-        setError('Failed to initialize payment. Please try again.')
+        setError(`Failed to initialize payment: ${err.message}`)
       } finally {
         setLoading(false)
       }
     }
 
-    if (amount && planType) {
+    if (amount && planType && customerData?.name && customerData?.email) {
+      console.log('Starting checkout session creation...')
       createCheckoutSession()
+    } else {
+      console.log('Missing required data:', { amount, planType, customerData })
     }
   }, [amount, planType, planName, customerData])
 
