@@ -57,7 +57,7 @@ const HomePage = () => {
       author: "David Park",
       company: "Wellness Essentials • Health",
       growth: "+167% revenue growth",
-      image: "/david-park-square.jpg",
+      image: "/images/david-park.jpg",
       details: "From $320K to $854K/month in 10 months • 756% ROI • SOC 2 certified"
     }
   ]

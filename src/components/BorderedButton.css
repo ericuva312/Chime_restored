@@ -1,0 +1,22 @@
+/* Force border styling with maximum specificity */
+.forced-border-button {
+  border: 2px solid #2563eb !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: #2563eb !important;
+}
+
+.forced-border-button:hover {
+  border-color: #1d4ed8 !important;
+}
+
+/* Override any global resets */
+a.forced-border-button,
+a.forced-border-button:link,
+a.forced-border-button:visited {
+  border: 2px solid #2563eb !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: #2563eb !important;
+}
+

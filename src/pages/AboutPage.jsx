@@ -133,7 +133,7 @@ const AboutPage = () => {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <img 
-                    src="/headshot.jpeg" 
+                    src="/images/eric-uva.jpg" 
                     alt="Eric Uva" 
                     className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
                   />
@@ -151,7 +151,7 @@ const AboutPage = () => {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <img 
-                    src="/robert-davis-unique.jpg" 
+                    src="/images/robert-davis.jpg" 
                     alt="Robert Davis" 
                     className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
                   />
@@ -169,7 +169,7 @@ const AboutPage = () => {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <img 
-                    src="/james-mitchell-new-unique.jpg" 
+                    src="/images/james-mitchell.jpg" 
                     alt="Dr. James Mitchell" 
                     className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
                   />
@@ -207,7 +207,7 @@ const AboutPage = () => {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <img 
-                    src="/david-wilson-unique.jpg" 
+                    src="/images/david-wilson.jpg" 
                     alt="David Wilson" 
                     className="w-24 h-24 rounded-full mx-auto mb-3 object-cover"
                   />

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Check, ArrowRight, Star, Shield, Zap, TrendingUp } from 'lucide-react'
+import BorderedButton from '../components/BorderedButton'
 
 const PricingPage = () => {
   const plans = [
@@ -68,15 +69,13 @@ const PricingPage = () => {
       revenue: "$2.3M",
       growth: "188%",
       quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7.",
-      image: "/api/placeholder/64/64"
-    },
+      image: "/images/sarah-chen.jpg",    },
     {
       name: "Marcus Rodriguez",
       company: "TechGear Pro",
       revenue: "$1.8M",
       growth: "156%",
-      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",
-      image: "/api/placeholder/64/64"
+      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",      image: "/images/marcus-rodriguez.jpg",
     }
   ]
 
@@ -163,16 +162,32 @@ const PricingPage = () => {
                   ))}
                 </ul>
 
-                <Link
-                  to="/contact"
-                  className={`w-full py-4 px-6 rounded-lg font-semibold transition-colors text-center block border-2 ${
-                    plan.popular
-                      ? 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600 hover:border-blue-700'
-                      : 'bg-white hover:bg-gray-50 text-blue-600 border-blue-600 hover:border-blue-700'
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
+                {plan.name === "Growth" ? (
+                  <Link
+                    to="/payment?plan=growth"
+                    className="w-full py-4 px-6 rounded-lg font-semibold transition-colors text-center block border-2 bg-white hover:bg-gray-50 text-blue-600 border-blue-600 hover:border-blue-700"
+                  >
+                    {plan.cta}
+                  </Link>
+                ) : plan.name === "Enterprise" ? (
+                  <Link
+                    to="/payment?plan=enterprise"
+                    className="w-full py-4 px-6 rounded-lg font-semibold transition-colors text-center block border-2 bg-white hover:bg-gray-50 text-blue-600 border-blue-600 hover:border-blue-700"
+                  >
+                    {plan.cta}
+                  </Link>
+                ) : (
+                  <Link
+                    to={`/payment?plan=${plan.name.toLowerCase()}`}
+                    className={`w-full py-4 px-6 rounded-lg font-semibold transition-colors text-center block border-2 ${
+                      plan.popular
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600 hover:border-blue-700'
+                        : 'bg-white hover:bg-gray-50 text-blue-600 border-blue-600 hover:border-blue-700'
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
+                )}
               </div>
             ))}
           </div>

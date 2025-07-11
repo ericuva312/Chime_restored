@@ -89,3 +89,4 @@ dist
 tmp/
 temp/
 
+.vercel

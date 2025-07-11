@@ -1,886 +1,740 @@
-import { useState, useEffect } from 'react'
-import { ArrowRight, Calculator, TrendingUp, DollarSign, CheckCircle, Users, Clock, Shield, Star, Zap, Target, Award, ChevronRight, AlertCircle, Sparkles } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import React, { useState, useCallback, useMemo } from 'react';
+import { submitToHubSpot } from '../utils/hubspot';
 
 const UltimateROICalculator = () => {
-  const [step, setStep] = useState(1)
+  // Consolidated form state with proper initialization
   const [formData, setFormData] = useState({
+    // Step 1: Business Metrics
     monthlyRevenue: '',
     averageOrderValue: '',
     monthlyOrders: '',
+    
+    // Step 2: Performance & Industry Data
     industry: '',
-    currentConversionRate: '',
+    conversionRate: '',
     cartAbandonmentRate: '',
-    timeSpentOnManualTasks: '',
+    monthlyAdSpend: '',
+    
+    // Step 3: Operations
+    teamSize: '',
+    currentTools: '',
+    timeSpentOnTasks: '',
+    
+    // Step 4: Contact Info
     firstName: '',
     lastName: '',
     email: '',
-    businessName: '',
-    website: '',
-    phoneNumber: '',
-    businessStage: '',
-    biggestChallenge: '',
-    monthlyAdSpend: ''
-  })
-  const [results, setResults] = useState(null)
-  const [showPersonalizedInsights, setShowPersonalizedInsights] = useState(false)
+    company: '',
+    phone: ''
+  });
 
-  // Track ROI calculator start when component mounts
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'roi_calculator_started', {
-        event_category: 'engagement',
-        event_label: 'ROI Calculator Started'
-      });
-    }
-  }, [])
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [calculatedResults, setCalculatedResults] = useState(null);
+  const [errors, setErrors] = useState({});
 
-  const industries = [
-    { value: 'fashion', label: 'Fashion & Apparel', multiplier: 1.2, avgGrowth: '22%' },
-    { value: 'electronics', label: 'Electronics & Tech', multiplier: 1.15, avgGrowth: '18%' },
-    { value: 'health', label: 'Health & Wellness', multiplier: 1.25, avgGrowth: '28%' },
-    { value: 'beauty', label: 'Beauty & Cosmetics', multiplier: 1.3, avgGrowth: '31%' },
-    { value: 'home', label: 'Home & Garden', multiplier: 1.1, avgGrowth: '16%' },
-    { value: 'food', label: 'Food & Beverage', multiplier: 1.18, avgGrowth: '20%' },
-    { value: 'pets', label: 'Pet Products', multiplier: 1.22, avgGrowth: '24%' },
-    { value: 'jewelry', label: 'Jewelry & Accessories', multiplier: 1.35, avgGrowth: '35%' },
-    { value: 'sports', label: 'Sports & Fitness', multiplier: 1.2, avgGrowth: '22%' },
-    { value: 'other', label: 'Other', multiplier: 1.15, avgGrowth: '18%' }
-  ]
+  // Industry options - memoized to prevent re-creation
+  const industries = useMemo(() => [
+    { value: '', label: 'Select your industry' },
+    { value: 'fashion', label: 'Fashion & Apparel (Avg: 22% growth)' },
+    { value: 'electronics', label: 'Electronics & Tech (Avg: 18% growth)' },
+    { value: 'health', label: 'Health & Wellness (Avg: 28% growth)' },
+    { value: 'beauty', label: 'Beauty & Cosmetics (Avg: 31% growth)' },
+    { value: 'home', label: 'Home & Garden (Avg: 16% growth)' },
+    { value: 'food', label: 'Food & Beverage (Avg: 20% growth)' },
+    { value: 'pets', label: 'Pet Products (Avg: 24% growth)' },
+    { value: 'jewelry', label: 'Jewelry & Accessories (Avg: 35% growth)' },
+    { value: 'sports', label: 'Sports & Fitness (Avg: 22% growth)' },
+    { value: 'other', label: 'Other (Avg: 18% growth)' }
+  ], []);
 
-  const businessStages = [
-    { value: 'startup', label: 'Startup (0-6 months)', multiplier: 1.4 },
-    { value: 'growing', label: 'Growing (6 months - 2 years)', multiplier: 1.25 },
-    { value: 'established', label: 'Established (2-5 years)', multiplier: 1.15 },
-    { value: 'mature', label: 'Mature (5+ years)', multiplier: 1.1 }
-  ]
-
-  const challenges = [
-    'Low conversion rates',
-    'High cart abandonment',
-    'Poor customer retention',
-    'Manual task overload',
-    'Ineffective email marketing',
-    'Inventory management',
-    'Customer service bottlenecks',
-    'Scaling difficulties'
-  ]
-
-  const handleInputChange = (field, value) => {
+  // Update form data function - Optimized to prevent unnecessary re-renders
+  const updateFormData = useCallback((field, value) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
-    }))
-  }
-
-  const calculateAdvancedROI = () => {
-    // Track ROI calculator completion in Google Analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'roi_calculator_completed', {
-        event_category: 'conversion',
-        event_label: 'ROI Calculator Completed',
-        value: parseFloat(formData.monthlyRevenue) || 0
+    }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
       });
     }
+  }, [errors]);
 
-    const revenue = parseFloat(formData.monthlyRevenue) || 0
-    const orders = parseFloat(formData.monthlyOrders) || 0
-    const aov = parseFloat(formData.averageOrderValue) || 0
-    const conversionRate = parseFloat(formData.currentConversionRate) || 2.5
-    const abandonmentRate = parseFloat(formData.cartAbandonmentRate) || 70
-    const manualHours = parseFloat(formData.timeSpentOnManualTasks) || 20
-    const adSpend = parseFloat(formData.monthlyAdSpend) || 0
-
-    // Get industry and stage multipliers
-    const selectedIndustry = industries.find(ind => ind.value === formData.industry) || industries[9]
-    const selectedStage = businessStages.find(stage => stage.value === formData.businessStage) || businessStages[1]
+  // Validation functions for each step
+  const validateStep = useCallback((step) => {
+    const newErrors = {};
     
-    // Advanced calculations based on Chime's actual capabilities
-    const industryMultiplier = selectedIndustry.multiplier
-    const stageMultiplier = selectedStage.multiplier
-    const baseGrowthRate = 0.20 // 20% base growth
-    
-    // Calculate improvements
-    const conversionImprovement = Math.min(conversionRate * 0.4, 2.5) // Up to 40% conversion improvement
-    const cartRecoveryRate = Math.min(abandonmentRate * 0.35, 25) // Recover up to 35% of abandoned carts
-    const automationSavings = manualHours * 0.8 // Save 80% of manual time
-    const adEfficiencyGain = adSpend * 0.25 // 25% better ad efficiency
-    
-    // Revenue calculations
-    const monthlyIncrease = revenue * baseGrowthRate * industryMultiplier * stageMultiplier
-    const cartRecoveryRevenue = (orders * (abandonmentRate / 100) * (cartRecoveryRate / 100)) * aov
-    const conversionRevenue = revenue * (conversionImprovement / 100)
-    const adSavings = adEfficiencyGain
-    
-    const totalMonthlyIncrease = monthlyIncrease + cartRecoveryRevenue + conversionRevenue + adSavings
-    const yearlyIncrease = totalMonthlyIncrease * 12
-    const newMonthlyRevenue = revenue + totalMonthlyIncrease
-    
-    // ROI calculation (assuming $1,500/month Chime cost)
-    const chimeCost = 1500
-    const roi = ((totalMonthlyIncrease - chimeCost) / chimeCost) * 100
-    const paybackPeriod = chimeCost / totalMonthlyIncrease
-    
-    // Time savings
-    const hoursSaved = automationSavings
-    const weeklySavings = hoursSaved / 4
-    const monthlySavings = hoursSaved
-    
-    // Additional metrics
-    const recoveredCarts = Math.floor(orders * (abandonmentRate / 100) * (cartRecoveryRate / 100))
-    const newConversionRate = conversionRate + conversionImprovement
-    const customerLifetimeValueIncrease = aov * 0.3 // 30% CLV increase
-    
-    setResults({
-      currentRevenue: revenue,
-      newRevenue: newMonthlyRevenue,
-      monthlyIncrease: totalMonthlyIncrease,
-      yearlyIncrease: yearlyIncrease,
-      roi: roi,
-      paybackPeriod: paybackPeriod,
-      recoveredCarts: recoveredCarts,
-      hoursSaved: hoursSaved,
-      weeklySavings: weeklySavings,
-      monthlySavings: monthlySavings,
-      conversionImprovement: conversionImprovement,
-      newConversionRate: newConversionRate,
-      cartRecoveryRate: cartRecoveryRate,
-      customerLifetimeValueIncrease: customerLifetimeValueIncrease,
-      adSavings: adSavings,
-      industryGrowth: selectedIndustry.avgGrowth,
-      projectedGrowthRate: (totalMonthlyIncrease / revenue) * 100
-    })
-    
-    setShowPersonalizedInsights(true)
-  }
-
-  const nextStep = () => {
-    if (step < 4) {
-      setStep(step + 1)
-    } else {
-      calculateAdvancedROI()
-      setStep(5)
-    }
-  }
-
-  const prevStep = () => {
-    if (step > 1) {
-      setStep(step - 1)
-    }
-  }
-
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
-
-  const formatNumber = (number) => {
-    return new Intl.NumberFormat('en-US').format(Math.round(number))
-  }
-
-  const isStepValid = () => {
     switch (step) {
       case 1:
-        return formData.monthlyRevenue && formData.averageOrderValue && formData.monthlyOrders
+        if (!formData.monthlyRevenue) newErrors.monthlyRevenue = 'Monthly revenue is required';
+        if (!formData.averageOrderValue) newErrors.averageOrderValue = 'Average order value is required';
+        if (!formData.monthlyOrders) newErrors.monthlyOrders = 'Monthly orders is required';
+        break;
+        
       case 2:
-        return formData.industry && formData.currentConversionRate && formData.cartAbandonmentRate
+        if (!formData.industry) newErrors.industry = 'Industry selection is required';
+        if (!formData.conversionRate) newErrors.conversionRate = 'Conversion rate is required';
+        if (!formData.cartAbandonmentRate) newErrors.cartAbandonmentRate = 'Cart abandonment rate is required';
+        break;
+        
       case 3:
-        return formData.timeSpentOnManualTasks && formData.businessStage && formData.biggestChallenge
+        if (!formData.teamSize) newErrors.teamSize = 'Team size is required';
+        if (!formData.currentTools) newErrors.currentTools = 'Current tools information is required';
+        if (!formData.timeSpentOnTasks) newErrors.timeSpentOnTasks = 'Time spent on tasks is required';
+        break;
+        
       case 4:
-        return formData.firstName && formData.lastName && formData.email && formData.businessName
+        if (!formData.firstName) newErrors.firstName = 'First name is required';
+        if (!formData.lastName) newErrors.lastName = 'Last name is required';
+        if (!formData.email) newErrors.email = 'Email is required';
+        if (!formData.company) newErrors.company = 'Company is required';
+        break;
+        
       default:
-        return true
+        break;
     }
-  }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }, [formData]);
 
-  // Progress percentage
-  const progressPercentage = (step / 5) * 100
+  // Navigation functions
+  const nextStep = useCallback(() => {
+    if (validateStep(currentStep)) {
+      setCurrentStep(prev => Math.min(prev + 1, 5));
+    }
+  }, [currentStep, validateStep]);
 
-  return (
-    <div className="max-w-5xl mx-auto">
-      {/* Header with Social Proof */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-            ))}
+  const prevStep = useCallback(() => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  }, []);
+
+  // Calculate ROI based on form data
+  const calculateROI = useCallback(() => {
+    const revenue = parseFloat(formData.monthlyRevenue) || 0;
+    const orders = parseFloat(formData.monthlyOrders) || 0;
+    const conversionRate = parseFloat(formData.conversionRate) || 0;
+    const cartAbandonmentRate = parseFloat(formData.cartAbandonmentRate) || 0;
+    
+    // Industry multipliers
+    const industryMultipliers = {
+      fashion: 1.22,
+      electronics: 1.18,
+      health: 1.28,
+      beauty: 1.31,
+      home: 1.16,
+      food: 1.20,
+      pets: 1.24,
+      jewelry: 1.35,
+      sports: 1.22,
+      other: 1.18
+    };
+    
+    const multiplier = industryMultipliers[formData.industry] || 1.18;
+    
+    // Conservative calculation
+    const conservativeGrowth = revenue * 0.15 * multiplier;
+    const realisticGrowth = revenue * 0.25 * multiplier;
+    const optimisticGrowth = revenue * 0.40 * multiplier;
+    
+    return {
+      conservative: Math.round(conservativeGrowth),
+      realistic: Math.round(realisticGrowth),
+      optimistic: Math.round(optimisticGrowth),
+      growthPercentage: Math.round((realisticGrowth / revenue) * 100),
+      additionalRevenue: Math.round(realisticGrowth * 12),
+      roi: Math.round(((realisticGrowth * 12) / (revenue * 12)) * 100)
+    };
+  }, [formData]);
+
+  // Handle form submission
+  const handleSubmit = useCallback(async () => {
+    if (!validateStep(4)) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Calculate results
+      const results = calculateROI();
+      setCalculatedResults(results);
+      
+      // Prepare submission data
+      const submissionData = {
+        ...formData,
+        calculatedResults: results,
+        submittedAt: new Date().toISOString()
+      };
+      
+      // Submit to backend
+      const response = await fetch('https://lnh8imcjywkg.manus.space/api/roi-calculator-submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+      
+      const result = await response.json();
+      console.log('Form submitted successfully:', result);
+      
+      // Submit to HubSpot
+      try {
+        await submitToHubSpot({
+          email: formData.email,
+          firstname: formData.firstName,
+          lastname: formData.lastName,
+          company: formData.company,
+          phone: formData.phone,
+          monthly_revenue: formData.monthlyRevenue,
+          industry: formData.industry,
+          roi_projection: results.roi
+        });
+      } catch (hubspotError) {
+        console.error('HubSpot submission failed:', hubspotError);
+        // Continue even if HubSpot fails
+      }
+      
+      // Show results
+      setShowResults(true);
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('There was an error submitting your information. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData, validateStep, calculateROI]);
+
+  // Render step content
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">📊 Current Business Performance</h3>
+              <p className="text-gray-600">Help us understand your current revenue and order patterns</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Monthly Revenue *
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <input
+                    type="number"
+                    value={formData.monthlyRevenue}
+                    onChange={(e) => updateFormData('monthlyRevenue', e.target.value)}
+                    placeholder="50,000"
+                    className={`w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      errors.monthlyRevenue ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+                {errors.monthlyRevenue && <p className="text-red-500 text-sm mt-1">{errors.monthlyRevenue}</p>}
+                <p className="text-sm text-gray-500 mt-1">Your total monthly revenue</p>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Average Order Value *
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <input
+                    type="number"
+                    value={formData.averageOrderValue}
+                    onChange={(e) => updateFormData('averageOrderValue', e.target.value)}
+                    placeholder="75"
+                    className={`w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      errors.averageOrderValue ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+                {errors.averageOrderValue && <p className="text-red-500 text-sm mt-1">{errors.averageOrderValue}</p>}
+                <p className="text-sm text-gray-500 mt-1">Average amount per order</p>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Monthly Orders *
+                </label>
+                <input
+                  type="number"
+                  value={formData.monthlyOrders}
+                  onChange={(e) => updateFormData('monthlyOrders', e.target.value)}
+                  placeholder="667"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.monthlyOrders ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.monthlyOrders && <p className="text-red-500 text-sm mt-1">{errors.monthlyOrders}</p>}
+                <p className="text-sm text-gray-500 mt-1">Total orders per month</p>
+              </div>
+            </div>
+            
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h4 className="font-medium text-blue-900 mb-2">🔒 Why we need this data</h4>
+              <p className="text-blue-800 text-sm">
+                These metrics help us calculate your exact growth potential and create a personalized automation strategy. All data 
+                is encrypted and never shared.
+              </p>
+            </div>
           </div>
-          <span className="text-sm text-gray-600">4.9/5 from 500+ businesses</span>
-        </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-          Discover Your <span className="text-blue-600">Exact Growth Potential</span>
-        </h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Get a personalized revenue projection based on your specific business data and see exactly how Chime will transform your Shopify store
-        </p>
-      </div>
-
-      {/* Trust Indicators */}
-      <div className="flex flex-wrap items-center justify-center gap-6 mb-8 text-sm text-gray-600">
-        <div className="flex items-center">
-          <Shield className="h-4 w-4 mr-2 text-green-600" />
-          SOC 2 Certified
-        </div>
-        <div className="flex items-center">
-          <Users className="h-4 w-4 mr-2 text-blue-600" />
-          500+ Success Stories
-        </div>
-        <div className="flex items-center">
-          <Award className="h-4 w-4 mr-2 text-purple-600" />
-          99.2% Success Rate
-        </div>
-        <div className="flex items-center">
-          <Clock className="h-4 w-4 mr-2 text-orange-600" />
-          48-Hour Setup
-        </div>
-      </div>
-
-      <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-blue-50">
-        <CardHeader className="text-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white rounded-t-lg">
-          <CardTitle className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3">
-            <Calculator className="h-8 w-8" />
-            Revenue Growth Calculator
-          </CardTitle>
-          <p className="text-blue-100 mt-2">
-            Powered by data from 500+ successful Shopify implementations
-          </p>
-          
-          {/* Enhanced Progress Bar */}
-          <div className="mt-6">
-            <div className="flex justify-between text-sm text-blue-100 mb-2">
-              <span>Step {step} of 5</span>
-              <span>{Math.round(progressPercentage)}% Complete</span>
+        );
+        
+      case 2:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">🎯 Performance & Industry Data</h3>
+              <p className="text-gray-600">Let's understand your current performance and industry context</p>
             </div>
-            <div className="w-full bg-blue-800 rounded-full h-3">
-              <div 
-                className="bg-gradient-to-r from-yellow-400 to-orange-400 h-3 rounded-full transition-all duration-500 relative"
-                style={{ width: `${progressPercentage}%` }}
-              >
-                <div className="absolute right-0 top-0 h-3 w-3 bg-white rounded-full transform translate-x-1"></div>
-              </div>
-            </div>
-            <div className="flex justify-between text-xs text-blue-200 mt-2">
-              <span>Business Metrics</span>
-              <span>Performance Data</span>
-              <span>Operations</span>
-              <span>Contact Info</span>
-              <span>Your Results</span>
-            </div>
-          </div>
-        </CardHeader>
-
-        <CardContent className="p-8">
-          {step === 1 && (
-            <div className="space-y-8">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  📊 Current Business Performance
-                </h3>
-                <p className="text-gray-600">
-                  Help us understand your current revenue and order patterns
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Monthly Revenue *
-                  </label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="number"
-                      value={formData.monthlyRevenue}
-                      onChange={(e) => handleInputChange('monthlyRevenue', e.target.value)}
-                      className="w-full pl-10 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                      placeholder="50,000"
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500">Your total monthly revenue</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Average Order Value *
-                  </label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="number"
-                      value={formData.averageOrderValue}
-                      onChange={(e) => handleInputChange('averageOrderValue', e.target.value)}
-                      className="w-full pl-10 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                      placeholder="75"
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500">Average amount per order</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Monthly Orders *
-                  </label>
-                  <input
-                    type="number"
-                    value={formData.monthlyOrders}
-                    onChange={(e) => handleInputChange('monthlyOrders', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="667"
-                  />
-                  <p className="text-xs text-gray-500">Total orders per month</p>
-                </div>
-              </div>
-
-              <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
-                <div className="flex items-start">
-                  <AlertCircle className="h-5 w-5 text-blue-600 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1">Why we need this data</h4>
-                    <p className="text-sm text-blue-700">
-                      These metrics help us calculate your exact growth potential and create a personalized automation strategy. All data is encrypted and never shared.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {step === 2 && (
-            <div className="space-y-8">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  🎯 Performance & Industry Data
-                </h3>
-                <p className="text-gray-600">
-                  Let's understand your current performance and industry context
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Industry *
-                  </label>
-                  <select
-                    value={formData.industry}
-                    onChange={(e) => handleInputChange('industry', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                  >
-                    <option value="">Select your industry</option>
-                    {industries.map((industry) => (
-                      <option key={industry.value} value={industry.value}>
-                        {industry.label} (Avg: {industry.avgGrowth} growth)
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-xs text-gray-500">Industry affects growth potential</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Current Conversion Rate (%) *
-                  </label>
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={formData.currentConversionRate}
-                    onChange={(e) => handleInputChange('currentConversionRate', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="2.5"
-                  />
-                  <p className="text-xs text-gray-500">Visitors who make a purchase</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Cart Abandonment Rate (%) *
-                  </label>
-                  <input
-                    type="number"
-                    step="1"
-                    value={formData.cartAbandonmentRate}
-                    onChange={(e) => handleInputChange('cartAbandonmentRate', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="70"
-                  />
-                  <p className="text-xs text-gray-500">% of carts left without purchase</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Monthly Ad Spend
-                  </label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <input
-                      type="number"
-                      value={formData.monthlyAdSpend}
-                      onChange={(e) => handleInputChange('monthlyAdSpend', e.target.value)}
-                      className="w-full pl-10 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                      placeholder="5,000"
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500">Optional: helps calculate ad efficiency gains</p>
-                </div>
-              </div>
-
-              <div className="bg-green-50 p-6 rounded-xl border border-green-200">
-                <div className="flex items-start">
-                  <TrendingUp className="h-5 w-5 text-green-600 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-green-900 mb-1">Industry Benchmark</h4>
-                    <p className="text-sm text-green-700">
-                      {formData.industry && industries.find(ind => ind.value === formData.industry) ? 
-                        `${industries.find(ind => ind.value === formData.industry).label} businesses typically see ${industries.find(ind => ind.value === formData.industry).avgGrowth} growth with Chime.` :
-                        'Select your industry to see specific growth benchmarks for your sector.'
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
-            <div className="space-y-8">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  ⚙️ Operations & Business Stage
-                </h3>
-                <p className="text-gray-600">
-                  Understanding your operations helps us calculate time savings and efficiency gains
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Hours/Week on Manual Tasks *
-                  </label>
-                  <input
-                    type="number"
-                    value={formData.timeSpentOnManualTasks}
-                    onChange={(e) => handleInputChange('timeSpentOnManualTasks', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="20"
-                  />
-                  <p className="text-xs text-gray-500">Email marketing, inventory, customer service, etc.</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Business Stage *
-                  </label>
-                  <select
-                    value={formData.businessStage}
-                    onChange={(e) => handleInputChange('businessStage', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                  >
-                    <option value="">Select business stage</option>
-                    {businessStages.map((stage) => (
-                      <option key={stage.value} value={stage.value}>
-                        {stage.label}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-xs text-gray-500">Affects growth potential and implementation strategy</p>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-700">
-                  Biggest Challenge *
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Industry *
                 </label>
                 <select
-                  value={formData.biggestChallenge}
-                  onChange={(e) => handleInputChange('biggestChallenge', e.target.value)}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                  value={formData.industry}
+                  onChange={(e) => updateFormData('industry', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.industry ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 >
-                  <option value="">Select your biggest challenge</option>
-                  {challenges.map((challenge) => (
-                    <option key={challenge} value={challenge}>
-                      {challenge}
+                  {industries.map((industry) => (
+                    <option key={industry.value} value={industry.value}>
+                      {industry.label}
                     </option>
                   ))}
                 </select>
-                <p className="text-xs text-gray-500">Helps us prioritize solutions in your growth plan</p>
-              </div>
-
-              <div className="bg-purple-50 p-6 rounded-xl border border-purple-200">
-                <div className="flex items-start">
-                  <Zap className="h-5 w-5 text-purple-600 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-purple-900 mb-1">Automation Impact</h4>
-                    <p className="text-sm text-purple-700">
-                      Based on your manual task hours, we'll calculate exactly how much time Chime will save you each week and the monetary value of that time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {step === 4 && (
-            <div className="space-y-8">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  📧 Get Your Personalized Growth Report
-                </h3>
-                <p className="text-gray-600">
-                  We'll send your detailed analysis and implementation roadmap to your email
-                </p>
+                {errors.industry && <p className="text-red-500 text-sm mt-1">{errors.industry}</p>}
+                <p className="text-sm text-gray-500 mt-1">Industry affects growth potential</p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.firstName}
-                    onChange={(e) => handleInputChange('firstName', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="John"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.lastName}
-                    onChange={(e) => handleInputChange('lastName', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="Smith"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="john@company.com"
-                  />
-                  <p className="text-xs text-gray-500">We'll send your growth report here</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Business Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.businessName}
-                    onChange={(e) => handleInputChange('businessName', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="Your Business Name"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Website URL
-                  </label>
-                  <input
-                    type="url"
-                    value={formData.website}
-                    onChange={(e) => handleInputChange('website', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="https://yourstore.com"
-                  />
-                  <p className="text-xs text-gray-500">Optional: helps us provide specific recommendations</p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-semibold text-gray-700">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phoneNumber}
-                    onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-                    className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
-                    placeholder="(555) 123-4567"
-                  />
-                  <p className="text-xs text-gray-500">Optional: for priority support and consultation</p>
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Current Conversion Rate (%) *
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={formData.conversionRate}
+                  onChange={(e) => updateFormData('conversionRate', e.target.value)}
+                  placeholder="2.5"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.conversionRate ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.conversionRate && <p className="text-red-500 text-sm mt-1">{errors.conversionRate}</p>}
+                <p className="text-sm text-gray-500 mt-1">Visitors who make a purchase</p>
               </div>
-
-              <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-blue-600 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1">What happens next?</h4>
-                    <ul className="text-sm text-blue-700 space-y-1">
-                      <li>• Instant access to your personalized growth projections</li>
-                      <li>• Detailed PDF report sent to your email within 5 minutes</li>
-                      <li>• Optional: Schedule a free strategy call with our growth experts</li>
-                      <li>• 🔒 Your data is encrypted and never shared with third parties</li>
-                    </ul>
-                  </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Cart Abandonment Rate (%) *
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={formData.cartAbandonmentRate}
+                  onChange={(e) => updateFormData('cartAbandonmentRate', e.target.value)}
+                  placeholder="70"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.cartAbandonmentRate ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.cartAbandonmentRate && <p className="text-red-500 text-sm mt-1">{errors.cartAbandonmentRate}</p>}
+                <p className="text-sm text-gray-500 mt-1">% of carts left without purchase</p>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Monthly Ad Spend
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <input
+                    type="number"
+                    value={formData.monthlyAdSpend}
+                    onChange={(e) => updateFormData('monthlyAdSpend', e.target.value)}
+                    placeholder="5,000"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
                 </div>
+                <p className="text-sm text-gray-500 mt-1">Optional: helps calculate ad efficiency gains</p>
               </div>
             </div>
-          )}
-
-          {step === 5 && results && (
-            <div className="space-y-8">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                  <Sparkles className="h-8 w-8 text-green-600" />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                  🎉 Your Personalized Growth Projection
-                </h3>
-                <p className="text-lg text-gray-600">
-                  Based on your specific business data and our 500+ successful implementations
-                </p>
+            
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h4 className="font-medium text-green-900 mb-2">📈 Industry Benchmark</h4>
+              <p className="text-green-800 text-sm">
+                Select your industry to see specific growth benchmarks for your sector.
+              </p>
+            </div>
+          </div>
+        );
+        
+      case 3:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">⚙️ Current Operations</h3>
+              <p className="text-gray-600">Tell us about your team and current workflow</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Team Size *
+                </label>
+                <select
+                  value={formData.teamSize}
+                  onChange={(e) => updateFormData('teamSize', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.teamSize ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Select team size</option>
+                  <option value="1">Just me</option>
+                  <option value="2-5">2-5 people</option>
+                  <option value="6-10">6-10 people</option>
+                  <option value="11-25">11-25 people</option>
+                  <option value="26+">26+ people</option>
+                </select>
+                {errors.teamSize && <p className="text-red-500 text-sm mt-1">{errors.teamSize}</p>}
+                <p className="text-sm text-gray-500 mt-1">Including yourself</p>
               </div>
-
-              {/* Key Results Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200 text-center">
-                  <TrendingUp className="h-10 w-10 text-green-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-green-600 mb-1">
-                    {formatCurrency(results.monthlyIncrease)}
-                  </div>
-                  <div className="text-sm text-gray-600 mb-2">Monthly Revenue Increase</div>
-                  <div className="text-xs text-green-700 font-medium">
-                    +{Math.round(results.projectedGrowthRate)}% growth rate
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200 text-center">
-                  <DollarSign className="h-10 w-10 text-blue-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-blue-600 mb-1">
-                    {formatCurrency(results.yearlyIncrease)}
-                  </div>
-                  <div className="text-sm text-gray-600 mb-2">Annual Revenue Increase</div>
-                  <div className="text-xs text-blue-700 font-medium">
-                    First year projection
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl border border-purple-200 text-center">
-                  <Target className="h-10 w-10 text-purple-600 mx-auto mb-3" />
-                  <div className="text-3xl font-bold text-purple-600 mb-1">
-                    {Math.round(results.roi)}%
-                  </div>
-                  <div className="text-sm text-gray-600 mb-2">ROI in First Year</div>
-                  <div className="text-xs text-purple-700 font-medium">
-                    Payback in {results.paybackPeriod.toFixed(1)} months
-                  </div>
-                </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Current Tools *
+                </label>
+                <select
+                  value={formData.currentTools}
+                  onChange={(e) => updateFormData('currentTools', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.currentTools ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Select current setup</option>
+                  <option value="basic">Basic (Shopify + email)</option>
+                  <option value="intermediate">Intermediate (+ some automation)</option>
+                  <option value="advanced">Advanced (multiple tools)</option>
+                  <option value="enterprise">Enterprise (full stack)</option>
+                </select>
+                {errors.currentTools && <p className="text-red-500 text-sm mt-1">{errors.currentTools}</p>}
+                <p className="text-sm text-gray-500 mt-1">Your current tech stack</p>
               </div>
-
-              {/* Detailed Breakdown */}
-              <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
-                <h4 className="text-xl font-bold text-gray-900 mb-6">Detailed Impact Analysis</h4>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="font-semibold text-gray-900 mb-4 flex items-center">
-                      <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
-                      Revenue Improvements
-                    </h5>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Current Monthly Revenue</span>
-                        <span className="font-semibold">{formatCurrency(results.currentRevenue)}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Projected Monthly Revenue</span>
-                        <span className="font-semibold text-green-600">{formatCurrency(results.newRevenue)}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Conversion Rate Improvement</span>
-                        <span className="font-semibold text-blue-600">+{results.conversionImprovement.toFixed(1)}%</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2">
-                        <span className="text-gray-600">Cart Recovery Rate</span>
-                        <span className="font-semibold text-purple-600">{results.cartRecoveryRate.toFixed(1)}%</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h5 className="font-semibold text-gray-900 mb-4 flex items-center">
-                      <Clock className="h-5 w-5 mr-2 text-orange-600" />
-                      Time & Efficiency Savings
-                    </h5>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Hours Saved Per Week</span>
-                        <span className="font-semibold">{results.weeklySavings.toFixed(1)} hours</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Hours Saved Per Month</span>
-                        <span className="font-semibold">{results.monthlySavings.toFixed(1)} hours</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Recovered Carts/Month</span>
-                        <span className="font-semibold text-green-600">{formatNumber(results.recoveredCarts)}</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2">
-                        <span className="text-gray-600">Ad Efficiency Savings</span>
-                        <span className="font-semibold text-blue-600">{formatCurrency(results.adSavings)}/month</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Industry Comparison */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <Award className="h-5 w-5 mr-2 text-blue-600" />
-                  Industry Benchmark Comparison
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-blue-600">{results.industryGrowth}</div>
-                    <div className="text-sm text-gray-600">Industry Average Growth</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-green-600">{Math.round(results.projectedGrowthRate)}%</div>
-                    <div className="text-sm text-gray-600">Your Projected Growth</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-purple-600">
-                      {Math.round((results.projectedGrowthRate / parseFloat(results.industryGrowth.replace('%', ''))) * 100)}%
-                    </div>
-                    <div className="text-sm text-gray-600">Above Industry Average</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Next Steps CTA */}
-              <div className="bg-gradient-to-br from-gray-900 to-blue-900 p-8 rounded-xl text-white text-center">
-                <h4 className="text-2xl font-bold mb-4">Ready to Achieve These Results?</h4>
-                <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                  Your personalized growth plan is ready. Get started with our 48-hour implementation and see results in 30 days, or get your money back.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                  <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
-                    Get My Implementation Plan
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold">
-                    Schedule Strategy Call
-                  </Button>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
-                  <div className="flex items-center">
-                    <Shield className="h-4 w-4 mr-2" />
-                    90-Day Money-Back Guarantee
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2" />
-                    48-Hour Setup
-                  </div>
-                  <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-2" />
-                    500+ Success Stories
-                  </div>
-                </div>
-              </div>
-
-              {/* HubSpot Form Placeholder */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-                <h4 className="font-semibold text-yellow-800 mb-3">🔧 HubSpot Form Integration Point</h4>
-                <p className="text-sm text-yellow-700 mb-4">
-                  This is where your HubSpot embedded form will be placed to capture leads with all the calculated data.
-                </p>
-                <div className="bg-white p-4 rounded border border-yellow-300">
-                  <p className="text-sm text-gray-600 italic">
-                    [HubSpot Embedded Form Goes Here - Replace this section with your actual HubSpot embed code]
-                  </p>
-                </div>
+              
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Time Spent on Manual Tasks *
+                </label>
+                <select
+                  value={formData.timeSpentOnTasks}
+                  onChange={(e) => updateFormData('timeSpentOnTasks', e.target.value)}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.timeSpentOnTasks ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Select time spent</option>
+                  <option value="0-5">0-5 hours per week</option>
+                  <option value="6-15">6-15 hours per week</option>
+                  <option value="16-30">16-30 hours per week</option>
+                  <option value="31+">31+ hours per week</option>
+                </select>
+                {errors.timeSpentOnTasks && <p className="text-red-500 text-sm mt-1">{errors.timeSpentOnTasks}</p>}
+                <p className="text-sm text-gray-500 mt-1">Time on email marketing, customer service, inventory management, etc.</p>
               </div>
             </div>
-          )}
-
-          {/* Navigation Buttons */}
-          {step < 5 && (
-            <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={prevStep}
-                disabled={step === 1}
-                className="px-8 py-3 text-lg"
-              >
-                Previous
-              </Button>
-              <Button
-                onClick={nextStep}
-                disabled={!isStepValid()}
-                className="px-8 py-3 text-lg bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 hover:from-slate-800 hover:via-blue-800 hover:to-slate-800"
-              >
-                {step === 4 ? 'Calculate My Growth Potential' : 'Continue'}
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
+            
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h4 className="font-medium text-purple-900 mb-2">⏰ Time Savings Calculation</h4>
+              <p className="text-purple-800 text-sm">
+                We'll calculate how much time Chime can save you based on your current manual processes.
+              </p>
             </div>
-          )}
-
-          {step === 5 && (
-            <div className="text-center mt-8 pt-6 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setStep(1)
-                  setResults(null)
-                  setShowPersonalizedInsights(false)
-                  setFormData({
-                    monthlyRevenue: '',
-                    averageOrderValue: '',
-                    monthlyOrders: '',
-                    industry: '',
-                    currentConversionRate: '',
-                    cartAbandonmentRate: '',
-                    timeSpentOnManualTasks: '',
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    businessName: '',
-                    website: '',
-                    phoneNumber: '',
-                    businessStage: '',
-                    biggestChallenge: '',
-                    monthlyAdSpend: ''
-                  })
-                }}
-                className="px-8 py-3 text-lg"
-              >
-                Calculate for Another Business
-              </Button>
+          </div>
+        );
+        
+      case 4:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">📞 Contact Information</h3>
+              <p className="text-gray-600">Almost done! We'll send your personalized ROI report to this email</p>
             </div>
-          )}
-        </CardContent>
-      </Card>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  First Name *
+                </label>
+                <input
+                  type="text"
+                  value={formData.firstName}
+                  onChange={(e) => updateFormData('firstName', e.target.value)}
+                  placeholder="John"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.firstName ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Last Name *
+                </label>
+                <input
+                  type="text"
+                  value={formData.lastName}
+                  onChange={(e) => updateFormData('lastName', e.target.value)}
+                  placeholder="Smith"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.lastName ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateFormData('email', e.target.value)}
+                  placeholder="john@company.com"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.email ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  value={formData.company}
+                  onChange={(e) => updateFormData('company', e.target.value)}
+                  placeholder="Your Company"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    errors.company ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                />
+                {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
+              </div>
+              
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateFormData('phone', e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <p className="text-sm text-gray-500 mt-1">Optional: for priority support and consultation</p>
+              </div>
+            </div>
+            
+            <div className="bg-yellow-50 p-4 rounded-lg">
+              <h4 className="font-medium text-yellow-900 mb-2">📧 What happens next?</h4>
+              <p className="text-yellow-800 text-sm">
+                You'll receive a detailed ROI report via email within minutes, plus we'll add you to our priority list for 
+                implementation support.
+              </p>
+            </div>
+          </div>
+        );
+        
+      default:
+        return null;
+    }
+  };
 
-      {/* Trust Signals Footer */}
-      <div className="text-center mt-8 text-sm text-gray-500">
-        <p>🔒 Your data is encrypted and secure • Used by 500+ successful Shopify stores • SOC 2 certified</p>
+  // Progress calculation
+  const progressPercentage = (currentStep / 5) * 100;
+
+  // Results page
+  if (showResults && calculatedResults) {
+    return (
+      <div className="max-w-4xl mx-auto p-6">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">🎉 Your Personalized ROI Projection</h2>
+          <p className="text-xl text-gray-600">Based on your business data and industry benchmarks</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg text-center">
+            <div className="text-3xl font-bold">{calculatedResults.growthPercentage}%</div>
+            <div className="text-blue-100">Projected Growth</div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-lg text-center">
+            <div className="text-3xl font-bold">${calculatedResults.additionalRevenue.toLocaleString()}</div>
+            <div className="text-green-100">Additional Annual Revenue</div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-lg text-center">
+            <div className="text-3xl font-bold">{calculatedResults.roi}%</div>
+            <div className="text-purple-100">ROI</div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-lg text-center">
+            <div className="text-3xl font-bold">6-12</div>
+            <div className="text-orange-100">Months to ROI</div>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">📊 Revenue Projection Scenarios</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-6 bg-gray-50 rounded-lg">
+              <h4 className="text-lg font-semibold text-gray-700 mb-2">Conservative</h4>
+              <div className="text-2xl font-bold text-gray-900">${calculatedResults.conservative.toLocaleString()}</div>
+              <p className="text-sm text-gray-600 mt-2">Monthly increase</p>
+            </div>
+            
+            <div className="text-center p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
+              <h4 className="text-lg font-semibold text-blue-700 mb-2">Realistic</h4>
+              <div className="text-2xl font-bold text-blue-900">${calculatedResults.realistic.toLocaleString()}</div>
+              <p className="text-sm text-blue-600 mt-2">Monthly increase</p>
+            </div>
+            
+            <div className="text-center p-6 bg-green-50 rounded-lg">
+              <h4 className="text-lg font-semibold text-green-700 mb-2">Optimistic</h4>
+              <div className="text-2xl font-bold text-green-900">${calculatedResults.optimistic.toLocaleString()}</div>
+              <p className="text-sm text-green-600 mt-2">Monthly increase</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 text-center">
+          <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h3>
+          <p className="text-xl mb-6">
+            Your detailed ROI report has been sent to {formData.email}
+          </p>
+          <p className="text-blue-100 mb-6">
+            Our team will contact you within 24 hours to discuss your personalized implementation strategy.
+          </p>
+          <button
+            onClick={() => window.location.href = '/pricing'}
+            className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          >
+            View Pricing Plans
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Main form
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+      {/* Progress Header */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6 mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold">📊 Revenue Growth Calculator</h2>
+          <div className="text-right">
+            <div className="text-sm opacity-90">Step {currentStep} of 5</div>
+            <div className="text-lg font-semibold">{Math.round(progressPercentage)}% Complete</div>
+          </div>
+        </div>
+        
+        <div className="w-full bg-blue-500 rounded-full h-2">
+          <div 
+            className="bg-yellow-400 h-2 rounded-full transition-all duration-300"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
+        
+        <div className="flex justify-between text-sm mt-2 opacity-90">
+          <span>Business Metrics</span>
+          <span>Performance Data</span>
+          <span>Operations</span>
+          <span>Contact Info</span>
+          <span>Your Results</span>
+        </div>
+        
+        <p className="text-center mt-4 text-blue-100">
+          Powered by data from 500+ successful Shopify implementations
+        </p>
+      </div>
+
+      {/* Form Content */}
+      <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+        {renderStepContent()}
+      </div>
+
+      {/* Navigation */}
+      <div className="flex justify-between items-center">
+        <button
+          onClick={prevStep}
+          disabled={currentStep === 1}
+          className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            currentStep === 1
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              : 'bg-gray-600 text-white hover:bg-gray-700'
+          }`}
+        >
+          Previous
+        </button>
+        
+        {currentStep < 4 ? (
+          <button
+            onClick={nextStep}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            Continue
+          </button>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className={`px-8 py-3 rounded-lg font-medium transition-colors ${
+              isSubmitting
+                ? 'bg-gray-400 text-white cursor-not-allowed'
+                : 'bg-green-600 text-white hover:bg-green-700'
+            }`}
+          >
+            {isSubmitting ? 'Calculating...' : 'Get My ROI Report'}
+          </button>
+        )}
+      </div>
+      
+      {/* Security Notice */}
+      <div className="text-center mt-6 text-sm text-gray-500">
+        🔒 Your data is encrypted and secure • Used by 500+ successful Shopify stores • SOC 2 certified
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UltimateROICalculator
+export default UltimateROICalculator;
 

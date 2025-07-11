@@ -9,6 +9,8 @@ import PricingPage from './pages/PricingPage'
 import ContactPage from './pages/ContactPage'
 import ROICalculatorPage from './pages/ROICalculatorPage'
 import ImplementationPage from './pages/ImplementationPage'
+import PaymentPage from './pages/PaymentPage'
+import PaymentSuccessPage from './pages/PaymentSuccessPage'
 import TermsPage from './pages/TermsPage'
 import PrivacyPage from './pages/PrivacyPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
@@ -55,6 +57,8 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/roi-calculator" element={<ROICalculatorPage />} />
             <Route path="/implementation" element={<ImplementationPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
