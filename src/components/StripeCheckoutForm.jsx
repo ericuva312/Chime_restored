@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51RiPccHaYvGfnRgRzbsBWpUeY3cRcAMF3LOYDzZiLxICymrXIm227cIKY5VcK3QDDnMUEXUCYLz1m6QTMYNecxRj0065arrkYQ')
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51RiPcoQlnfxG0GJeOqydtxaYIOkxjWrzSIeJEeIUsQ88o4vfCBhdBIG3mLpzlZSt1F6n5CjAmYYObb9HryKDKJLq00jkNfqhOp')
 
 const StripeCheckoutForm = ({ amount, planName, planType, customerData }) => {
   const [clientSecret, setClientSecret] = useState('')
