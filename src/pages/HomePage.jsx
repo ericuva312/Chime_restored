@@ -64,39 +64,58 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Premium Hero Section */}
+      <section className="hero-premium">
+        <div className="container-premium hero-content">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Guaranteed <span className="text-blue-400">15-25%</span> Revenue Growth
-              <br />for Your Shopify Store - or you don't pay
+            <h1 className="h1 text-white mb-6">
+              Dominate Your Market with <span className="text-yellow-400">Guaranteed 15-25%</span> Revenue Growth
+              <br />or You Don't Pay a Dime
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
-              From manual grind to autonomous growth—Chime integrates industry-leading AI apps into your Shopify store to automate every task, recover carts, boost revenue, and give you back 20+ hours a week, all through a done-for-you service requiring zero technical skills.
+            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto body-text">
+              Transform from struggling competitor to market leader—Chime's elite AI automation system integrates seamlessly with your Shopify store to automate every revenue-generating task, recover abandoned sales, and deliver the competitive advantage that separates winners from the 95% who fail.
             </p>
+            
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+              <div className="trust-badge">
+                <Shield className="w-4 h-4" />
+                SOC 2 Certified
+              </div>
+              <div className="trust-badge">
+                <CheckCircle className="w-4 h-4" />
+                500+ Success Stories
+              </div>
+              <div className="trust-badge">
+                <TrendingUp className="w-4 h-4" />
+                188% Avg Growth
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link 
                 to="/contact" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-blue-600 hover:border-blue-700"
+                className="btn-accent interactive-element"
               >
-                Schedule a Call
+                Claim Your Competitive Edge
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link 
                 to="/roi-calculator" 
-                className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-blue-600 hover:border-blue-700"
+                className="btn-secondary interactive-element"
               >
-                Calculate Your ROI
+                Calculate Your Domination Potential
               </Link>
             </div>
+            
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white">
               <div className="flex items-center">
-                <Zap className="w-5 h-5 text-blue-400 mr-2" />
-                Setup in 48 hours
+                <Zap className="w-5 h-5 text-yellow-400 mr-2" />
+                Elite Setup in 48 Hours
               </div>
               <div className="flex items-center">
-                <TrendingUp className="w-5 h-5 text-blue-400 mr-2" />
-                Results in 30 days
+                <TrendingUp className="w-5 h-5 text-yellow-400 mr-2" />
+                Market Domination in 30 Days
               </div>
               <div className="flex items-center">
                 <Shield className="w-5 h-5 text-blue-400 mr-2" />
