@@ -1,7 +1,7 @@
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navigation from './components/Navigation'
-import Footer from './components/Footer'
+import EnhancedFooter from './components/EnhancedFooter'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import CaseStudiesPage from './pages/CaseStudiesPage'
@@ -78,7 +78,7 @@ function App() {
             <Route path="/industries/home-garden" element={<HomeGardenPage />} />
           </Routes>
         </main>
-        <Footer />
+        <EnhancedFooter />
       </div>
     </Router>
   )
