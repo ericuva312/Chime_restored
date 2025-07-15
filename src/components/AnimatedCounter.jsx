@@ -39,7 +39,8 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "", prefix = "" }) => 
       } else {
         // Extract numeric value from end prop for other formats
         const numericEnd = typeof end === 'string' ? parseFloat(end.replace(/[^\d.]/g, '')) : end
-        const currentCount = Math.floor(progress * numericEnd)
+        // Use proper rounding for decimal values, especially percentages
+        const currentCount = progress === 1 ? numericEnd : Math.floor(progress * numericEnd * 10) / 10
         setCount(currentCount)
       }
 
@@ -63,15 +64,17 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "", prefix = "" }) => 
       return `${count}/7`
     }
     if (typeof end === 'string' && end.includes('%')) {
-      return `${count}%`
+      // For percentages, show decimal if the original has decimal
+      const hasDecimal = end.includes('.')
+      return hasDecimal ? `${count}%` : `${Math.floor(count)}%`
     }
     if (typeof end === 'string' && end.includes('+')) {
-      return `${count}+`
+      return `${Math.floor(count)}+`
     }
     if (typeof end === 'string' && end.includes('/')) {
-      return end.replace(/\d+/, count)
+      return end.replace(/\d+/, Math.floor(count))
     }
-    return count
+    return Math.floor(count)
   }
 
   return (
