@@ -1,6 +1,6 @@
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import Navigation from './components/Navigation'
+import EnhancedNavigation from './components/EnhancedNavigation'
 import EnhancedFooter from './components/EnhancedFooter'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
@@ -47,7 +47,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
-        <Navigation />
+        <EnhancedNavigation />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
