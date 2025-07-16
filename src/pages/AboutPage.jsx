@@ -13,7 +13,7 @@ const AboutPage = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 backdrop-blur-sm rounded-full border border-blue-400/30 mb-8">
-              <span className="text-blue-200 text-sm font-medium">Meet the Elite Team</span>
+              <span className="text-blue-200 text-sm font-medium">Meet the Team</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
@@ -259,7 +259,7 @@ const AboutPage = () => {
               <span className="text-blue-800 text-sm font-semibold">Executive Leadership</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Elite Team</span>
+              Meet the <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Team</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Experienced leaders driving innovation in AI automation and enterprise transformation
