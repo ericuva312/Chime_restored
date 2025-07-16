@@ -46,7 +46,7 @@ const BackendIntegratedROICalculator = () => {
     const calculateRealTime = async () => {
       if (formData.monthly_revenue && parseFloat(formData.monthly_revenue) > 0) {
         try {
-          const response = await fetch(`${API_BASE}/calculate`, {
+          const response = await fetch(`${API_BASE_URL}/calculate`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ const BackendIntegratedROICalculator = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API_BASE}/submit`, {
+      const response = await fetch(`${API_BASE_URL}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
