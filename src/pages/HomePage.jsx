@@ -21,9 +21,11 @@ const HomePage = () => {
       <section className="hero-premium bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
         <div className="container mx-auto px-6 py-20">
           <div className="text-center max-w-4xl mx-auto mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              AI Engines That Turn Rising Shopify Stores Into Market Leaders—Guaranteed
-            </h1>
+            <div className="text-center">
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                AI Engines That Turn Rising Shopify Stores Into Market Leaders — Guaranteed
+              </h1>
+            </div>
             
             <div className="text-center">
               <p className="text-xl text-white mb-8 leading-relaxed opacity-90">
@@ -226,15 +228,14 @@ const HomePage = () => {
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">Genesis - Strategic Growth Engine</h3>                   <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
+                    <h3 className="text-lg font-bold text-gray-900">Genesis - Strategic Growth Engine</h3>
+                    <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
                   </div>
                 </div>
                 
                 <p className="text-gray-700 mb-6 leading-relaxed flex-1">
-                  Genesis serves as your chief strategy officer, analyzing market opportunities and competitive positioning. It develops comprehensive business plans and identifies new revenue streams.
-                </p>
-
-                <div className="space-y-3 mb-8">
+                  Genesis serves as your chief strategy officer, analyzing market opportunities and positioning. It develops comprehensive business plans and identifies new revenue streams.
+                </p>                <div className="space-y-3 mb-8">
                   <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />Market analysis and opportunity identification</li>
@@ -263,7 +264,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-xl font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
+                  <div>                    <h3 className="text-lg font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
                   </div>
                 </div>
                 
@@ -300,7 +301,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-purple-600 to-violet-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-xl font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
+                  <div>                    <h3 className="text-lg font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
                   </div>
                 </div>
                 
@@ -337,7 +338,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-orange-600 to-amber-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Heart className="h-8 w-8 text-white" />
                   </div>
-                  <div                    <h3 className="text-xl font-bold text-gray-900">Pulse - Customer Success Engine</h3>
+                  <div                    <h3 className="text-lg font-bold text-gray-900">Pulse - Customer Success Engine</h3>
                     <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
                   </div>
                 </div>
