@@ -1,34 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Shield, AlertTriangle, Target, Heart, Brain, Eye, Lightbulb } from 'lucide-react'
+import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Shield, AlertTriangle, Target, Heart, Brain, Eye, Lightbulb, Star, Award, Lock, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import RealTimeNotifications from '@/components/RealTimeNotifications'
 
 const HomePage = () => {
-  const features = [
-    {
-      icon: <TrendingUp className="h-12 w-12 text-blue-600" />,
-      title: "Guaranteed Growth",
-      description: "15-25% revenue increase within 90 days or your money back"
-    },
-    {
-      icon: <Users className="h-12 w-12 text-purple-600" />,
-      title: "Smart Segmentation", 
-      description: "AI-powered customer analysis for personalized experiences"
-    },
-    {
-      icon: <Zap className="h-12 w-12 text-orange-600" />,
-      title: "Smart Automation",
-      description: "Set-and-forget systems that continuously improve performance"
-    },
-    {
-      icon: <Shield className="h-12 w-12 text-emerald-600" />,
-      title: "Enterprise Security",
-      description: "SOC 2 certified with bank-level encryption & protection"
-    }
-  ]
-  
   const stats = [
     { number: "188%", label: "Average Revenue Growth" },
     { number: "500+", label: "Successful Implementations" },
@@ -63,365 +40,495 @@ const HomePage = () => {
     }
   ]
 
-  const deathSpiralPoints = [
-    "85% of ecommerce businesses fail because they focus on acquisition instead of retention",
-    "You're spending $40+ to acquire customers who buy once for $35 and never return",
-    "Your competitors are building loyal armies while you chase one-time buyers",
-    "Every lost customer costs 5x more to replace than to retain",
-    "You're trapped in an endless cycle of expensive customer acquisition"
-  ]
-
-  const revolutionPoints = [
-    "Transform one-time buyers into loyal brand evangelists",
-    "Build a community of customers who advocate for your brand",
-    "Create predictable recurring revenue from existing customers",
-    "Reduce acquisition costs while increasing customer lifetime value",
-    "Dominate your market through customer loyalty, not just acquisition"
-  ]
-
-  const pulseCapabilities = [
-    {
-      icon: <Brain className="h-8 w-8 text-purple-600" />,
-      title: "Behavioral Intelligence",
-      description: "Deep learning algorithms analyze customer patterns, preferences, and purchase history to predict future behavior with 94% accuracy"
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-blue-600" />,
-      title: "Churn Prevention",
-      description: "Identifies at-risk customers 30 days before they churn and automatically triggers personalized retention campaigns"
-    },
-    {
-      icon: <Heart className="h-8 w-8 text-red-600" />,
-      title: "Lifetime Value Optimization",
-      description: "Maximizes customer lifetime value through personalized product recommendations and dynamic pricing strategies"
-    },
-    {
-      icon: <Target className="h-8 w-8 text-emerald-600" />,
-      title: "Proactive Support",
-      description: "Anticipates customer needs and delivers proactive support before issues arise, increasing satisfaction by 67%"
-    }
-  ]
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <RealTimeNotifications />
+      
       {/* Premium Hero Section */}
       <section className="hero-premium">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="container mx-auto px-6 py-20">
           <div className="text-center max-w-4xl mx-auto mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Stop Chasing Customers—Start Building an <span className="text-yellow-400">Empire of Loyal Fans</span> Who Buy Again and Again
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-            Chime's Four AI Engines transform one-time buyers into lifetime customers, building predictable recurring revenue that grows your empire while competitors fight over scraps.
-          </p>
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              AI Engines That Turn Rising Shopify Stores Into Market Leaders—Guaranteed
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              Join 500+ Shopify merchants who escaped the 70-hour work weeks and now lead their niches. Achieve 15% more revenue or 25% lower costs in 90 days, or we'll pay you $1,000.
+            </p>
             
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-              <div className="trust-badge">
-                <Shield className="w-4 h-4" />
-                SOC 2 Certified
+            <div className="flex justify-center items-center space-x-8 mb-12 text-sm text-gray-500">
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                <span>500+ Merchants</span>
               </div>
-              <div className="trust-badge">
-                <CheckCircle className="w-4 h-4" />
-                500+ Success Stories
+              <div className="flex items-center">
+                <Shield className="h-5 w-5 text-blue-500 mr-2" />
+                <span>SOC 2 Certified</span>
               </div>
-              <div className="trust-badge">
-                <TrendingUp className="w-4 h-4" />
-                188% Avg Growth
+              <div className="flex items-center">
+                <Star className="h-5 w-5 text-yellow-500 mr-2" />
+                <span>99.9% Satisfaction</span>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link 
-                to="/contact" 
-                className="btn-accent interactive-element"
-              >
-                Claim Your Competitive Edge
-                <ArrowRight className="w-5 h-5 ml-2" />
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                  Book Strategy Call
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
               </Link>
-              <Link 
-                to="/roi-calculator" 
-                className="btn-secondary interactive-element"
-              >
-                Calculate Your Domination Potential
+              <Link to="/roi-calculator">
+                <Button size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                  See your revenue potential
+                  <TrendingUp className="ml-2 h-5 w-5" />
+                </Button>
               </Link>
-            </div>
-            
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white">
-              <div className="flex items-center">
-                <Zap className="w-5 h-5 text-yellow-400 mr-2" />
-                Elite Setup in 48 Hours
-              </div>
-              <div className="flex items-center">
-                <TrendingUp className="w-5 h-5 text-yellow-400 mr-2" />
-                Market Domination in 30 Days
-              </div>
-              <div className="flex items-center">
-                <Shield className="w-5 h-5 text-blue-400 mr-2" />
-                90-day guarantee
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 text-blue-400 mr-2" />
-                SOC 2 certified
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Statistics Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                  <AnimatedCounter end={stat.number} duration={2000} />
+                <div className="text-4xl font-bold text-blue-600 mb-2">
+                  <AnimatedCounter end={stat.number} />
                 </div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* The Death Spiral Section */}
-      <section className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Virtually Zero Risk, Unlimited Upside Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <AlertTriangle className="h-16 w-16 text-red-600" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The Brutal Reality
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-              Most e-commerce businesses are trapped in a death spiral of expensive customer acquisition
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {deathSpiralPoints.map((point, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-red-500">
-                <div className="flex items-start">
-                  <AlertTriangle className="h-6 w-6 text-red-600 mr-3 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700 font-medium">{point}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The Customer Success Revolution Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <Lightbulb className="h-16 w-16 text-emerald-600" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The Customer Success Revolution
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-              Break free from the acquisition trap and build a sustainable empire of loyal customers
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {revolutionPoints.map((point, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-emerald-500">
-                <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-emerald-600 mr-3 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700 font-medium">{point}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Expanded Pulse Engine Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Pulse: Your Customer Intelligence Engine
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-              Pulse develops intimate knowledge of your customer base, predicting behavior, preventing churn, and maximizing customer lifetime value through personalized experiences and proactive support.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pulseCapabilities.map((capability, index) => (
-              <div key={index} className="group">
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 border border-gray-100">
-                  <div className="flex items-center mb-6">
-                    <div className="p-3 bg-white rounded-xl shadow-sm mr-4">
-                      {capability.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {capability.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed">
-                    {capability.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Leading Brands Choose Chime
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Virtually Zero Risk, Unlimited Upside: Our Unbeatable Four-Sided Guarantee
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our AI-powered platform delivers results that traditional marketing agencies can't match
+              We believe your success is non-negotiable. That's why we back our service with an ironclad, four-sided guarantee—designed to eliminate your risk and maximize your upside.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1">
-                  <div className="flex justify-center mb-6">
-                    {feature.icon}
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Growth Guarantee */}
+            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-t-green-500">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4">
+                    <TrendingUp className="h-8 w-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 text-center">
-                    {feature.description}
-                  </p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Growth Guarantee</h3>
                 </div>
-              </div>
-            ))}
+                <div className="space-y-4 text-sm">
+                  <p className="text-gray-700">If your store doesn't grow by at least 15% in 90 days, you pay nothing. We're that confident in our AI automation and proven strategies.</p>
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <p className="font-semibold text-green-800">Your upside:</p>
+                    <p className="text-green-700">Minimum 15% growth or you don't pay a dime.</p>
+                  </div>
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="font-semibold text-blue-800">Our promise:</p>
+                    <p className="text-blue-700">You win, or you don't pay.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 90-Day Money-Back Promise */}
+            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-t-blue-500">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4">
+                    <Shield className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">90-Day Money-Back Promise</h3>
+                </div>
+                <div className="space-y-4 text-sm">
+                  <p className="text-gray-700">If you're not completely satisfied for any reason, you get a full refund within 90 days—no questions asked.</p>
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="font-semibold text-blue-800">Your upside:</p>
+                    <p className="text-blue-700">Try us risk-free for 90 days.</p>
+                  </div>
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <p className="font-semibold text-green-800">Our promise:</p>
+                    <p className="text-green-700">Every penny back if you're not thrilled.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* No Technical Headaches */}
+            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-t-purple-500">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-purple-100 rounded-full p-4 w-16 h-16 mx-auto mb-4">
+                    <Zap className="h-8 w-8 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">No Technical Headaches</h3>
+                </div>
+                <div className="space-y-4 text-sm">
+                  <p className="text-gray-700">We handle all the implementation, setup, and maintenance. You focus on running your business while we do the heavy lifting.</p>
+                  <div className="bg-purple-50 p-3 rounded-lg">
+                    <p className="font-semibold text-purple-800">Your upside:</p>
+                    <p className="text-purple-700">Zero setup stress, zero maintenance, zero technical knowledge required.</p>
+                  </div>
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="font-semibold text-blue-800">Our promise:</p>
+                    <p className="text-blue-700">100% hands-off for you.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* All-in-One Solution */}
+            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-t-orange-500">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="bg-orange-100 rounded-full p-4 w-16 h-16 mx-auto mb-4">
+                    <Award className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">All-in-One Solution</h3>
+                </div>
+                <div className="space-y-4 text-sm">
+                  <p className="text-gray-700">With 500+ successful implementations and a 99.9% satisfaction rate, you're partnering with a team that delivers. We're your one-stop shop—every aspect handled for you.</p>
+                  <div className="bg-orange-50 p-3 rounded-lg">
+                    <p className="font-semibold text-orange-800">Your upside:</p>
+                    <p className="text-orange-700">Confidence in a partner with a proven track record.</p>
+                  </div>
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="font-semibold text-blue-800">Our promise:</p>
+                    <p className="text-blue-700">All-in-one solution; we handle everything.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Zero Risk Footer */}
+          <div className="text-center bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Zero Risk. All Reward.</h3>
+            <p className="text-lg text-gray-600 mb-2">We're so confident in our results, we guarantee your success with these four ironclad promises.</p>
+            <p className="text-xl font-semibold text-blue-600 mb-2">Virtually zero risk. Unlimited upside.</p>
+            <p className="text-lg text-gray-700">Your success is our only priority.</p>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* Core AI Business Engines Section - MOST CRITICAL */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How Chime Delivers Results
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Core AI Business Engines
             </h2>
-            <p className="text-xl text-gray-600">
-              Simple 3-step process to transform your e-commerce business
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Four specialized AI engines working together to transform your Shopify store into a market-leading powerhouse.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                1
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Genesis - Strategic Growth Engine */}
+            <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-blue-200 hover:border-blue-400">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="bg-blue-600 rounded-full p-4 mr-4">
+                    <Brain className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">"Genesis" - Strategic Growth Engine</h3>
+                    <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  Genesis serves as your chief strategy officer, analyzing market opportunities, competitive positioning, and growth vectors. It develops comprehensive business plans, identifies new revenue streams, and creates actionable roadmaps for scaling your business.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Market analysis and opportunity identification</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Competitive intelligence and positioning</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Revenue forecasting and growth planning</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Strategic partnership recommendations</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Investment and expansion planning</li>
+                  </ul>
+                </div>
+
+                <Link to="/solutions/email">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                    Explore Genesis Engine
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Nexus - Revenue Optimization Engine */}
+            <Card className="bg-gradient-to-br from-green-50 to-emerald-100 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-green-200 hover:border-green-400">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="bg-green-600 rounded-full p-4 mr-4">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">"Nexus" - Revenue Optimization Engine</h3>
+                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  Nexus focuses exclusively on maximizing your revenue through pricing optimization, sales process improvement, and customer acquisition strategies. It continuously tests and refines your revenue generation systems.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Dynamic pricing optimization</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Sales funnel analysis and improvement</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Lead qualification and nurturing</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Customer acquisition cost optimization</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Revenue attribution and tracking</li>
+                  </ul>
+                </div>
+
+                <Link to="/solutions/cart-recovery">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    Explore Nexus Engine
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Catalyst - Operational Excellence Engine */}
+            <Card className="bg-gradient-to-br from-purple-50 to-violet-100 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="bg-purple-600 rounded-full p-4 mr-4">
+                    <Zap className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">"Catalyst" - Operational Excellence Engine</h3>
+                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  Catalyst redesigns your business operations for maximum efficiency and scalability. It identifies process improvements, automates workflows, and creates systems that support rapid growth without proportional cost increases.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Process optimization and automation</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Resource allocation and planning</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Quality control and improvement</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Vendor management and negotiation</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Cost reduction and efficiency gains</li>
+                  </ul>
+                </div>
+
+                <Link to="/solutions/inventory">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                    Explore Catalyst Engine
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Pulse - Customer Success Engine */}
+            <Card className="bg-gradient-to-br from-orange-50 to-amber-100 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 hover:border-orange-400">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="bg-orange-600 rounded-full p-4 mr-4">
+                    <Heart className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">"Pulse" - Customer Success Engine</h3>
+                    <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-700 mb-6">
+                  Pulse develops intimate knowledge of your customer base, predicting behavior, preventing churn, and maximizing customer lifetime value through personalized experiences and proactive support.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Customer behavior prediction and analysis</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Churn prevention and retention strategies</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Personalization and experience optimization</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Customer success metrics and tracking</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Feedback analysis and product improvement</li>
+                  </ul>
+                </div>
+
+                <Link to="/solutions/pricing">
+                  <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                    Explore Pulse Engine
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Symbols Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">Trusted & Certified</h3>
+            <div className="flex justify-center items-center space-x-12">
+              <div className="text-center">
+                <div className="bg-white rounded-lg p-6 shadow-lg mb-4">
+                  <Shield className="h-12 w-12 text-blue-600 mx-auto" />
+                </div>
+                <p className="font-semibold text-gray-900">SOC 2 Certified</p>
+                <p className="text-sm text-gray-600">Enterprise Security</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Connect & Analyze
-              </h3>
-              <p className="text-gray-600">
-                We integrate with your Shopify store and analyze your customer data, sales patterns, and growth opportunities using advanced AI algorithms.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                2
+              <div className="text-center">
+                <div className="bg-white rounded-lg p-6 shadow-lg mb-4">
+                  <Sparkles className="h-12 w-12 text-green-600 mx-auto" />
+                </div>
+                <p className="font-semibold text-gray-900">Shopify Plus Partner</p>
+                <p className="text-sm text-gray-600">Official Partnership</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Optimize & Automate
-              </h3>
-              <p className="text-gray-600">
-                Our AI implements personalized customer journeys, optimizes pricing strategies, and automates inventory management for maximum efficiency.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                3
+              <div className="text-center">
+                <div className="bg-white rounded-lg p-6 shadow-lg mb-4">
+                  <Users className="h-12 w-12 text-purple-600 mx-auto" />
+                </div>
+                <p className="font-semibold text-gray-900">500+ Merchants</p>
+                <p className="text-sm text-gray-600">Proven Success</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Scale & Grow
-              </h3>
-              <p className="text-gray-600">
-                Watch your revenue grow as our AI continuously learns and optimizes your store performance, delivering guaranteed 15-25% growth.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* How Chime Delivers Results */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Success Stories
-            </h2>
-            <p className="text-xl text-gray-600">
-              Real results from real businesses
-            </p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">How Chime Delivers Results</h2>
+            <div className="text-center">
+              <p className="text-xl text-gray-600">Simple 3-step process to transform your e-commerce business</p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full p-6 w-20 h-20 mx-auto mb-6">
+                <span className="text-2xl font-bold text-blue-600">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Analysis & Setup</h3>
+              <p className="text-gray-600">We analyze your store, identify opportunities, and implement our AI engines tailored to your business needs.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-green-100 rounded-full p-6 w-20 h-20 mx-auto mb-6">
+                <span className="text-2xl font-bold text-green-600">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">AI Optimization</h3>
+              <p className="text-gray-600">Our AI engines continuously optimize your operations, revenue, and customer experience in real-time.</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-purple-100 rounded-full p-6 w-20 h-20 mx-auto mb-6">
+                <span className="text-2xl font-bold text-purple-600">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Scale & Dominate</h3>
+              <p className="text-gray-600">Watch your store transform into a market leader with guaranteed growth and operational excellence.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Merchants Say</h2>
+            <p className="text-xl text-gray-600">Real results from real businesses</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 h-full">
+              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <img 
                       src={testimonial.image} 
                       alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover mr-4"
+                      className="w-12 h-12 rounded-full mr-4"
                     />
                     <div>
-                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                      <div className="text-sm text-gray-600">{testimonial.company}</div>
+                      <h4 className="font-bold text-gray-900">{testimonial.author}</h4>
+                      <p className="text-sm text-gray-600">{testimonial.company}</p>
+                      <p className="text-sm font-semibold text-green-600">{testimonial.growth}</p>
                     </div>
                   </div>
-                  <div className="text-emerald-600 font-semibold text-sm mb-4">
-                    {testimonial.growth}
-                  </div>
-                  <blockquote className="text-gray-700 mb-6 italic">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="text-xs text-gray-500 pt-4">
-                    {testimonial.details}
-                  </div>
-                </div>
-              </div>
+                  <p className="text-gray-700 mb-4">"{testimonial.quote}"</p>
+                  <p className="text-xs text-gray-500">{testimonial.details}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Guarantee Your Growth?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join hundreds of successful Shopify stores already growing with Chime. Start your free analysis today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <Button asChild size="lg" className="text-lg px-8 py-3 bg-white text-blue-600 hover:bg-gray-100">
-              <Link to="/contact">
-                Schedule a Call
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-blue-600">
-              <Link to="/roi-calculator">Calculate Your ROI</Link>
-            </Button>
-          </div>
-          <div className="text-center text-blue-200 text-sm">
-            🔒 Enterprise-grade security • 99.9% uptime guarantee • 500+ successful implementations
+      {/* Security Footer */}
+      <section className="py-8 bg-gray-900 text-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <p className="text-lg">
+              🔒 Enterprise-grade security • 99.9% uptime guarantee • 500+ successful implementations
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Real-time Notifications */}
-      <RealTimeNotifications />
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            Ready to Join the Elite Circle of AI-Powered Merchants?
+          </h2>
+          <p className="text-xl mb-8">
+            Book your call now. Walk away with a custom growth plan worth $2,500.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link to="/contact">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                Book Strategy Call
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/roi-calculator">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                See your revenue potential
+                <TrendingUp className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+          
+          <p className="text-lg opacity-90">
+            No sales pitch. Just a genuine strategy session to help you dominate your market.
+          </p>
+        </div>
+      </section>
     </div>
   )
 }

@@ -70,7 +70,7 @@ const FixedNavigation = () => {
               >
                 <button 
                   className="nav-link flex items-center"
-                  aria-label="Solutions menu"
+                  aria-label="AI Engines menu"
                   aria-controls="solutions-menu"
                   onClick={() => setShowSolutions(!showSolutions)}
                   style={{ 
@@ -80,7 +80,7 @@ const FixedNavigation = () => {
                     outline: 'none'
                   }}
                 >
-                  <span style={{ color: '#1e40af' }}>Solutions</span>
+                  <span style={{ color: '#1e40af' }}>AI Engines</span>
                   <ChevronDown 
                     className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} 
                     style={{ color: '#1e40af' }} 
@@ -92,7 +92,7 @@ const FixedNavigation = () => {
                     id="solutions-menu"
                     className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
                     role="menu"
-                    aria-label="Solutions submenu"
+                    aria-label="AI Engines submenu"
                   >
                     {solutions.map((solution) => (
                       <Link
@@ -275,7 +275,7 @@ const FixedNavigation = () => {
                 </Link>
 
                 <div className="space-y-2" role="group" aria-labelledby="mobile-solutions-heading">
-                  <div id="mobile-solutions-heading" className="text-base font-medium text-gray-900">Solutions</div>
+                  <div id="mobile-solutions-heading" className="text-base font-medium text-gray-900">AI Engines</div>
                   {solutions.map((solution) => (
                     <Link
                       key={solution.href}
