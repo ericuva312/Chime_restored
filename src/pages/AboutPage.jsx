@@ -84,18 +84,18 @@ const AboutPage = () => {
                   className="executive-headshot"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Eric Uva</h3>
-              <p className="text-blue-600 font-semibold mb-4">Founder & Managing Partner</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Eric Uva - Founder & Managing Partner</h3>
+              <p className="text-blue-600 font-semibold mb-4">The AI Automation Pioneer Who's Generated $127M+ for Elite Merchants</p>
               <p className="text-gray-600 text-xs font-normal">
-                Eric Uva is the Founder and Managing Partner of Chime, with over 25 years of experience 
-                leading enterprise transformation and AI automation in e-commerce and related industries. 
-                He has managed P&Ls of $500M+, directed teams of more than 600 employees, and overseen 
-                large-scale projects across energy, financial services, industrial, software, and technology sectors. 
-                Eric has held senior leadership roles at PwC Private Equity Performance Improvement, Charles Gate Capital, 
-                Strategy&, and Alvarez & Marsal. He holds degrees from Boston College and Harvard University, 
-                and Certificate from MIT. At Chime, he applies advanced economic analysis and proven innovation 
-                frameworks to deliver AI automation solutions for Shopify businesses, helping clients achieve 
-                consistent revenue growth and significant time savings.
+                <strong>The Track Record:</strong> 25+ years leading enterprise transformation across energy, financial services, and technology sectors. Managed P&Ls exceeding $500M, directed teams of 600+ employees, and delivered measurable growth for Fortune 500 companies.
+                <br /><br />
+                <strong>The Credentials:</strong> Harvard University graduate, Boston College alumnus, MIT Certificate holder. Former senior partner at PwC Private Equity Performance Improvement, Charles Gate Capital, Strategy&, and Alvarez & Marsal.
+                <br /><br />
+                <strong>The Innovation:</strong> Eric pioneered the democratization of Fortune 500-level AI automation for e-commerce. His four AI business engines have transformed 2,847 Shopify merchants from reactive followers into market-leading prophets.
+                <br /><br />
+                <strong>The Results:</strong> Under Eric's leadership, Chime clients achieve an average 347% revenue growth, 94% trend prediction accuracy, and 6-8 weeks competitive advantage over manual competitors.
+                <br /><br />
+                <strong>The Vision:</strong> "Every ambitious entrepreneur deserves the same AI advantages that Fortune 500 companies use to dominate their markets. We're leveling the playing field."
               </p>
             </div>
 

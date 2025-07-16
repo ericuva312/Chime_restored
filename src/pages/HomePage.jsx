@@ -7,10 +7,12 @@ import RealTimeNotifications from '@/components/RealTimeNotifications'
 
 const HomePage = () => {
   const stats = [
-    { number: "188%", label: "Average Revenue Growth" },
-    { number: "500+", label: "Successful Implementations" },
-    { number: "24/7", label: "AI-Powered Monitoring" },
-    { number: "99.9%", label: "System Uptime" }
+    { number: "347%", label: "Average Revenue Growth (vs 15% industry average)" },
+    { number: "2,847", label: "Elite Merchants Transformed" },
+    { number: "$127M+", label: "Additional Revenue Generated" },
+    { number: "94%", label: "Trend Prediction Accuracy" },
+    { number: "6-8 weeks", label: "Competitive Advantage Lead Time" },
+    { number: "$1,000", label: "Penalty if We Don't Deliver" }
   ]
 
   return (
@@ -23,14 +25,24 @@ const HomePage = () => {
           <div className="text-center max-w-4xl mx-auto mb-12">
             <div className="text-center">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                AI Engines That Turn Rising Shopify Stores Into Market Leaders — Guaranteed
+                URGENT: Your Competitors Are Using AI to Dominate While You're Still Doing Everything Manually
               </h1>
             </div>
             
             <div className="text-center" style={{ textAlign: 'center !important' }}>
               <p className="text-xl text-white mb-8 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
-                Join 500+ Shopify merchants who escaped the 70-hour work weeks and now lead their niches. Achieve 15% more revenue or 25% lower costs in 90 days, or we'll pay you $1,000.
+                Join the Exclusive Circle of 2,847 Elite Shopify Merchants Who Escaped the 70-Hour Work Week Death Spiral and Now Generate 15% More Revenue in 90 Days — Or We Pay You $1,000
               </p>
+              
+              <div className="text-center mb-8">
+                <p className="text-lg text-white leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
+                  Stop watching competitors steal your market share with AI automation while you're drowning in manual processes. Every day you wait costs you $10,000+ in lost revenue and gives your competition another advantage you can't afford to lose.
+                </p>
+                
+                <p className="text-lg text-white mt-4 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '1rem auto 0 auto' }}>
+                  <strong>The Brutal Reality:</strong> 85% of Shopify stores fail because they can't keep up with AI-powered competitors. But the top 15% who join our exclusive merchant circle are generating Fortune 500-level results with our four AI business engines.
+                </p>
+              </div>
             </div>
             
             {/* CTA Buttons - Matching Case Studies Style */}
@@ -55,13 +67,16 @@ const HomePage = () => {
       {/* Statistics Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Real-Time Success Metrics from Elite Merchant Circle</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
                   <AnimatedCounter end={stat.number} />
                 </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-gray-600 font-medium text-sm">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -199,10 +214,10 @@ const HomePage = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Core AI Business Engines
+              Four AI Business Engines That Transform Struggling Merchants Into Market Prophets
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Four specialized AI engines working together to transform your Shopify store into a market-leading powerhouse.
+              While your competitors struggle with manual processes, you'll have Fortune 500-level AI systems working 24/7 to dominate your market. Each engine is designed to give you superhuman business capabilities that would cost $500K+ to build in-house.
             </p>
           </div>
 
@@ -222,7 +237,15 @@ const HomePage = () => {
                 </div>
                 
                 <p className="text-gray-700 mb-6 leading-relaxed flex-1">
-                  Genesis serves as your chief strategy officer, analyzing market opportunities and positioning. It develops comprehensive business plans and identifies new revenue streams.
+                  <strong>"Transform From Reactive Follower to Market Prophet in 90 Days"</strong>
+                  <br /><br />
+                  Stop chasing trends after they're already viral. Genesis is your AI Chief Strategy Officer that gives you Fortune 500-level market intelligence, predicting trends 6-8 weeks before competitors even know they exist.
+                  <br /><br />
+                  <strong>The Strategic Death Spiral:</strong> You're making gut decisions while AI-powered competitors use data to dominate. Every reactive decision costs you market share you'll never recover.
+                  <br /><br />
+                  <strong>Genesis Transformation:</strong> From reactive follower → market prophet who sets trends instead of chasing them.
+                  <br /><br />
+                  <strong>Results:</strong> 94% trend prediction accuracy, +347% average growth, 6-8 weeks competitive lead time.
                 </p>                <div className="space-y-3 mb-8">
                   <h4 className="font-semibold text-gray-900">Key Capabilities:</h4>
                   <ul className="space-y-2 text-sm text-gray-700">
@@ -257,7 +280,15 @@ const HomePage = () => {
                 </div>
                 
                 <p className="text-gray-700 mb-6 leading-relaxed flex-1">
-                  Nexus focuses exclusively on maximizing your revenue through pricing optimization and sales process improvement. It continuously tests and refines your revenue generation systems.
+                  <strong>"Stop Leaving $50,000+ Monthly on the Table—Start Maximizing Every Revenue Stream"</strong>
+                  <br /><br />
+                  You're hemorrhaging money through pricing mistakes, cart abandonment, and conversion leaks while your AI-powered competitors capture every dollar.
+                  <br /><br />
+                  <strong>The Revenue Death Spiral:</strong> 67% cart abandonment rate, suboptimal pricing, and manual processes that can't scale. You're literally watching money walk away.
+                  <br /><br />
+                  <strong>Nexus Transformation:</strong> Your existing traffic → 2-3x more revenue without spending another dollar on ads.
+                  <br /><br />
+                  <strong>Results:</strong> +156% conversion boost, 67% cart recovery rate, +$127K average monthly increase.
                 </p>
 
                 <div className="space-y-3 mb-8">
@@ -294,7 +325,15 @@ const HomePage = () => {
                 </div>
                 
                 <p className="text-gray-700 mb-6 leading-relaxed flex-1">
-                  Catalyst redesigns your business operations for maximum efficiency and scalability. It identifies process improvements and automates workflows for rapid growth.
+                  <strong>"Stop Drowning in 75-Hour Work Weeks—Start Scaling to $1M+ Without Breaking"</strong>
+                  <br /><br />
+                  You're trapped in operational chaos, working 75-hour weeks while AI-powered competitors scale effortlessly with automated systems.
+                  <br /><br />
+                  <strong>The Operational Death Spiral:</strong> Manual everything, constant firefighting, and systems that break when you try to grow. You're the bottleneck in your own business.
+                  <br /><br />
+                  <strong>Catalyst Transformation:</strong> Chaotic manual processes → Fortune 500-level operational systems that scale automatically.
+                  <br /><br />
+                  <strong>Results:</strong> -78% manual tasks, $1M+ scale capacity, 94% process automation, 60% time savings.
                 </p>
 
                 <div className="space-y-3 mb-8">
@@ -333,7 +372,15 @@ const HomePage = () => {
                 </div>
                 
                 <p className="text-gray-700 mb-6 leading-relaxed flex-1">
-                  Pulse develops intimate knowledge of your customer base, predicting behavior and preventing churn. It maximizes customer lifetime value through personalized experiences.
+                  <strong>"Stop the $40-to-Acquire, $35-and-Disappear Customer Death Spiral"</strong>
+                  <br /><br />
+                  You're spending $40+ to acquire customers who buy once for $35 and never return, while AI-powered competitors build loyal armies of brand evangelists.
+                  <br /><br />
+                  <strong>The Customer Acquisition Death Spiral:</strong> 85% customer churn, expensive acquisition costs, and no loyalty systems. You're trapped in an endless cycle of expensive customer replacement.
+                  <br /><br />
+                  <strong>Pulse Transformation:</strong> One-time buyers → loyal brand evangelists who spend 6.8x more and refer their friends.
+                  <br /><br />
+                  <strong>Results:</strong> 6.8x customer LTV, 92% retention rate, +145% repeat purchases, $320K annual LTV growth.
                 </p>
 
                 <div className="space-y-3 mb-8">
@@ -420,34 +467,51 @@ const HomePage = () => {
       {/* Final CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Ready to Join the Elite Circle of AI-Powered Merchants?
+          <h2 className="text-4xl font-bold mb-6">
+            Stop Watching Competitors Dominate With AI While You Fall Further Behind
           </h2>
-          <div className="text-center" style={{ textAlign: 'center !important' }}>
-            <p className="text-xl mb-8" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto 2rem auto' }}>
-              Book your call now. Walk away with a custom growth plan worth $2,500.
+          
+          <div className="text-center mb-8">
+            <p className="text-xl mb-6" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto 1.5rem auto' }}>
+              <strong>The Window Is Closing:</strong> Every day you wait is another viral trend you'll miss, another $10,000+ in lost revenue, and another competitive advantage your rivals gain that you can't afford to lose.
             </p>
+            
+            <div className="bg-white/10 rounded-lg p-6 mb-8 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold mb-4">Join the Elite Circle Before Your Competitors Do:</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  <span>Setup in 48 hours</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  <span>Predict next trend in 1 week</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  <span>90-day money-back guarantee</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                  <span>$1,000 penalty if we fail</span>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link to="/contact">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                Book Strategy Call
+                CLAIM YOUR SPOT IN THE ELITE CIRCLE
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/roi-calculator">
               <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                See Your Revenue Potential
+                CALCULATE YOUR REVENUE POTENTIAL
                 <TrendingUp className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-          </div>
-          
-          <div className="text-center" style={{ textAlign: 'center !important' }}>
-            <p className="text-lg opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
-              No sales pitch. Just a genuine strategy session to help you dominate your market.
-            </p>
           </div>
         </div>
       </section>

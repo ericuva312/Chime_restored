@@ -2,63 +2,61 @@ import { Link } from 'react-router-dom'
 import { Check, ArrowRight, Star, Shield, Zap, TrendingUp } from 'lucide-react'
 import BorderedButton from '../components/BorderedButton'
 
-const PricingPage = () => {
-  const plans = [
+const PricingPage = () => {  const plans = [
     {
-      name: "Growth",
+      name: "MARKET DOMINATOR",
       setupFee: "$2,997",
       monthlyFee: "$997",
-      description: "Perfect for growing Shopify stores ready to scale",
+      description: "Ideal for growing stores ready to escape manual processes and start scaling intelligently",
       features: [
-        "AI-powered cart recovery system",
-        "Email automation sequences",
-        "Basic inventory optimization",
-        "Customer segmentation",
-        "Monthly performance reports",
-        "Email support",
-        "15% minimum revenue growth guarantee"
+        "Genesis + Nexus AI Engines: Strategic growth and revenue optimization",
+        "Essential Automation Suite: Cart recovery, email sequences, basic optimization",
+        "Monthly Performance Reviews: Track your transformation progress",
+        "Standard Support: Email and chat support during business hours",
+        "Growth Guarantee: 15% revenue growth or full refund"
       ],
-      cta: "Start Growing",
+      cta: "Start Dominating",
       popular: false,
-      savings: null
+      savings: null,
+      roi: "ROI: 15x average return"
     },
     {
-      name: "Professional",
+      name: "MARKET PROPHET",
       setupFee: "$4,997",
       monthlyFee: "$1,497",
-      description: "Most popular choice for serious e-commerce businesses",
+      description: "Most Popular - 67% Choose This | Transform from reactive follower to market-leading prophet",
       features: [
-        "Everything in Growth plan",
-        "Advanced pricing optimization",
-        "Predictive inventory management",
-        "Multi-channel automation",
-        "Weekly strategy calls",
-        "Priority support",
-        "20% minimum revenue growth guarantee",
-        "Custom automation workflows"
+        "Genesis AI Engine: Predict trends 6-8 weeks before competitors (94% accuracy)",
+        "Nexus Revenue Multiplier: Turn existing traffic into 2-3x more revenue",
+        "Catalyst Operations Commander: Scale to $1M+ without breaking",
+        "Pulse Customer Whisperer: Transform buyers into brand evangelists",
+        "Weekly Strategy Calls: Direct access to Fortune 500 transformation experts",
+        "Priority Elite Support: 24/7 access to your dedicated success team",
+        "Market Domination Guarantee: 20% revenue growth or we pay you $1,000"
       ],
-      cta: "Go Professional",
+      cta: "Join Elite Circle",
       popular: true,
-      savings: "Save $500/month vs individual services"
+      savings: "Save $2,000 vs manual implementation",
+      roi: "ROI: 847% average return"
     },
     {
-      name: "Enterprise",
+      name: "MARKET EMPEROR",
       setupFee: "$9,997",
       monthlyFee: "$2,997",
-      description: "Complete AI transformation for high-volume stores",
+      description: "Ultimate AI transformation for high-volume dominators ready to achieve Fortune 500-level market domination",
       features: [
-        "Everything in Professional plan",
-        "Dedicated AI strategist",
-        "Custom AI model development",
-        "Advanced analytics dashboard",
-        "24/7 priority support",
-        "Quarterly business reviews",
-        "25% minimum revenue growth guarantee",
-        "White-label solutions available"
+        "All Four AI Engines: Complete market domination system",
+        "Dedicated AI Strategist: Personal Fortune 500-level consultant",
+        "Custom AI Development: Proprietary models built for your business",
+        "White-Label Solutions: Brand our technology as your own",
+        "Quarterly Business Reviews: Strategic planning with C-level executives",
+        "Emperor-Level Support: Direct phone access to leadership team",
+        "Market Emperor Guarantee: 25% revenue growth or we pay you $1,000"
       ],
-      cta: "Transform Your Business",
+      cta: "Become Emperor",
       popular: false,
-      savings: "Save $1,000/month vs hiring in-house team"
+      savings: "Save $15,000 vs hiring in-house AI team",
+      roi: "ROI: 1,247% average return"
     }
   ]
 
@@ -93,11 +91,18 @@ const PricingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Simple, Transparent
+              Stop Losing $50,000+ Monthly
               <br />
-              <span className="text-blue-400">Pricing</span>
+              <span className="text-red-400">While Competitors Dominate With AI</span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
+              Join the exclusive circle of 2,847 elite merchants who've escaped the manual process death spiral. Choose your AI transformation level and start dominating your market in 48 hours—or we pay you $1,000.
+            </p>
+            <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-6 max-w-3xl mx-auto mb-8">
+              <p className="text-red-200 text-lg font-semibold">
+                <strong>The Brutal Reality:</strong> Every month you delay costs you $50,000+ in lost revenue while AI-powered competitors capture market share you'll never recover. The window for joining the elite circle is closing fast.
+              </p>
+            </div>
               Choose the plan that fits your business. All plans include our revenue 
               growth guarantee. If we don't deliver the promised results, you don't pay.
             </p>
@@ -146,17 +151,20 @@ const PricingPage = () => {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                   <p className="text-gray-600 mb-4">{plan.description}</p>
                   <div className="mb-2">
-                    <div className="text-sm text-gray-500 mb-1">Initial Setup</div>
+                    <div className="text-sm text-gray-500 mb-1">Setup Investment</div>
                     <span className="text-2xl font-bold text-gray-900">{plan.setupFee}</span>
                     <span className="text-gray-600"> one-time</span>
                   </div>
                   <div className="mb-4">
-                    <div className="text-sm text-gray-500 mb-1">Monthly Maintenance</div>
+                    <div className="text-sm text-gray-500 mb-1">Monthly Transformation</div>
                     <span className="text-3xl font-bold text-blue-600">{plan.monthlyFee}</span>
                     <span className="text-gray-600">/month</span>
                   </div>
+                  {plan.roi && (
+                    <p className="text-green-600 font-bold text-sm mb-2">{plan.roi}</p>
+                  )}
                   {plan.savings && (
-                    <p className="text-green-600 font-semibold text-sm">{plan.savings}</p>
+                    <p className="text-orange-600 font-semibold text-sm">{plan.savings}</p>
                   )}
                 </div>
 

@@ -70,11 +70,16 @@ const ContactPage = () => {
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Schedule Your Free <span className="text-blue-400">Chime Consultation</span>
+            Stop Watching Competitors Dominate — <span className="text-red-400">Join the Elite Circle Before It's Too Late</span>
           </h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Get a personalized AI automation strategy for your Shopify store. We'll analyze your business and show you exactly how to achieve 15-25% revenue growth.
+          <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
+            Book your exclusive strategy session and discover exactly how to transform from a manual follower into an AI-powered market prophet. Walk away with a custom domination plan worth $2,500—or we'll pay you $1,000 for your time.
           </p>
+          <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-6 max-w-3xl mx-auto mb-8">
+            <p className="text-red-200 text-lg font-semibold">
+              <strong>The Window Is Closing:</strong> Every day you delay is another $10,000+ in lost revenue and another competitive advantage your rivals gain that you can't afford to lose.
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
             <div className="flex items-center">
               <Clock className="w-5 h-5 text-blue-400 mr-2" />
