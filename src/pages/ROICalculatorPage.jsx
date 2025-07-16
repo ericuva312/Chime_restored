@@ -1,7 +1,7 @@
-import ModernROICalculator from '../components/ModernROICalculator';
+import BackendIntegratedROICalculator from '../components/BackendIntegratedROICalculator';
 
 const ROICalculatorPage = () => {
-  return <ModernROICalculator />;
+  return <BackendIntegratedROICalculator />;
 };
 
 export default ROICalculatorPage
