@@ -57,7 +57,7 @@ const FixedNavigation = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center nav-links space-x-6" role="menubar">
+            <div className="hidden lg:flex items-center nav-links space-x-4" role="menubar">
               {/* Solutions Dropdown */}
               <div 
                 ref={solutionsRef}
@@ -164,7 +164,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/implementation" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/implementation') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -175,7 +175,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/pricing" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/pricing') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -186,7 +186,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/case-studies" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/case-studies') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -197,7 +197,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/faq" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/faq') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -208,7 +208,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/about" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/about') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -219,7 +219,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/roi-calculator" 
-                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                   isActive('/roi-calculator') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -260,27 +260,27 @@ const FixedNavigation = () => {
           {isOpen && (
             <div 
               id="mobile-menu"
-              className="lg:hidden py-6 border-t bg-white shadow-lg"
+              className="lg:hidden py-4 border-t bg-white shadow-lg"
               role="menu"
               aria-label="Mobile navigation menu"
             >
-              <div className="flex flex-col space-y-6 px-4">
+              <div className="flex flex-col space-y-4 px-4">
                 <Link 
                   to="/" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
 
-                <div className="space-y-3" role="group" aria-labelledby="mobile-solutions-heading">
-                  <div id="mobile-solutions-heading" className="text-lg font-semibold text-gray-900">AI Engines</div>
+                <div className="space-y-2" role="group" aria-labelledby="mobile-solutions-heading">
+                  <div id="mobile-solutions-heading" className="text-base font-semibold text-gray-900">AI Engines</div>
                   {solutions.map((solution) => (
                     <Link
                       key={solution.href}
                       to={solution.href}
-                      className="block pl-4 py-2 text-base text-gray-600 hover:text-blue-600 transition-colors"
+                      className="block pl-3 py-1 text-sm text-gray-600 hover:text-blue-600 transition-colors"
                       role="menuitem"
                       onClick={() => setIsOpen(false)}
                     >
@@ -289,13 +289,13 @@ const FixedNavigation = () => {
                   ))}
                 </div>
 
-                <div className="space-y-3" role="group" aria-labelledby="mobile-industries-heading">
-                  <div id="mobile-industries-heading" className="text-lg font-semibold text-gray-900">Industries</div>
+                <div className="space-y-2" role="group" aria-labelledby="mobile-industries-heading">
+                  <div id="mobile-industries-heading" className="text-base font-semibold text-gray-900">Industries</div>
                   {industries.map((industry) => (
                     <Link
                       key={industry.href}
                       to={industry.href}
-                      className="block pl-4 py-2 text-base text-gray-600 hover:text-blue-600 transition-colors"
+                      className="block pl-3 py-1 text-sm text-gray-600 hover:text-blue-600 transition-colors"
                       role="menuitem"
                       onClick={() => setIsOpen(false)}
                     >
@@ -306,7 +306,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/implementation" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
@@ -315,7 +315,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/pricing" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
@@ -324,7 +324,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/case-studies" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
@@ -333,7 +333,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/faq" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
@@ -342,7 +342,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/about" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >
@@ -351,7 +351,7 @@ const FixedNavigation = () => {
 
                 <Link 
                   to="/roi-calculator" 
-                  className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
+                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
                   role="menuitem"
                   onClick={() => setIsOpen(false)}
                 >

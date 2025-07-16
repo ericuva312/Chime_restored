@@ -759,7 +759,7 @@ export const BeautyPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-pink-50 to-rose-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Losing <span className="text-pink-600">$75,000+ Monthly</span> to Beauty Trends You Can't Predict?
@@ -860,7 +860,7 @@ export const FoodPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-orange-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Missing <span className="text-orange-600">$100,000+ Monthly</span> from Food Trends You Can't Predict?
@@ -961,7 +961,7 @@ export const PetsPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Missing <span className="text-blue-600">$85,000+ Monthly</span> from Pet Trends You Can't Predict?

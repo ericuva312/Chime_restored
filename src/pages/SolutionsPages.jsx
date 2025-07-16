@@ -10,7 +10,7 @@ export const CartRecoveryPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Stop Leaving Money on the Table—Start <span className="text-blue-600">Maximizing Every Revenue Stream</span>
@@ -46,15 +46,15 @@ export const CartRecoveryPage = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">What Nexus Recovers For You</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Revenue Recovery Rate</span>
                   <span className="text-2xl font-bold text-green-600">67%</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Monthly Revenue Recovered</span>
                   <span className="text-2xl font-bold text-blue-600">$47,320</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Revenue Multiplier</span>
                   <span className="text-2xl font-bold text-purple-600">2.3x</span>
                 </div>
@@ -182,7 +182,7 @@ export const EmailAutomationPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Transform From Reactive Follower to <span className="text-blue-600">Market Prophet</span> in 90 Days
@@ -218,15 +218,15 @@ export const EmailAutomationPage = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Genesis Strategic Advantage</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Trend Prediction Accuracy</span>
                   <span className="text-2xl font-bold text-blue-600">94%</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Market Lead Time</span>
                   <span className="text-2xl font-bold text-purple-600">6-8 weeks</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Strategic Insights Daily</span>
                   <span className="text-2xl font-bold text-emerald-600">47+</span>
                 </div>
@@ -336,7 +336,7 @@ export const InventoryManagementPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-purple-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Stop Drowning in Operations—Start <span className="text-purple-600">Scaling Without Limits</span>
@@ -372,15 +372,15 @@ export const InventoryManagementPage = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Catalyst Operations Impact</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Operational Efficiency</span>
                   <span className="text-2xl font-bold text-purple-600">+340%</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Time Savings Weekly</span>
                   <span className="text-2xl font-bold text-orange-600">35+ hours</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Inventory Accuracy</span>
                   <span className="text-2xl font-bold text-emerald-600">97%</span>
                 </div>
@@ -467,7 +467,7 @@ export const PricingOptimizationPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Spending $40 to Acquire Customers Who Buy Once for $35 and <span className="text-orange-600">Disappear Forever?</span>
@@ -519,15 +519,15 @@ export const PricingOptimizationPage = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Pulse Pricing Results</h3>
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Revenue Increase</span>
                   <span className="text-2xl font-bold text-green-600">+43%</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Profit Margin Improvement</span>
                   <span className="text-2xl font-bold text-blue-600">+67%</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <span className="text-gray-600">Pricing Accuracy</span>
                   <span className="text-2xl font-bold text-purple-600">94%</span>
                 </div>
