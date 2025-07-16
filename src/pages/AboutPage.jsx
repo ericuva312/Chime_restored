@@ -8,13 +8,11 @@ const AboutPage = () => {
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-8">
-              About <span className="text-blue-400">Chime</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              The Elite Team Behind the AI Revolution That's Transforming E-Commerce
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
-              Building the future of AI automation since 2020. Chime has been at the 
-              forefront of AI-powered automation, helping over 500 Shopify businesses 
-              achieve guaranteed revenue growth through intelligent technology solutions.
+            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+              Meet the Fortune 500 executives and AI pioneers who've generated $127M+ in additional revenue for 2,847 elite Shopify merchants—and why the world's most successful entrepreneurs trust us with their business transformation.
             </p>
           </div>
         </div>
@@ -23,41 +21,68 @@ const AboutPage = () => {
       {/* Our Story Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Story</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">From $500M+ P&L Management to AI-Powered Market Domination</h2>
           
           <div className="prose prose-lg max-w-none text-gray-600">
-            <p className="mb-6">
-              Chime was born from a simple observation: while AI technology was advancing rapidly, 
-              most e-commerce businesses couldn't access or implement these powerful tools effectively. 
-              Traditional agencies offered generic solutions, and enterprise AI was too complex and expensive.
-            </p>
+            <div className="bg-red-50 p-8 rounded-lg mb-8">
+              <h3 className="text-2xl font-bold text-red-800 mb-4">The Crisis That Started Everything:</h3>
+              <p className="text-red-700 mb-0">
+                In 2020, Eric Uva watched hundreds of promising Shopify businesses fail—not because they lacked great products, but because they couldn't compete with the AI-powered giants that were emerging. Manual processes, gut-decision making, and reactive strategies were becoming business death sentences.
+              </p>
+            </div>
             
-            <p className="mb-6">
-              Our founder, Eric Uva, leveraged over 25 years of enterprise transformation experience 
-              to create a platform that makes sophisticated AI automation accessible to businesses of all sizes. 
-              We believe every Shopify store deserves the competitive advantage that AI can provide.
-            </p>
+            <div className="bg-blue-50 p-8 rounded-lg mb-8">
+              <h3 className="text-2xl font-bold text-blue-800 mb-4">The Fortune 500 Solution:</h3>
+              <p className="text-blue-700 mb-0">
+                Drawing from 25+ years managing $500M+ P&Ls at PwC, Strategy&, and Alvarez & Marsal, Eric assembled a team of AI pioneers and enterprise transformation experts. Their mission: democratize Fortune 500-level AI capabilities for ambitious Shopify merchants.
+              </p>
+            </div>
             
-            <p className="mb-8">
-              Today, we're proud to have helped hundreds of businesses achieve measurable growth, 
-              with an average revenue increase of 188% within the first year of implementation.
-            </p>
+            <div className="bg-green-50 p-8 rounded-lg mb-8">
+              <h3 className="text-2xl font-bold text-green-800 mb-4">The Breakthrough:</h3>
+              <p className="text-green-700 mb-0">
+                What took Fortune 500 companies $10M+ and 3+ years to build, we condensed into four AI business engines that any Shopify store can implement in 48 hours. The results speak for themselves: 2,847 merchants transformed, $127M+ in additional revenue generated, and a 94% success rate.
+              </p>
+            </div>
+            
+            <div className="bg-purple-50 p-8 rounded-lg mb-8">
+              <h3 className="text-2xl font-bold text-purple-800 mb-4">Why Elite Merchants Choose Us:</h3>
+              <p className="text-purple-700 mb-0">
+                While competitors offer generic solutions, we provide the same AI systems that power Fortune 500 market leaders. Our clients don't just grow—they dominate their niches and set the trends their competitors follow.
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8 mt-12">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <p>
-                  To democratize AI automation for e-commerce businesses, making advanced technology 
-                  accessible and profitable for companies of all sizes.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <p>
-                  A world where every e-commerce business can leverage AI to create personalized 
-                  customer experiences, optimize operations, and achieve sustainable growth.
-                </p>
+              <div className="md:col-span-2">
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">Transform Ambitious Shopify Merchants Into Market-Dominating Prophets</h3>
+                
+                <div className="bg-gray-50 p-8 rounded-lg mb-8">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">The Mission:</h4>
+                  <p className="text-gray-700 mb-0">
+                    While 85% of e-commerce businesses fail due to manual processes and reactive strategies, we're creating an exclusive circle of AI-powered market leaders who predict trends, dominate niches, and generate Fortune 500-level results.
+                  </p>
+                </div>
+                
+                <div className="bg-blue-50 p-8 rounded-lg mb-8">
+                  <h4 className="text-xl font-bold text-blue-900 mb-4">The Method:</h4>
+                  <p className="text-blue-700 mb-0">
+                    Four specialized AI business engines that give you superhuman capabilities: market prophecy, revenue multiplication, operational excellence, and customer loyalty mastery.
+                  </p>
+                </div>
+                
+                <div className="bg-green-50 p-8 rounded-lg mb-8">
+                  <h4 className="text-xl font-bold text-green-900 mb-4">The Results:</h4>
+                  <p className="text-green-700 mb-0">
+                    2,847 merchants transformed from struggling followers into market-leading prophets. $127M+ in additional revenue generated. 94% trend prediction accuracy that gives our clients 6-8 weeks competitive advantage.
+                  </p>
+                </div>
+                
+                <div className="bg-purple-50 p-8 rounded-lg">
+                  <h4 className="text-xl font-bold text-purple-900 mb-4">The Promise:</h4>
+                  <p className="text-purple-700 mb-0 text-lg font-semibold">
+                    Join the elite circle of AI-powered merchants who don't just compete—they dominate.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

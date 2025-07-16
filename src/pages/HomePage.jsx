@@ -36,7 +36,7 @@ const HomePage = () => {
               
               <div className="text-center mb-8">
                 <p className="text-lg text-white leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
-                  Stop watching competitors steal your market share with AI automation while you're drowning in manual processes. Every day you wait costs you $10,000+ in lost revenue and gives your competition another advantage you can't afford to lose.
+                  <strong>The Brutal Reality:</strong> 85% of Shopify stores fail because they can't keep up with AI-powered competitors. But the top 15% who join our exclusive merchant circle are generating Fortune 500-level results with our four AI business engines.
                 </p>
                 
                 <p className="text-lg text-white mt-4 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '1rem auto 0 auto' }}>
