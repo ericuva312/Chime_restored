@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ShoppingCart, Mail, Package, DollarSign, TrendingUp, Clock, Users, Zap, Brain, Eye, Target, BarChart3, Lightbulb, Telescope, Sparkles } from 'lucide-react'
 
+// Solutions Pages - Updated for Vercel deployment
+
 // Cart Recovery Page (Nexus)
 export const CartRecoveryPage = () => {
   return (
@@ -198,19 +200,19 @@ export const EmailAutomationPage = () => {
                 </ul>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
                 >
                   Book Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-                <a
-                  href="/roi-calculator"
+                </Link>
+                <Link
+                  to="/roi-calculator"
                   className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
                 >
                   See Your Revenue Potential
-                </a>
+                </Link>
               </div>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-lg">
@@ -281,19 +283,19 @@ export const EmailAutomationPage = () => {
             Every day you react instead of predict is another day your competitors gain strategic advantage. The market leaders of tomorrow are being built today with AI strategic intelligence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-white hover:bg-gray-50 text-blue-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
             >
               Book Strategy Call
               <ArrowRight className="ml-2 w-6 h-6" />
-            </a>
-            <a
-              href="/roi-calculator"
+            </Link>
+            <Link
+              to="/roi-calculator"
               className="bg-transparent hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-blue-300"
             >
               See Your Revenue Potential
-            </a>
+            </Link>
           </div>
           <p className="text-blue-200 text-sm mt-4">
             ✓ Strategic setup in 48 hours ✓ First insights in 24 hours ✓ 90-day money-back guarantee
