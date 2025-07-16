@@ -146,27 +146,29 @@ export const CartRecoveryPage = () => {
 }
 
 // Email Automation Page (Genesis)
-export const EmailAutomationPage = () => {
-  const genesisCapabilities = [
+
+export const PricingOptimizationPage = () => {
+  // Updated for Pulse Customer Success Engine
+  const pulseCapabilities = [
     {
-      icon: <Telescope className="h-8 w-8 text-blue-600" />,
-      title: "Market Intelligence Engine",
-      description: "Analyzes 10,000+ data points across your industry to predict trends 6-8 weeks before they hit mainstream, giving you first-mover advantage on every opportunity."
+      icon: <Brain className="h-8 w-8 text-orange-600" />,
+      title: "Customer Behavior Prediction",
+      description: "Analyzes customer patterns and predicts behavior with 94% accuracy, identifying at-risk customers before they churn and high-value prospects ready to buy more."
+    },
+    {
+      icon: <Target className="h-8 w-8 text-red-600" />,
+      title: "Churn Prevention Engine",
+      description: "Proactively identifies customers showing early warning signs of churn and automatically triggers personalized retention campaigns that save 73% of at-risk relationships."
     },
     {
       icon: <Sparkles className="h-8 w-8 text-purple-600" />,
-      title: "Trend Prediction Algorithm",
-      description: "Uses machine learning to identify emerging patterns in customer behavior, seasonal shifts, and market dynamics before your competitors even notice them."
+      title: "Personalization Intelligence",
+      description: "Creates hyper-personalized experiences for each customer based on their behavior, preferences, and lifecycle stage, increasing engagement and lifetime value."
     },
     {
-      icon: <Brain className="h-8 w-8 text-emerald-600" />,
-      title: "Strategic Recommendation System",
-      description: "Provides Fortune 500-level strategic insights and actionable recommendations that position you as the trendsetter in your niche, not the follower."
-    },
-    {
-      icon: <Eye className="h-8 w-8 text-orange-600" />,
-      title: "Competitive Intelligence Network",
-      description: "Monitors competitor moves, pricing changes, and market positioning to ensure you're always one step ahead with superior strategy and timing."
+      icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+      title: "Success Metrics Tracking",
+      description: "Monitors every customer touchpoint and success metric, providing real-time insights into customer health and opportunities for deeper engagement."
     }
   ]
 
