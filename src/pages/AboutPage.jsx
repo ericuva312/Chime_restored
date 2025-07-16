@@ -81,7 +81,7 @@ const AboutPage = () => {
                 <img 
                   src="/eric-uva-headshot.jpg" 
                   alt="Eric Uva" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Eric Uva</h3>
@@ -105,7 +105,7 @@ const AboutPage = () => {
                 <img 
                   src="/robert-davis-headshot.jpg" 
                   alt="Robert Davis" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Robert Davis</h3>
@@ -125,7 +125,7 @@ const AboutPage = () => {
                 <img 
                   src="/michael-chen-headshot.jpg" 
                   alt="Dr. James Mitchell" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. James Mitchell</h3>
@@ -146,7 +146,7 @@ const AboutPage = () => {
                 <img 
                   src="/jennifer-thompson-headshot.jpg" 
                   alt="Emily Thompson" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Emily Thompson</h3>
@@ -167,7 +167,7 @@ const AboutPage = () => {
                 <img 
                   src="/david-rodriguez-headshot.jpg" 
                   alt="David Wilson" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">David Wilson</h3>
@@ -188,7 +188,7 @@ const AboutPage = () => {
                 <img 
                   src="/sarah-martinez-headshot.jpg" 
                   alt="Rachel Anderson" 
-                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                  className="executive-headshot"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Rachel Anderson</h3>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CheckCircle, Clock, Shield, Users, TrendingUp } from 'lucide-react'
+import { CheckCircle, Clock, Shield, Users, TrendingUp, Zap } from 'lucide-react'
 
 const ContactPage = () => {
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false)
@@ -86,15 +86,15 @@ const ContactPage = () => {
             </div>
             <div className="flex items-center">
               <Shield className="w-5 h-5 text-purple-400 mr-2" />
-              🔒 Enterprise-grade security
+              Enterprise-grade security
             </div>
             <div className="flex items-center">
-              <TrendingUp className="w-5 h-5 text-blue-400 mr-2" />
-              ⏱️ 99.9% uptime guarantee
+              <Zap className="w-5 h-5 text-blue-400 mr-2" />
+              99.9% uptime guarantee
             </div>
             <div className="flex items-center">
               <Users className="w-5 h-5 text-blue-400 mr-2" />
-              🚀 500+ successful implementations
+              500+ successful implementations
             </div>
           </div>
         </div>

@@ -474,3 +474,13 @@ p, .body-text {
   line-height: 1.25rem !important;
 }
 
+/* Executive Headshot Cropping Fix */
+.executive-headshot {
+  width: 8rem !important; /* 128px */
+  height: 8rem !important; /* 128px */
+  object-fit: cover !important;
+  object-position: center top !important; /* Focus on face/hair area */
+  border-radius: 50% !important;
+  margin: 0 auto 1rem auto !important;
+}
+
