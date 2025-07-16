@@ -471,6 +471,7 @@ export const PricingOptimizationPage = () => {
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Spending $40 to Acquire Customers Who Buy Once for $35 and <span className="text-orange-600">Disappear Forever?</span>
+                <span className="text-xs text-gray-400 block mt-2">v1.0.1-PULSE-ENGINE</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Stop the customer acquisition death spiral. Chime transforms one-time buyers into loyal brand evangelists who spend 6.8x more and refer their friends.
