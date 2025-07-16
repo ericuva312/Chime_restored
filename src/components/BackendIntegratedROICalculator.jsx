@@ -39,7 +39,7 @@ const BackendIntegratedROICalculator = () => {
   const [errors, setErrors] = useState({});
 
   // Backend API base URL
-  const API_BASE_URL = 'https://y0h0i3cqlgno.manussite.space/api';
+  const API_BASE_URL = 'https://web-production-9632.up.railway.app/api';
 
   // Real-time calculation effect
   useEffect(() => {
