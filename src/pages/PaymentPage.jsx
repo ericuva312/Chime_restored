@@ -5,7 +5,7 @@ import { Check, Shield, Star, Lock, CreditCard, ArrowRight, Users, Award, Clock,
 
 const PaymentPage = () => {
   const [searchParams] = useSearchParams()
-  const [selectedPlan, setSelectedPlan] = useState('professional')
+  const [selectedPlan, setSelectedPlan] = useState('prophet')
   const [showCheckout, setShowCheckout] = useState(false)
   const [customerData, setCustomerData] = useState({
     name: '',
@@ -17,22 +17,22 @@ const PaymentPage = () => {
   const [formErrors, setFormErrors] = useState({})
 
   const plans = {
-    growth: {
-      name: 'Growth',
+    dominator: {
+      name: 'Dominator',
       setupFee: 2997,
       monthlyFee: 997,
       description: 'Perfect for growing Shopify stores ready to scale',
       guarantee: '15%'
     },
-    professional: {
-      name: 'Professional',
+    prophet: {
+      name: 'Prophet',
       setupFee: 4997,
       monthlyFee: 1497,
       description: 'Most popular choice for serious e-commerce businesses',
       guarantee: '20%'
     },
-    enterprise: {
-      name: 'Enterprise',
+    emperor: {
+      name: 'Emperor',
       setupFee: 9997,
       monthlyFee: 2997,
       description: 'Complete AI transformation for high-volume stores',
@@ -42,8 +42,23 @@ const PaymentPage = () => {
 
   useEffect(() => {
     const plan = searchParams.get('plan')
-    if (plan && plans[plan]) {
-      setSelectedPlan(plan)
+    if (plan) {
+      // Handle both old and new plan names for backward compatibility
+      const planMapping = {
+        'market dominator': 'dominator',
+        'market prophet': 'prophet', 
+        'market emperor': 'emperor',
+        'growth': 'dominator',
+        'professional': 'prophet',
+        'enterprise': 'emperor'
+      }
+      
+      const normalizedPlan = plan.toLowerCase()
+      const mappedPlan = planMapping[normalizedPlan] || normalizedPlan
+      
+      if (plans[mappedPlan]) {
+        setSelectedPlan(mappedPlan)
+      }
     }
   }, [searchParams])
 

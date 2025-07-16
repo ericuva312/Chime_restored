@@ -354,7 +354,7 @@ const CaseStudiesPage = () => {
             Start with a free analysis of your growth potential.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-3">
+            <Button asChild size="lg" className="text-lg px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white border-2 border-orange-600 hover:border-orange-700 transition-all duration-200">
               <Link to="/contact">
                 Write your success story
                 <ArrowRight className="ml-2 h-5 w-5" />
