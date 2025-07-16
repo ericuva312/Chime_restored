@@ -403,7 +403,7 @@ const SpacedROICalculator = () => {
     const IconComponent = currentScenario.icon;
 
     return (
-      <div className="bg-white rounded-3xl p-16 border border-slate-200 shadow-xl">
+      <div className="bg-white rounded-3xl p-12 border border-slate-200 shadow-xl overflow-hidden">
         {/* Header with scenario selector */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-lg font-bold mb-12 shadow-lg">
@@ -436,7 +436,7 @@ const SpacedROICalculator = () => {
         </div>
 
         {/* Current Scenario Display */}
-        <div className={`bg-gradient-to-br ${currentScenario.bgColor} rounded-3xl p-16 border border-slate-200 shadow-lg mb-12`}>
+        <div className={`bg-gradient-to-br ${currentScenario.bgColor} rounded-3xl p-12 border border-slate-200 shadow-lg mb-12 overflow-hidden`}>
           {/* Scenario Header */}
           <div className="text-center mb-16">
             <div className={`w-20 h-20 bg-gradient-to-br ${currentScenario.color} rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg`}>
@@ -450,7 +450,7 @@ const SpacedROICalculator = () => {
           </div>
 
           {/* Key Metrics Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 overflow-hidden">
             {/* Revenue Growth */}
             <div className="bg-white/70 rounded-2xl p-8 border border-white/40 text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
@@ -1197,34 +1197,34 @@ const SpacedROICalculator = () => {
               )}
 
               {/* Navigation buttons */}
-              <div className="flex justify-between mt-20">
+              <div className="flex flex-col sm:flex-row gap-8 mt-20">
                 <button
                   onClick={prevStep}
                   disabled={currentStep === 1}
-                  className={`flex items-center px-10 py-6 rounded-2xl font-bold text-lg transition-all duration-300 ${
+                  className={`flex items-center justify-center px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-300 min-w-[160px] ${
                     currentStep === 1
                       ? 'bg-slate-200 text-slate-500 cursor-not-allowed'
                       : 'bg-slate-200 text-slate-700 hover:bg-slate-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1'
                   }`}
                 >
                   <ChevronLeft className="w-6 h-6 mr-3" />
-                  Previous
+                  Back
                 </button>
 
                 {currentStep === 4 ? (
                   <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center px-10 py-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center justify-center px-12 py-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-none min-w-[200px]"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                        Sending Blueprint...
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                        Processing...
                       </>
                     ) : (
                       <>
-                        Get My Blueprint
+                        Get Blueprint
                         <ChevronRight className="w-6 h-6 ml-3" />
                       </>
                     )}
@@ -1232,9 +1232,9 @@ const SpacedROICalculator = () => {
                 ) : (
                   <button
                     onClick={nextStep}
-                    className="flex items-center px-10 py-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="flex items-center justify-center px-12 py-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex-1 sm:flex-none min-w-[160px]"
                   >
-                    Continue Domination
+                    Next Step
                     <ChevronRight className="w-6 h-6 ml-3" />
                   </button>
                 )}
