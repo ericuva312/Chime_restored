@@ -90,7 +90,7 @@ const FixedNavigation = () => {
                 {showSolutions && (
                   <div 
                     id="solutions-menu"
-                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
+                    className="absolute top-full left-0 mt-2 w-64 bg-blue-600 rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
                     role="menu"
                     aria-label="AI Engines submenu"
                   >
@@ -98,9 +98,9 @@ const FixedNavigation = () => {
                       <Link
                         key={solution.href}
                         to={solution.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600 text-black"
+                        className="block px-4 py-2 text-sm transition-colors hover:bg-blue-700 hover:text-white text-white"
                         role="menuitem"
-                        style={{ color: '#000000 !important' }}
+                        style={{ color: '#ffffff !important' }}
                         onClick={() => setShowSolutions(false)}
                       >
                         {solution.name}
@@ -142,7 +142,7 @@ const FixedNavigation = () => {
                 {showIndustries && (
                   <div 
                     id="industries-menu"
-                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
+                    className="absolute top-full left-0 mt-2 w-64 bg-blue-600 rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
                     role="menu"
                     aria-label="Industries submenu"
                   >
@@ -150,9 +150,9 @@ const FixedNavigation = () => {
                       <Link
                         key={industry.href}
                         to={industry.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600 text-black"
+                        className="block px-4 py-2 text-sm transition-colors hover:bg-blue-700 hover:text-white text-white"
                         role="menuitem"
-                        style={{ color: '#000000 !important' }}
+                        style={{ color: '#ffffff !important' }}
                         onClick={() => setShowIndustries(false)}
                       >
                         {industry.name}

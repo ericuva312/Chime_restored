@@ -27,8 +27,8 @@ const HomePage = () => {
               </h1>
             </div>
             
-            <div className="text-center">
-              <p className="text-xl text-white mb-8 leading-relaxed opacity-90">
+            <div className="text-center" style={{ textAlign: 'center !important' }}>
+              <p className="text-xl text-white mb-8 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
                 Join 500+ Shopify merchants who escaped the 70-hour work weeks and now lead their niches. Achieve 15% more revenue or 25% lower costs in 90 days, or we'll pay you $1,000.
               </p>
             </div>
@@ -186,9 +186,9 @@ const HomePage = () => {
                 <h3 className="text-4xl font-bold text-white mb-4">Zero Risk. All Reward.</h3>
                 <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 mx-auto rounded-full"></div>
               </div>
-              <p className="text-xl text-white/90 mb-6 leading-relaxed">We're so confident in our results, we guarantee your success with these four ironclad promises.</p>
-              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 mb-4">Virtually zero risk. Unlimited upside.</p>
-              <p className="text-xl text-white/80">Your success is our only priority.</p>
+              <p className="text-xl text-white/90 mb-6 leading-relaxed" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto 1.5rem auto' }}>We're so confident in our results, we guarantee your success with these four ironclad promises.</p>
+              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 mb-4" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto 1rem auto' }}>Virtually zero risk. Unlimited upside.</p>
+              <p className="text-xl text-white/80" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>Your success is our only priority.</p>
             </div>
           </div>
         </div>
@@ -365,8 +365,8 @@ const HomePage = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">How Chime Delivers Results</h2>
-            <div className="text-center">
-              <p className="text-xl text-gray-600">Simple 3-step process to transform your e-commerce business</p>
+            <div className="text-center" style={{ textAlign: 'center !important' }}>
+              <p className="text-xl text-gray-600" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>Simple 3-step process to transform your e-commerce business</p>
             </div>
           </div>
 
@@ -423,8 +423,8 @@ const HomePage = () => {
           <h2 className="text-4xl font-bold mb-4">
             Ready to Join the Elite Circle of AI-Powered Merchants?
           </h2>
-          <div className="text-center">
-            <p className="text-xl mb-8">
+          <div className="text-center" style={{ textAlign: 'center !important' }}>
+            <p className="text-xl mb-8" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto 2rem auto' }}>
               Book your call now. Walk away with a custom growth plan worth $2,500.
             </p>
           </div>
@@ -444,8 +444,8 @@ const HomePage = () => {
             </Link>
           </div>
           
-          <div className="text-center">
-            <p className="text-lg opacity-90">
+          <div className="text-center" style={{ textAlign: 'center !important' }}>
+            <p className="text-lg opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
               No sales pitch. Just a genuine strategy session to help you dominate your market.
             </p>
           </div>
