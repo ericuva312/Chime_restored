@@ -38,19 +38,107 @@ const AboutPage = () => {
               </p>
             </div>
             
-            <div className="bg-green-50 p-8 rounded-lg mb-8">
-              <h3 className="text-2xl font-bold text-green-800 mb-4">The Breakthrough:</h3>
-              <p className="text-green-700 mb-0">
-                What took Fortune 500 companies $10M+ and 3+ years to build, we condensed into four AI business engines that any Shopify store can implement in 48 hours. The results speak for themselves: 2,847 merchants transformed, $127M+ in additional revenue generated, and a 94% success rate.
-              </p>
+          {/* Premium Story Section */}
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-12 rounded-3xl shadow-2xl mb-16">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">From $500M+ P&L Management to AI-Powered Market Domination</h2>
+                <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+              </div>
+              
+              {/* Story Timeline */}
+              <div className="relative">
+                {/* Vertical Timeline Line */}
+                <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 via-blue-500 to-green-500 rounded-full"></div>
+                
+                {/* Crisis Section */}
+                <div className="relative mb-16">
+                  <div className="absolute left-4 w-8 h-8 bg-red-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <div className="ml-20">
+                    <div className="bg-red-50 border-l-4 border-red-500 p-8 rounded-r-2xl shadow-lg">
+                      <h3 className="text-2xl font-bold text-red-800 mb-4 flex items-center">
+                        <span className="mr-3">⚠️</span>
+                        The Crisis That Started Everything
+                      </h3>
+                      <p className="text-red-700 text-lg leading-relaxed">
+                        In 2020, Eric Uva watched hundreds of promising Shopify businesses fail—not because they lacked great products, but because they couldn't compete with the AI-powered giants that were emerging. Manual processes, gut-decision making, and reactive strategies were becoming business death sentences.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Solution Section */}
+                <div className="relative mb-16">
+                  <div className="absolute left-4 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <div className="ml-20">
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-8 rounded-r-2xl shadow-lg">
+                      <h3 className="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                        <span className="mr-3">🏢</span>
+                        The Fortune 500 Solution
+                      </h3>
+                      <p className="text-blue-700 text-lg leading-relaxed">
+                        Drawing from 25+ years managing $500M+ P&Ls at PwC, Strategy&, and Alvarez & Marsal, Eric assembled a team of AI pioneers and enterprise transformation experts. Their mission: democratize Fortune 500-level AI capabilities for ambitious Shopify merchants.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Breakthrough Section */}
+                <div className="relative mb-16">
+                  <div className="absolute left-4 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <div className="ml-20">
+                    <div className="bg-green-50 border-l-4 border-green-500 p-8 rounded-r-2xl shadow-lg">
+                      <h3 className="text-2xl font-bold text-green-800 mb-4 flex items-center">
+                        <span className="mr-3">🚀</span>
+                        The Breakthrough
+                      </h3>
+                      <p className="text-green-700 text-lg leading-relaxed mb-6">
+                        What took Fortune 500 companies $10M+ and 3+ years to build, we condensed into four AI business engines that any Shopify store can implement in 48 hours. The results speak for themselves:
+                      </p>
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="text-center bg-white p-4 rounded-lg shadow">
+                          <div className="text-2xl font-bold text-green-600">2,847</div>
+                          <div className="text-sm text-gray-600">Merchants Transformed</div>
+                        </div>
+                        <div className="text-center bg-white p-4 rounded-lg shadow">
+                          <div className="text-2xl font-bold text-green-600">$127M+</div>
+                          <div className="text-sm text-gray-600">Revenue Generated</div>
+                        </div>
+                        <div className="text-center bg-white p-4 rounded-lg shadow">
+                          <div className="text-2xl font-bold text-green-600">94%</div>
+                          <div className="text-sm text-gray-600">Success Rate</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Elite Choice Section */}
+                <div className="relative">
+                  <div className="absolute left-4 w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  </div>
+                  <div className="ml-20">
+                    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border-l-4 border-purple-500 p-8 rounded-r-2xl shadow-lg">
+                      <h3 className="text-2xl font-bold text-purple-800 mb-4 flex items-center">
+                        <span className="mr-3">👑</span>
+                        Why Elite Merchants Choose Us
+                      </h3>
+                      <p className="text-purple-700 text-lg leading-relaxed">
+                        While competitors offer generic solutions, we provide the same AI systems that power Fortune 500 market leaders. Our clients don't just grow—they dominate their niches and set the trends their competitors follow.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div className="bg-purple-50 p-8 rounded-lg mb-8">
-              <h3 className="text-2xl font-bold text-purple-800 mb-4">Why Elite Merchants Choose Us:</h3>
-              <p className="text-purple-700 mb-0">
-                While competitors offer generic solutions, we provide the same AI systems that power Fortune 500 market leaders. Our clients don't just grow—they dominate their niches and set the trends their competitors follow.
-              </p>
-            </div>
+          </div>
 
             <div className="grid md:grid-cols-2 gap-8 mt-12">
               <div className="md:col-span-2">
