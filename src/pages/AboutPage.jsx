@@ -268,23 +268,23 @@ const AboutPage = () => {
           
           {/* Team Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Alexandra Chen - New Executive */}
+            {/* Sarah Harrison - New Executive */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-blue-300 transform hover:-translate-y-2">
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
                     src="/images/alexandra-chen-headshot.jpg" 
-                    alt="Alexandra Chen - Chief Strategy Officer" 
+                    alt="Sarah Harrison - Chief Strategy Officer" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 mb-1">Alexandra Chen</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">Sarah Harrison</h3>
                 <p className="text-blue-600 font-semibold mb-3">Chief Strategy Officer</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Alexandra brings 15+ years of strategic leadership from McKinsey & Company and Bain Capital. Former VP of Strategy at Salesforce, she led the team that scaled ARR from $500M to $2B+. Alexandra holds an MBA from Stanford and has been named one of the top 40 under 40 strategy executives in tech.
+                  Sarah brings 15+ years of strategic leadership from McKinsey & Company and Bain Capital. Former VP of Strategy at Salesforce, she led the team that scaled ARR from $500M to $2B+. Sarah holds an MBA from Stanford and has been named one of the top 40 under 40 strategy executives in tech.
                 </p>
               </div>
             </div>
