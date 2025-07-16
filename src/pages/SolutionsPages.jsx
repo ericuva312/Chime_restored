@@ -37,7 +37,7 @@ export const CartRecoveryPage = () => {
                 </Link>
                 <Link
                   to="/roi-calculator"
-                  className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
                 >
                   See Your Revenue Potential
                 </Link>
@@ -126,14 +126,14 @@ export const CartRecoveryPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white hover:bg-gray-50 text-blue-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               Book Strategy Call
               <ArrowRight className="ml-2 w-6 h-6" />
             </Link>
             <Link
               to="/roi-calculator"
-              className="bg-transparent hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-blue-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               See Your Revenue Potential
             </Link>
@@ -209,7 +209,7 @@ export const EmailAutomationPage = () => {
                 </Link>
                 <Link
                   to="/roi-calculator"
-                  className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
                 >
                   See Your Revenue Potential
                 </Link>
@@ -285,14 +285,14 @@ export const EmailAutomationPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white hover:bg-gray-50 text-blue-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               Book Strategy Call
               <ArrowRight className="ml-2 w-6 h-6" />
             </Link>
             <Link
               to="/roi-calculator"
-              className="bg-transparent hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-blue-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               See Your Revenue Potential
             </Link>
@@ -439,14 +439,14 @@ export const InventoryManagementPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white hover:bg-gray-50 text-purple-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+              className="bg-white hover:bg-gray-50 text-purple-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               Book Strategy Call
               <ArrowRight className="ml-2 w-6 h-6" />
             </Link>
             <Link
               to="/roi-calculator"
-              className="bg-transparent hover:bg-purple-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-purple-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
             >
               See Your Revenue Potential
             </Link>
@@ -598,7 +598,7 @@ export const PricingOptimizationPage = () => {
           </p>
           <Link
             to="/contact"
-            className="bg-white hover:bg-gray-50 text-green-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+            className="bg-white hover:bg-gray-50 text-green-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-orange-600 hover:border-orange-700"
           >
             Optimize My Pricing Today
             <ArrowRight className="ml-2 w-6 h-6" />
