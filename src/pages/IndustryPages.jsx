@@ -8,7 +8,7 @@ export const FashionApparelPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Missing <span className="text-red-600">$50,000+ Monthly</span> from Fashion Trends You Can't Predict?
@@ -195,7 +195,7 @@ export const ElectronicsPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Crushed by <span className="text-red-600">Price Wars & Tech Obsolescence</span> in Electronics?
@@ -382,7 +382,7 @@ export const HealthWellnessPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-green-50 to-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Struggling with <span className="text-red-600">Trust & Compliance</span> in Health & Wellness?
@@ -569,7 +569,7 @@ export const HomeGardenPage = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Overwhelmed by <span className="text-red-600">Seasonal Chaos & Inventory Nightmares</span> in Home & Garden?
