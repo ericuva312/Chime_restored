@@ -108,10 +108,10 @@ const HomePage = () => {
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">Growth Guarantee</h3>
                 </div>
                 <div className="space-y-4 text-sm">
-                  <p className="text-gray-700 leading-relaxed">If your store doesn't grow by at least 15% in 90 days, you pay nothing. We're that confident in our AI automation and proven strategies.</p>
+                  <p className="text-gray-700 leading-relaxed">If your store doesn't achieve 15% growth in 90 days, you pay nothing. We're confident in our AI automation and proven strategies.</p>
                   <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200">
                     <p className="font-semibold text-green-800 mb-1">Your upside:</p>
-                    <p className="text-green-700">Minimum 15% growth or you don't pay a dime.</p>
+                    <p className="text-green-700">Minimum 15% growth guaranteed or you don't pay a dime.</p>
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
@@ -129,17 +129,17 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full p-6 w-20 h-20 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Shield className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">90-Day Money-Back Promise</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">90-Day Refund Policy</h3>
                 </div>
                 <div className="space-y-4 text-sm">
-                  <p className="text-gray-700 leading-relaxed">If you're not completely satisfied for any reason, you get a full refund within 90 days—no questions asked.</p>
+                  <p className="text-gray-700 leading-relaxed">If you're not completely satisfied for any reason, you get a full refund within 90 days—no questions asked, guaranteed results.</p>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Your upside:</p>
-                    <p className="text-blue-700">Try us risk-free for 90 days.</p>
+                    <p className="text-blue-700">Try us completely risk-free for a full 90 days today.</p>
                   </div>
                   <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200">
                     <p className="font-semibold text-green-800 mb-1">Our promise:</p>
-                    <p className="text-green-700">Every penny back if you're not thrilled.</p>
+                    <p className="text-green-700">Every penny back if not thrilled.</p>
                   </div>
                 </div>
               </CardContent>
@@ -153,17 +153,17 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-purple-100 to-violet-100 rounded-full p-6 w-20 h-20 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-8 w-8 text-purple-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">No Technical Headaches</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Zero Technical Risks</h3>
                 </div>
                 <div className="space-y-4 text-sm">
-                  <p className="text-gray-700 leading-relaxed">We handle all the implementation, setup, and maintenance. You focus on running your business while we do the heavy lifting.</p>
+                  <p className="text-gray-700 leading-relaxed">We handle all implementation, setup, and maintenance completely. You focus on running your business while we do the heavy lifting.</p>
                   <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-4 rounded-xl border border-purple-200">
                     <p className="font-semibold text-purple-800 mb-1">Your upside:</p>
-                    <p className="text-purple-700">Zero setup stress, zero maintenance, zero technical knowledge required.</p>
+                    <p className="text-purple-700">Zero setup stress, zero maintenance, zero tech required.</p>
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
-                    <p className="text-blue-700">100% hands-off for you.</p>
+                    <p className="text-blue-700">100% hands-off solution for you.</p>
                   </div>
                 </div>
               </CardContent>
@@ -177,17 +177,17 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-orange-100 to-amber-100 rounded-full p-6 w-20 h-20 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Award className="h-8 w-8 text-orange-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">All-in-One Solution</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">All-in-One Platform</h3>
                 </div>
                 <div className="space-y-4 text-sm">
-                  <p className="text-gray-700 leading-relaxed">With 500+ successful implementations and a 99.9% satisfaction rate, you're partnering with a team that delivers. We're your one-stop shop—every aspect handled for you.</p>
+                  <p className="text-gray-700 leading-relaxed">With 500+ successful implementations and 99.9% satisfaction rate, you're partnering with a team that delivers comprehensive results.</p>
                   <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-xl border border-orange-200">
                     <p className="font-semibold text-orange-800 mb-1">Your upside:</p>
                     <p className="text-orange-700">Confidence in a partner with a proven track record.</p>
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
-                    <p className="text-blue-700">All-in-one solution; we handle everything.</p>
+                    <p className="text-blue-700">All-in-one; we handle everything.</p>
                   </div>
                 </div>
               </CardContent>
@@ -232,7 +232,7 @@ const HomePage = () => {
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900">Genesis - Strategic Growth Engine</h3>
+                    <h3 className="text-lg font-bold text-gray-900">Genesis - Strategic Business Engine</h3>
                     <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
                   </div>
                 </div>

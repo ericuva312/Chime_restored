@@ -100,7 +100,7 @@ const FixedNavigation = () => {
                         to={solution.href}
                         className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600"
                         role="menuitem"
-                        style={{ color: '#374151' }}
+                        style={{ color: '#1f2937' }}
                         onClick={() => setShowSolutions(false)}
                       >
                         {solution.name}
@@ -152,7 +152,7 @@ const FixedNavigation = () => {
                         to={industry.href}
                         className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600"
                         role="menuitem"
-                        style={{ color: '#374151' }}
+                        style={{ color: '#1f2937' }}
                         onClick={() => setShowIndustries(false)}
                       >
                         {industry.name}
