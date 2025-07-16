@@ -514,33 +514,49 @@ export const PricingOptimizationPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Stop Guessing at Prices—Start <span className="text-green-600">Maximizing Every Dollar</span>
+                Spending $40 to Acquire Customers Who Buy Once for $35 and <span className="text-orange-600">Disappear Forever?</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                You're leaving thousands on the table every month with pricing that's either too low (lost profit) or too high (lost sales). Chime's AI finds the sweet spot that maximizes both revenue and profit margins.
+                Stop the customer acquisition death spiral. Chime transforms one-time buyers into loyal brand evangelists who spend 6.8x more and refer their friends.
               </p>
-              <div className="bg-red-50 p-6 mb-8">
-                <h3 className="text-lg font-semibold text-red-800 mb-2">The Pricing Guessing Game:</h3>
-                <ul className="text-red-700 space-y-1">
-                  <li>• Pricing based on gut feelings and competitor copying</li>
-                  <li>• Losing $10,000+ monthly to suboptimal pricing strategies</li>
-                  <li>• Either racing to the bottom or pricing yourself out of sales</li>
-                  <li>• No idea what customers are actually willing to pay</li>
+              
+              {/* The Customer Acquisition Death Spiral */}
+              <div className="bg-red-50 p-6 mb-6">
+                <h3 className="text-lg font-semibold text-red-800 mb-3">The Customer Acquisition Death Spiral</h3>
+                <h4 className="text-md font-semibold text-red-700 mb-2">The Brutal Reality:</h4>
+                <ul className="text-red-700 space-y-1 mb-4">
+                  <li>• 85% of ecommerce businesses fail because they focus on acquisition instead of retention</li>
+                  <li>• You're spending $40+ to acquire customers who buy once for $35 and never return</li>
+                  <li>• Your competitors are building loyal armies while you chase one-time buyers</li>
+                  <li>• Every lost customer costs 5x more to replace than to retain</li>
+                  <li>• You're trapped in an endless cycle of expensive customer acquisition</li>
+                </ul>
+              </div>
+
+              {/* The Customer Success Revolution */}
+              <div className="bg-green-50 p-6 mb-8">
+                <h4 className="text-md font-semibold text-green-700 mb-2">The Customer Success Revolution:</h4>
+                <ul className="text-green-700 space-y-1">
+                  <li>• Transform one-time buyers into loyal brand evangelists</li>
+                  <li>• Build a community of customers who advocate for your brand</li>
+                  <li>• Create predictable recurring revenue from existing customers</li>
+                  <li>• Reduce acquisition costs while increasing customer lifetime value</li>
+                  <li>• Dominate your market through customer loyalty, not just acquisition</li>
                 </ul>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-green-600 hover:border-green-700"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700"
                 >
-                  Optimize My Pricing Now
+                  Book Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
                 <Link
                   to="/roi-calculator"
-                  className="bg-white hover:bg-gray-50 text-green-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-green-600 hover:border-green-700"
+                  className="bg-white hover:bg-gray-50 text-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700"
                 >
-                  See Pricing ROI Potential
+                  See your revenue potential
                 </Link>
               </div>
             </div>
