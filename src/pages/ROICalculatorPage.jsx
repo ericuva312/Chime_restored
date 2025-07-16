@@ -1,7 +1,7 @@
-import ThreeScenarioROICalculator from '../components/ThreeScenarioROICalculator'
+import SpacedROICalculator from '../components/SpacedROICalculator'
 
 const ROICalculatorPage = () => {
-  return <ThreeScenarioROICalculator />
+  return <SpacedROICalculator />
 }
 
 export default ROICalculatorPage
