@@ -175,8 +175,7 @@ const BackendIntegratedROICalculator = () => {
       if (formData.monthly_revenue && parseFloat(formData.monthly_revenue) > 0) {
         try {
           // Try backend calculation for validation/logging
-          const response = await fetch(`${API_BASE_URL}/calculate`, {
-            method: 'POST',
+        const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {          method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -312,7 +311,7 @@ const BackendIntegratedROICalculator = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/submit`, {
+      const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
