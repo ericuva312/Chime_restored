@@ -68,15 +68,24 @@ const PricingPage = () => {
       company: "Luxe Beauty Co.",
       revenue: "$2.3M",
       growth: "188%",
-      quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7.",
-      image: "/src/assets/images/sarah-chen-headshot.jpg",    },
+      quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7. Our conversion rate increased by 67% and customer lifetime value doubled.",
+      metrics: "67% conversion increase • 2x customer LTV • 25 hours saved weekly"
+    },
     {
       name: "Marcus Rodriguez",
       company: "TechGear Pro",
       revenue: "$1.8M",
       growth: "156%",
-      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",
-      image: "/src/assets/images/marcus-rodriguez-headshot.jpg",
+      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week. Our cart abandonment dropped from 70% to 23%.",
+      metrics: "156% revenue growth • 47% cart abandonment reduction • $890K additional revenue"
+    },
+    {
+      name: "Jennifer Walsh",
+      company: "Wellness Essentials",
+      revenue: "$3.1M",
+      growth: "234%",
+      quote: "Chime delivered results beyond our wildest expectations. We achieved 234% growth in 8 months, increased our profit margins by 45%, and now serve customers in 15 new markets.",
+      metrics: "234% revenue growth • 45% margin increase • 15 new markets • 92% customer retention"
     }
   ]
 
@@ -253,27 +262,36 @@ const PricingPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-lg p-8 shadow-sm">
-                <div className="flex items-center mb-6">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full mr-4"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-gray-600">{testimonial.company}</p>
-                    <div className="flex items-center mt-1">
-                      <span className="text-green-600 font-semibold">{testimonial.growth} growth</span>
-                      <span className="text-gray-400 mx-2">•</span>
-                      <span className="text-blue-600 font-semibold">{testimonial.revenue} revenue</span>
-                    </div>
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900">{testimonial.name}</h4>
+                  <p className="text-gray-600 font-medium">{testimonial.company}</p>
+                  <div className="flex items-center justify-center mt-2 space-x-4">
+                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      {testimonial.growth} growth
+                    </span>
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                      {testimonial.revenue} revenue
+                    </span>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                <div className="flex items-center mt-4">
+                
+                <blockquote className="text-gray-700 italic text-center mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </blockquote>
+                
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-4 rounded-xl border border-gray-200">
+                  <p className="text-sm text-gray-600 font-medium text-center">
+                    {testimonial.metrics}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center mt-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
@@ -296,13 +314,13 @@ const PricingPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/roi-calculator"
-              className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-white hover:border-gray-200"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-orange-600 hover:border-orange-700"
             >
               Calculate ROI
             </Link>
             <Link
               to="/contact"
-              className="bg-transparent hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-white hover:border-blue-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-orange-600 hover:border-orange-700"
             >
               Book Free Consultation
             </Link>
@@ -321,7 +339,7 @@ const PricingPage = () => {
           </p>
           <Link
             to="/contact"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-blue-600 hover:border-blue-700"
+            className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-all duration-300 inline-flex items-center border-2 border-orange-600 hover:border-orange-700 shadow-lg hover:shadow-xl"
           >
             Get Started Today
             <ArrowRight className="ml-2 w-6 h-6" />

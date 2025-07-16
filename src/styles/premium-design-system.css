@@ -446,3 +446,24 @@ p, .body-text {
   line-height: 1rem !important;
 }
 
+
+
+/* Case Studies Page Heading Centering Fix */
+.case-studies-heading {
+  text-align: center !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+}
+
+/* Global Button Contrast Fix */
+.btn-contrast-fix {
+  background-color: #ea580c !important; /* orange-600 */
+  color: white !important;
+  border: none !important;
+}
+
+.btn-contrast-fix:hover {
+  background-color: #c2410c !important; /* orange-700 */
+  color: white !important;
+}
+

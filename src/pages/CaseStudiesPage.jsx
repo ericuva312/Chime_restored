@@ -139,15 +139,15 @@ const CaseStudiesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/contact" 
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Write your success story
               </Link>
               <Link 
                 to="/roi-calculator" 
-                className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-300 transition-colors"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                See your revenue potential
+                See Your Revenue Potential
               </Link>
             </div>
           </div>
@@ -175,10 +175,10 @@ const CaseStudiesPage = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="case-studies-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Success Stories by Industry
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="case-studies-heading text-xl text-gray-600">
               See how businesses like yours have transformed with Chime
             </p>
           </div>
@@ -252,10 +252,10 @@ const CaseStudiesPage = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="case-studies-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Proven Success Across Industries
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="case-studies-heading text-xl text-gray-600">
               Our AI adapts to your industry's unique challenges and opportunities
             </p>
           </div>
@@ -293,10 +293,10 @@ const CaseStudiesPage = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="case-studies-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Proven Implementation Process
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="case-studies-heading text-xl text-gray-600">
               How we deliver guaranteed results in 90 days
             </p>
           </div>
@@ -354,14 +354,14 @@ const CaseStudiesPage = () => {
             Start with a free analysis of your growth potential.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-3">
+            <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300">
               <Link to="/contact">
                 Write your success story
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-blue-600">
-              <Link to="/roi-calculator">See your revenue potential</Link>
+            <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Link to="/roi-calculator">See Your Revenue Potential</Link>
             </Button>
           </div>
         </div>

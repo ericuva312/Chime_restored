@@ -219,7 +219,7 @@ const FAQPage = () => {
                         onClick={() => toggleItem(itemKey)}
                         className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
                       >
-                        <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                        <h3 className="text-base font-semibold text-gray-900 pr-4">
                           {faq.question}
                         </h3>
                         {isOpen ? (
@@ -230,7 +230,7 @@ const FAQPage = () => {
                       </button>
                       {isOpen && (
                         <div className="px-6 pb-4">
-                          <p className="text-gray-600 leading-relaxed">
+                          <p className="text-sm text-gray-600 leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>
@@ -256,13 +256,13 @@ const FAQPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-white hover:border-gray-200"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-orange-600 hover:border-orange-700"
             >
               Book Free Consultation
             </Link>
             <Link
               to="/roi-calculator"
-              className="bg-transparent hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-white hover:border-blue-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-orange-600 hover:border-orange-700"
             >
               Calculate Your ROI
             </Link>
