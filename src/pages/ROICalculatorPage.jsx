@@ -1,8 +1,8 @@
-import SpacedROICalculator from '../components/SpacedROICalculator'
+import ModernROICalculator from '../components/ModernROICalculator';
 
 const ROICalculatorPage = () => {
-  return <SpacedROICalculator />
-}
+  return <ModernROICalculator />;
+};
 
 export default ROICalculatorPage
 
