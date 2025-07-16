@@ -460,7 +460,7 @@ export const InventoryManagementPage = () => {
   )
 }
 
-// Pricing Optimization Page
+// Pricing Optimization Page (Pulse Customer Success Engine)
 export const PricingOptimizationPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
