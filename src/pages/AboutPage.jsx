@@ -75,7 +75,7 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="w-80 h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
                     <img 
-                      src="/src/assets/eric-uva-headshot.jpg" 
+                      src="/images/eric-uva-headshot.jpg" 
                       alt="Eric Uva - Founder & Managing Partner" 
                       className="w-full h-full object-cover"
                     />
@@ -273,7 +273,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/alexandra-chen-headshot.jpg" 
+                    src="/images/alexandra-chen-headshot.jpg" 
                     alt="Alexandra Chen - Chief Strategy Officer" 
                     className="w-full h-full object-cover"
                   />
@@ -284,7 +284,7 @@ const AboutPage = () => {
                 <h3 className="text-xl font-bold text-slate-900 mb-1">Alexandra Chen</h3>
                 <p className="text-blue-600 font-semibold mb-3">Chief Strategy Officer</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Alexandra brings 15+ years of strategic leadership from McKinsey & Company and Bain Capital. Former VP of Strategy at Salesforce, she led the team that scaled ARR from $500M to $2B+. Alexandra holds an MBA from Stanford and is recognized as one of the top 40 under 40 strategy executives in tech.
+                  Alexandra brings 15+ years of strategic leadership from McKinsey & Company and Bain Capital. Former VP of Strategy at Salesforce, she led the team that scaled ARR from $500M to $2B+. Alexandra holds an MBA from Stanford and has been named one of the top 40 under 40 strategy executives in tech.
                 </p>
               </div>
             </div>
@@ -294,7 +294,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/robert-davis-headshot.jpg" 
+                    src="/images/robert-davis-headshot.jpg" 
                     alt="Robert Davis - Chief Financial Officer" 
                     className="w-full h-full object-cover"
                   />
@@ -305,7 +305,7 @@ const AboutPage = () => {
                 <h3 className="text-xl font-bold text-slate-900 mb-1">Robert Davis</h3>
                 <p className="text-blue-600 font-semibold mb-3">Chief Financial Officer</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Robert brings 20+ years of distinguished financial leadership in high-growth technology and AI companies. Former CFO at DataRobot and Snowflake, he has guided companies through $2B+ funding rounds and IPO processes. Robert holds an MBA from Wharton School and is a CPA with deep expertise in SaaS metrics.
+                  Robert brings 20+ years of distinguished financial leadership in high-growth technology and AI companies. He (Former CFO at DataRobot and Snowflake) has guided companies through $2B+ funding rounds and IPO processes. Robert holds an MBA from Wharton School and is a CPA with deep expertise in SaaS metrics.
                 </p>
               </div>
             </div>
@@ -315,7 +315,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/james-mitchell-headshot.jpg" 
+                    src="/images/james-mitchell-headshot.jpg" 
                     alt="Dr. James Mitchell - Chief Technology Officer" 
                     className="w-full h-full object-cover"
                   />
@@ -336,7 +336,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/emily-thompson-headshot.jpg" 
+                    src="/images/emily-thompson-headshot.jpg" 
                     alt="Emily Thompson - Chief Marketing Officer" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -357,7 +357,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/david-wilson-headshot.jpg" 
+                    src="/images/david-wilson-headshot.jpg" 
                     alt="David Wilson - Chief Operating Officer" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -378,7 +378,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/rachel-anderson-headshot.jpg" 
+                    src="/images/rachel-anderson-headshot.jpg" 
                     alt="Rachel Anderson - VP of Operations & HR" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
