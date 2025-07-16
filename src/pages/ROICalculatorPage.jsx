@@ -1,7 +1,7 @@
-import EnhancedROICalculator from '../components/EnhancedROICalculatorStreamlined';
+import EnhancedROICalculatorWithRealTime from '../components/EnhancedROICalculatorWithRealTime'
 
 const ROICalculatorPage = () => {
-  return <EnhancedROICalculator />
+  return <EnhancedROICalculatorWithRealTime />
 }
 
 export default ROICalculatorPage
