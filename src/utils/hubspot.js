@@ -1,6 +1,6 @@
 // HubSpot API integration utility
-const HUBSPOT_API_KEY = process.env.REACT_APP_HUBSPOT_API_KEY || 'your-hubspot-api-key'
-const HUBSPOT_PORTAL_ID = process.env.REACT_APP_HUBSPOT_PORTAL_ID || 'your-portal-id'
+const HUBSPOT_API_KEY = import.meta.env.VITE_HUBSPOT_API_KEY || 'your-hubspot-api-key'
+const HUBSPOT_PORTAL_ID = import.meta.env.VITE_HUBSPOT_PORTAL_ID || 'your-portal-id'
 
 // Submit contact form to HubSpot
 export const submitContactToHubSpot = async (formData) => {
