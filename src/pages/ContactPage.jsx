@@ -244,8 +244,19 @@ const ContactPage = () => {
           <p className="text-xl text-blue-100 mb-6">
             Join hundreds of successful Shopify stores already growing with Chime.
           </p>
-          <div className="text-center text-blue-200 text-sm">
-            🔒 Enterprise-grade security • 99.9% uptime guarantee • 500+ successful implementations
+          <div className="flex items-center justify-center space-x-6 text-blue-200 text-sm">
+            <div className="flex items-center">
+              <Shield className="w-4 h-4 mr-2" />
+              Enterprise-grade security
+            </div>
+            <div className="flex items-center">
+              <Zap className="w-4 h-4 mr-2" />
+              99.9% uptime guarantee
+            </div>
+            <div className="flex items-center">
+              <Users className="w-4 h-4 mr-2" />
+              500+ successful implementations
+            </div>
           </div>
         </div>
       </section>
