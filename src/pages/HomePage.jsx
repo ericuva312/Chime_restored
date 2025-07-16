@@ -106,14 +106,14 @@ const HomePage = () => {
     <div className="min-h-screen">
       {/* Premium Hero Section */}
       <section className="hero-premium">
-        <div className="container-premium hero-content">
-          <div className="text-center">
-            <h1 className="h1 text-white mb-6">
-              Stop Chasing Customers—Start Building an <span className="text-yellow-400">Empire of Loyal Fans</span> Who Buy Again and Again
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto body-text">
-              Chime's Four AI Engines transform one-time buyers into lifetime customers, building predictable recurring revenue that grows your empire while competitors fight over scraps.
-            </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center max-w-4xl mx-auto mb-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Stop Chasing Customers—Start Building an <span className="text-yellow-400">Empire of Loyal Fans</span> Who Buy Again and Again
+          </h1>
+          <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+            Chime's Four AI Engines transform one-time buyers into lifetime customers, building predictable recurring revenue that grows your empire while competitors fight over scraps.
+          </p>
             
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">

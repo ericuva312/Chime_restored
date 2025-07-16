@@ -32,7 +32,7 @@ const ImplementationPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/contact" 
-              className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors border-2 border-pink-600 hover:border-pink-700"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors border-2 border-blue-600 hover:border-blue-700"
             >
               Start Implementation →
             </Link>

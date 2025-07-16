@@ -340,12 +340,12 @@ const CaseStudiesPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-3">
               <Link to="/contact">
-                Get Free Analysis
+                Write your success story
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-blue-600">
-              <Link to="/roi-calculator">Calculate Your ROI</Link>
+              <Link to="/roi-calculator">See your revenue potential</Link>
             </Button>
           </div>
         </div>
