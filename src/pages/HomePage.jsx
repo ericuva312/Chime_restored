@@ -342,7 +342,8 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-orange-600 to-amber-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Heart className="h-8 w-8 text-white" />
                   </div>
-                  <div                    <h3 className="text-lg font-bold text-gray-900">Pulse - Customer Success Engine</h3>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">Pulse - Customer Success Engine</h3>
                     <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
                   </div>
                 </div>
