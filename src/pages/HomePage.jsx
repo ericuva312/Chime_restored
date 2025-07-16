@@ -194,13 +194,17 @@ const HomePage = () => {
             </Card>
           </div>
 
-          {/* Zero Risk Footer - Enhanced Premium Design */}
-          <div className="text-center bg-gradient-to-r from-white to-gray-50 rounded-2xl p-12 shadow-2xl border border-gray-100">
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">Zero Risk. All Reward.</h3>
-            <div className="text-center max-w-3xl mx-auto">
-              <p className="text-lg text-gray-600 mb-4 leading-relaxed">We're so confident in our results, we guarantee your success with these four ironclad promises.</p>
-              <p className="text-2xl font-semibold text-blue-600 mb-4">Virtually zero risk. Unlimited upside.</p>
-              <p className="text-lg text-gray-700">Your success is our only priority.</p>
+          {/* Enhanced Zero Risk Footer - More Premium and Connected */}
+          <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-3xl p-16 shadow-2xl border-4 border-blue-200 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+            <div className="relative z-10 text-center max-w-4xl mx-auto">
+              <div className="mb-8">
+                <h3 className="text-4xl font-bold text-white mb-4">Zero Risk. All Reward.</h3>
+                <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 mx-auto rounded-full"></div>
+              </div>
+              <p className="text-xl text-white/90 mb-6 leading-relaxed">We're so confident in our results, we guarantee your success with these four ironclad promises.</p>
+              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 mb-4">Virtually zero risk. Unlimited upside.</p>
+              <p className="text-xl text-white/80">Your success is our only priority.</p>
             </div>
           </div>
         </div>
