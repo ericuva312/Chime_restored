@@ -145,6 +145,164 @@ export const CartRecoveryPage = () => {
   )
 }
 
+// Email Automation Page (Genesis)
+export const EmailAutomationPage = () => {
+  const genesisCapabilities = [
+    {
+      icon: <Brain className="h-8 w-8 text-blue-600" />,
+      title: "Market Analysis and Opportunity Identification",
+      description: "Analyzes 10,000+ data points across your industry to predict trends 6-8 weeks before they hit mainstream, giving you first-mover advantage on every opportunity."
+    },
+    {
+      icon: <Target className="h-8 w-8 text-purple-600" />,
+      title: "Competitive Intelligence and Positioning",
+      description: "Monitors competitor moves, pricing changes, and market positioning to ensure you're always one step ahead with superior strategy and timing."
+    },
+    {
+      icon: <TrendingUp className="h-8 w-8 text-emerald-600" />,
+      title: "Revenue Forecasting and Growth Planning",
+      description: "Uses machine learning to identify emerging patterns in customer behavior, seasonal shifts, and market dynamics before your competitors even notice them."
+    },
+    {
+      icon: <Lightbulb className="h-8 w-8 text-orange-600" />,
+      title: "Strategic Partnership Recommendations",
+      description: "Provides Fortune 500-level strategic insights and actionable recommendations that position you as the trendsetter in your niche, not the follower."
+    },
+    {
+      icon: <BarChart3 className="h-8 w-8 text-red-600" />,
+      title: "Investment and Expansion Planning",
+      description: "Develops comprehensive business plans, identifies new revenue streams, and creates actionable roadmaps for scaling your business strategically."
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Transform From Reactive Follower to <span className="text-blue-600">Market Prophet</span> in 90 Days
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Genesis is your AI Chief Strategy Officer that gives you Fortune 500-level market intelligence, predicting trends 6-8 weeks before competitors and turning you into the trendsetter in your niche.
+              </p>
+              <div className="bg-red-50 p-6 mb-8">
+                <h3 className="text-lg font-semibold text-red-800 mb-2">The Reactive Business Trap:</h3>
+                <ul className="text-red-700 space-y-1">
+                  <li>• Always playing catch-up while competitors set the trends</li>
+                  <li>• Missing profitable opportunities because you see them too late</li>
+                  <li>• Making strategic decisions based on outdated data and gut feelings</li>
+                  <li>• Watching market leaders dominate while you react to their moves</li>
+                </ul>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/contact"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                >
+                  Book Strategy Call
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+                <a
+                  href="/roi-calculator"
+                  className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                >
+                  See Your Revenue Potential
+                </a>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Genesis Strategic Advantage</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Trend Prediction Accuracy</span>
+                  <span className="text-2xl font-bold text-blue-600">94%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Market Lead Time</span>
+                  <span className="text-2xl font-bold text-purple-600">6-8 weeks</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Strategic Insights Daily</span>
+                  <span className="text-2xl font-bold text-emerald-600">47+</span>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-lg mt-6">
+                  <p className="text-blue-800 font-semibold">ROI: 2,340% in first quarter</p>
+                  <p className="text-blue-700 text-sm">Become the trendsetter, not the follower</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Genesis Capabilities Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Genesis: Your AI Chief Strategy Officer
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              Genesis serves as your chief strategy officer, analyzing market opportunities, competitive positioning, and growth vectors. It develops comprehensive business plans, identifies new revenue streams, and creates actionable roadmaps for scaling your business.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {genesisCapabilities.map((capability, index) => (
+              <div key={index} className="group">
+                <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="p-3 bg-white rounded-xl shadow-sm mr-4">
+                      {capability.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {capability.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    {capability.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-blue-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Stop Following—Start Leading Your Market
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Every day you react instead of predict is another day your competitors gain strategic advantage. The market leaders of tomorrow are being built today with AI strategic intelligence.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="bg-white hover:bg-gray-50 text-blue-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+            >
+              Book Strategy Call
+              <ArrowRight className="ml-2 w-6 h-6" />
+            </a>
+            <a
+              href="/roi-calculator"
+              className="bg-transparent hover:bg-blue-700 text-white px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-blue-300"
+            >
+              See Your Revenue Potential
+            </a>
+          </div>
+          <p className="text-blue-200 text-sm mt-4">
+            ✓ Strategic setup in 48 hours ✓ First insights in 24 hours ✓ 90-day money-back guarantee
+          </p>
+        </div>
+      </section>
+    </div>
+  )
+}
 
 // Inventory Management Page (Catalyst)
 export const InventoryManagementPage = () => {
