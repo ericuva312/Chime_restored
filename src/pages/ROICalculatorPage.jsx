@@ -1,7 +1,7 @@
-import OverhauledROICalculatorWhite from '../components/OverhauledROICalculatorWhite'
+import ThreeScenarioROICalculator from '../components/ThreeScenarioROICalculator'
 
 const ROICalculatorPage = () => {
-  return <OverhauledROICalculatorWhite />
+  return <ThreeScenarioROICalculator />
 }
 
 export default ROICalculatorPage
