@@ -155,7 +155,7 @@ const HomePage = () => {
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
-                    <p className="text-blue-700">You win, or you don't pay.</p>
+                    <p className="text-blue-700">You win, or you don't pay a single cent.</p>
                   </div>
                 </div>
               </CardContent>
@@ -175,11 +175,11 @@ const HomePage = () => {
                   <p className="text-gray-700 leading-relaxed">If you're not completely satisfied for any reason, you get a full refund within 90 days—no questions asked, guaranteed results.</p>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Your upside:</p>
-                    <p className="text-blue-700">Try us completely risk-free for a full 90 days today.</p>
+                    <p className="text-blue-700">Try us risk free for a full 90 days and enjoy complete peace of mind.</p>
                   </div>
                   <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200">
                     <p className="font-semibold text-green-800 mb-1">Our promise:</p>
-                    <p className="text-green-700">Every penny back if not thrilled.</p>
+                    <p className="text-green-700">Every penny back if you're not fully thrilled.</p>
                   </div>
                 </div>
               </CardContent>
@@ -203,7 +203,7 @@ const HomePage = () => {
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
-                    <p className="text-blue-700">100% hands-off solution for you.</p>
+                    <p className="text-blue-700">A 100% hands-off approach made for you.</p>
                   </div>
                 </div>
               </CardContent>
@@ -223,11 +223,11 @@ const HomePage = () => {
                   <p className="text-gray-700 leading-relaxed">With 500+ successful implementations and 99.9% satisfaction rate, you're partnering with a team that delivers comprehensive results.</p>
                   <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-xl border border-orange-200">
                     <p className="font-semibold text-orange-800 mb-1">Your upside:</p>
-                    <p className="text-orange-700">Confidence in a partner with a proven track record.</p>
+                    <p className="text-orange-700">Gain confidence by partnering with a team that has a proven record.</p>
                   </div>
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
                     <p className="font-semibold text-blue-800 mb-1">Our promise:</p>
-                    <p className="text-blue-700">All-in-one; we handle everything.</p>
+                    <p className="text-blue-700">All-in-one service; we handle everything.</p>
                   </div>
                 </div>
               </CardContent>
@@ -272,7 +272,7 @@ const HomePage = () => {
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-gray-900">Genesis - Strategic Business Engine</h3>
+                    <h3 className="text-sm font-bold text-gray-900">Genesis - Strategic Growth Acceleration Engine</h3>
                     <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-sm font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
+                  <div>                    <h3 className="text-sm font-bold text-gray-900">Nexus - High-Impact Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
                   </div>
                 </div>
                 
@@ -361,7 +361,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-purple-600 to-violet-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-sm font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
+                  <div>                    <h3 className="text-sm font-bold text-gray-900">Catalyst - Dynamic Inventory Optimization Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain & Inventory Optimization</p>
                   </div>
                 </div>
                 
@@ -407,7 +407,7 @@ const HomePage = () => {
                     <Heart className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-gray-900">Pulse - Customer Success Engine</h3>
+                    <h3 className="text-sm font-bold text-gray-900">Pulse - Customer Loyalty and Success Engine</h3>
                     <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
                   </div>
                 </div>
