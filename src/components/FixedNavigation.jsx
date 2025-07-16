@@ -98,9 +98,9 @@ const FixedNavigation = () => {
                       <Link
                         key={solution.href}
                         to={solution.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600"
+                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600 text-black"
                         role="menuitem"
-                        style={{ color: '#1f2937' }}
+                        style={{ color: '#000000 !important' }}
                         onClick={() => setShowSolutions(false)}
                       >
                         {solution.name}
@@ -150,9 +150,9 @@ const FixedNavigation = () => {
                       <Link
                         key={industry.href}
                         to={industry.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600"
+                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-blue-600 text-black"
                         role="menuitem"
-                        style={{ color: '#1f2937' }}
+                        style={{ color: '#000000 !important' }}
                         onClick={() => setShowIndustries(false)}
                       >
                         {industry.name}

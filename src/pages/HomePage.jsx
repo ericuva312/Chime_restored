@@ -33,22 +33,6 @@ const HomePage = () => {
               </p>
             </div>
             
-            {/* Trust Indicators */}
-            <div className="flex justify-center items-center space-x-8 mb-12 text-sm text-white opacity-80">
-              <div className="flex items-center">
-                <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
-                <span>500+ Merchants</span>
-              </div>
-              <div className="flex items-center">
-                <Shield className="h-5 w-5 text-blue-400 mr-2" />
-                <span>SOC 2 Certified</span>
-              </div>
-              <div className="flex items-center">
-                <Star className="h-5 w-5 text-yellow-400 mr-2" />
-                <span>99.9% Satisfaction</span>
-              </div>
-            </div>
-            
             {/* CTA Buttons - Made Bigger and More Contrast */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/contact">
@@ -410,38 +394,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Seamlessly Integrated Trust Badges */}
-          <div className="mt-20 text-center">
-            <div className="flex justify-center items-center space-x-12 flex-wrap gap-8">
-              <div className="flex items-center space-x-3">
-                <div className="bg-white rounded-lg p-3 shadow-lg">
-                  <Shield className="h-8 w-8 text-blue-600" />
-                </div>
-                <div className="text-left">
-                  <p className="font-semibold text-gray-900">SOC 2 Certified</p>
-                  <p className="text-sm text-gray-600">Enterprise Security</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="bg-white rounded-lg p-3 shadow-lg">
-                  <Sparkles className="h-8 w-8 text-green-600" />
-                </div>
-                <div className="text-left">
-                  <p className="font-semibold text-gray-900">Shopify Plus Partner</p>
-                  <p className="text-sm text-gray-600">Official Partnership</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="bg-white rounded-lg p-3 shadow-lg">
-                  <Users className="h-8 w-8 text-purple-600" />
-                </div>
-                <div className="text-left">
-                  <p className="font-semibold text-gray-900">500+ Merchants</p>
-                  <p className="text-sm text-gray-600">Proven Success</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
