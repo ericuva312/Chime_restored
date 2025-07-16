@@ -103,9 +103,6 @@ const PricingPage = () => {  const plans = [
                 <strong>The Brutal Reality:</strong> Every month you delay costs you $50,000+ in lost revenue while AI-powered competitors capture market share you'll never recover. The window for joining the elite circle is closing fast.
               </p>
             </div>
-              Choose the plan that fits your business. All plans include our revenue 
-              growth guarantee. If we don't deliver the promised results, you don't pay.
-            </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
               <div className="flex items-center">
                 <Zap className="w-5 h-5 text-blue-400 mr-2" />
