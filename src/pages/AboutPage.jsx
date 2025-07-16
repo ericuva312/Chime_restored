@@ -63,7 +63,7 @@ const AboutPage = () => {
               <span className="text-blue-800 text-sm font-semibold">Founder & Visionary</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              The Mind Behind the Revolution
+              The Team Fueling the Revolution
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
           </div>
@@ -121,7 +121,7 @@ const AboutPage = () => {
                       The Credentials
                     </h4>
                     <p className="text-slate-700 leading-relaxed">
-                      Harvard University graduate, Boston College alumnus, MIT Certificate holder. Former senior partner at PwC Private Equity Performance Improvement, Charles Gate Capital, Strategy&, and Alvarez & Marsal.
+                      Harvard University graduate, Boston College alumnus, MIT Certificate holder. Former PwC Private Equity Performance Improvement, Charles Gate Capital, Strategy&, and Alvarez & Marsal.
                     </p>
                   </div>
                   
