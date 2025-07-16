@@ -484,3 +484,7 @@ p, .body-text {
   margin: 0 auto 1rem auto !important;
 }
 
+
+/* Fix for duplicate "The Brutal Reality" text in hero section - JavaScript approach */
+/* This will be handled by JavaScript in the HomePage component */
+

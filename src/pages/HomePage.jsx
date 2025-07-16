@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Shield, AlertTriangle, Target, Heart, Brain, Eye, Lightbulb, Star, Award, Lock, Sparkles, Clock, UserCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -15,6 +16,57 @@ const HomePage = () => {
     { number: "$1,000", label: "Penalty if We Don't Deliver" }
   ]
 
+  // Fix duplicate "The Brutal Reality" text issue
+  useEffect(() => {
+    const removeDuplicateText = () => {
+      const heroSection = document.querySelector('.hero-premium')
+      if (heroSection) {
+        const paragraphs = heroSection.querySelectorAll('p')
+        const brutualRealityParagraphs = []
+        
+        // Find all paragraphs containing "The Brutal Reality"
+        paragraphs.forEach(p => {
+          if (p.textContent && p.textContent.includes('The Brutal Reality: 85% of Shopify stores fail')) {
+            brutualRealityParagraphs.push(p)
+          }
+        })
+        
+        // If we have duplicates, hide the first one
+        if (brutualRealityParagraphs.length > 1) {
+          brutualRealityParagraphs[0].style.display = 'none'
+          console.log('Removed duplicate "The Brutal Reality" text')
+        }
+      }
+    }
+
+    // Run multiple times to catch dynamic content
+    const timers = [
+      setTimeout(removeDuplicateText, 50),
+      setTimeout(removeDuplicateText, 200),
+      setTimeout(removeDuplicateText, 500),
+      setTimeout(removeDuplicateText, 1000)
+    ]
+
+    // Also set up a MutationObserver to watch for DOM changes
+    const observer = new MutationObserver(() => {
+      removeDuplicateText()
+    })
+
+    const heroSection = document.querySelector('.hero-premium')
+    if (heroSection) {
+      observer.observe(heroSection, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      })
+    }
+    
+    return () => {
+      timers.forEach(timer => clearTimeout(timer))
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <RealTimeNotifications />
@@ -27,25 +79,12 @@ const HomePage = () => {
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 URGENT: Your Competitors Are Using AI to Dominate While You're Still Doing Everything Manually
               </h1>
-            </div>
-            
-            <div className="text-center" style={{ textAlign: 'center !important' }}>
+                             <div className="text-center" style={{ textAlign: 'center !important' }}>
               <p className="text-xl text-white mb-8 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
                 Join the Exclusive Circle of 2,847 Elite Shopify Merchants Who Escaped the 70-Hour Work Week Death Spiral and Now Generate 15% More Revenue in 90 Days — Or We Pay You $1,000
               </p>
               
-              <div className="text-center mb-8">
-                <p className="text-lg text-white leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '0 auto' }}>
-                  <strong>The Brutal Reality:</strong> 85% of Shopify stores fail because they can't keep up with AI-powered competitors. But the top 15% who join our exclusive merchant circle are generating Fortune 500-level results with our four AI business engines.
-                </p>
-                
-                <p className="text-lg text-white mt-4 leading-relaxed opacity-90" style={{ textAlign: 'center !important', maxWidth: 'none', margin: '1rem auto 0 auto' }}>
-                  <strong>The Brutal Reality:</strong> 85% of Shopify stores fail because they can't keep up with AI-powered competitors. But the top 15% who join our exclusive merchant circle are generating Fortune 500-level results with our four AI business engines.
-                </p>
-              </div>
-            </div>
-            
-            {/* CTA Buttons - Matching Case Studies Style */}
+              {/* CTA Buttons - Updated styling to match case studies */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/contact" 
@@ -59,6 +98,8 @@ const HomePage = () => {
               >
                 See Your Revenue Potential
               </Link>
+            </div>
+              </div>
             </div>
           </div>
         </div>
