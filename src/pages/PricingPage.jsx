@@ -68,15 +68,21 @@ const PricingPage = () => {
       company: "Luxe Beauty Co.",
       revenue: "$2.3M",
       growth: "188%",
-      quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7.",
-      image: "/src/assets/images/sarah-chen-headshot.jpg",    },
+      quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7. The results exceeded every expectation."
+    },
     {
       name: "Marcus Rodriguez",
       company: "TechGear Pro",
       revenue: "$1.8M",
       growth: "156%",
-      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",
-      image: "/src/assets/images/marcus-rodriguez-headshot.jpg",
+      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week. This is the future of e-commerce automation."
+    },
+    {
+      name: "Jennifer Walsh",
+      company: "Elite Fashion Hub",
+      revenue: "$3.1M",
+      growth: "234%",
+      quote: "Chime delivered a 234% revenue increase in just 4 months. Our conversion rates doubled and customer lifetime value increased by 180%. Absolutely game-changing."
     }
   ]
 
@@ -253,27 +259,20 @@ const PricingPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white rounded-lg p-8 shadow-sm">
-                <div className="flex items-center mb-6">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full mr-4"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-gray-600">{testimonial.company}</p>
-                    <div className="flex items-center mt-1">
-                      <span className="text-green-600 font-semibold">{testimonial.growth} growth</span>
-                      <span className="text-gray-400 mx-2">•</span>
-                      <span className="text-blue-600 font-semibold">{testimonial.revenue} revenue</span>
-                    </div>
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 text-lg">{testimonial.name}</h4>
+                  <p className="text-gray-600">{testimonial.company}</p>
+                  <div className="flex items-center mt-2">
+                    <span className="text-green-600 font-semibold text-lg">{testimonial.growth} growth</span>
+                    <span className="text-gray-400 mx-2">•</span>
+                    <span className="text-blue-600 font-semibold text-lg">{testimonial.revenue} revenue</span>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.quote}"</p>
-                <div className="flex items-center mt-4">
+                <p className="text-gray-700 italic text-lg leading-relaxed">"{testimonial.quote}"</p>
+                <div className="flex items-center mt-6">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
@@ -302,7 +301,7 @@ const PricingPage = () => {
             </Link>
             <Link
               to="/contact"
-              className="bg-transparent hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-white hover:border-blue-300"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-orange-600 hover:border-orange-700"
             >
               Book Free Consultation
             </Link>

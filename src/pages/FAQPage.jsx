@@ -219,7 +219,7 @@ const FAQPage = () => {
                         onClick={() => toggleItem(itemKey)}
                         className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
                       >
-                        <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                        <h3 className="text-lg font-semibold text-gray-900 pr-4 faq-question">
                           {faq.question}
                         </h3>
                         {isOpen ? (
@@ -230,7 +230,7 @@ const FAQPage = () => {
                       </button>
                       {isOpen && (
                         <div className="px-6 pb-4">
-                          <p className="text-gray-600 leading-relaxed">
+                          <p className="text-gray-600 leading-relaxed faq-answer">
                             {faq.answer}
                           </p>
                         </div>

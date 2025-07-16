@@ -139,15 +139,15 @@ const CaseStudiesPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/contact" 
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"
+                className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors"
               >
                 Write your success story
               </Link>
               <Link 
                 to="/roi-calculator" 
-                className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-300 transition-colors"
+                className="bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors"
               >
-                See your revenue potential
+                See Your Revenue Potential
               </Link>
             </div>
           </div>
@@ -175,10 +175,10 @@ const CaseStudiesPage = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 case-studies-subheading">
               Success Stories by Industry
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 case-studies-subheading">
               See how businesses like yours have transformed with Chime
             </p>
           </div>

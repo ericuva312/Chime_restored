@@ -446,3 +446,31 @@ p, .body-text {
   line-height: 1rem !important;
 }
 
+/* Case Studies Sub-heading Centering Fix */
+.case-studies-subheading {
+  text-align: center !important;
+}
+
+/* Global Button Contrast Fix - Apply to all pages */
+.btn-contrast-fix {
+  background-color: #ea580c !important; /* orange-600 */
+  color: white !important;
+  border-color: #ea580c !important;
+}
+
+.btn-contrast-fix:hover {
+  background-color: #c2410c !important; /* orange-700 */
+  border-color: #c2410c !important;
+}
+
+/* FAQ Font Size Reduction Fix */
+.faq-question {
+  font-size: 1rem !important; /* 16px - smaller than default text-lg */
+  line-height: 1.5rem !important;
+}
+
+.faq-answer {
+  font-size: 0.875rem !important; /* 14px - smaller than default */
+  line-height: 1.25rem !important;
+}
+

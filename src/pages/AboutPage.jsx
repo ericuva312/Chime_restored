@@ -5,7 +5,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section - Blue Gradient Background */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-8">
@@ -77,9 +77,16 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Eric Uva */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/eric-uva-headshot.jpg" 
+                  alt="Eric Uva" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Eric Uva</h3>
               <p className="text-blue-600 font-semibold mb-4">Founder & Managing Partner</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 Eric Uva is the Founder and Managing Partner of Chime, with over 25 years of experience 
                 leading enterprise transformation and AI automation in e-commerce and related industries. 
                 He has managed P&Ls of $500M+, directed teams of more than 600 employees, and overseen 
@@ -94,9 +101,16 @@ const AboutPage = () => {
 
             {/* Robert Davis */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/robert-davis-headshot.jpg" 
+                  alt="Robert Davis" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Robert Davis</h3>
               <p className="text-blue-600 font-semibold mb-4">Chief Financial Officer</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 Robert Davis brings 20+ years of distinguished financial leadership in high-growth technology 
                 and AI companies. Former CFO at DataRobot and Snowflake, he has guided companies through $2B+ 
                 funding rounds and IPO processes. Robert holds an MBA from Wharton School and is a CPA with deep 
@@ -107,9 +121,16 @@ const AboutPage = () => {
 
             {/* Dr. James Mitchell */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/michael-chen-headshot.jpg" 
+                  alt="Dr. James Mitchell" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. James Mitchell</h3>
               <p className="text-blue-600 font-semibold mb-4">Chief Technology Officer</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 Dr. James Mitchell brings 15+ years of distinguished experience building enterprise-scale AI 
                 and machine learning systems. Former Google Cloud Principal AI Architect and Senior Director 
                 at OpenAI, he has architected AI solutions serving millions of users globally. Dr. Mitchell 
@@ -121,9 +142,16 @@ const AboutPage = () => {
 
             {/* Emily Thompson */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/jennifer-thompson-headshot.jpg" 
+                  alt="Emily Thompson" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Emily Thompson</h3>
               <p className="text-blue-600 font-semibold mb-4">Chief Marketing Officer</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 Emily Thompson brings 18+ years of exceptional experience building and scaling marketing 
                 organizations for high-growth B2B technology companies. Former VP of Marketing at HubSpot, 
                 she led the team that generated over $1B in pipeline and is recognized as one of the top 50 
@@ -135,9 +163,16 @@ const AboutPage = () => {
 
             {/* David Wilson */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/david-rodriguez-headshot.jpg" 
+                  alt="David Wilson" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">David Wilson</h3>
               <p className="text-blue-600 font-semibold mb-4">Chief Operating Officer</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 David Wilson brings 22+ years of distinguished operational excellence in scaling technology 
                 companies from startup to enterprise. Former VP of Operations at Stripe, he led global expansion 
                 across 40+ countries and consistently delivered world-class operational efficiency. David holds 
@@ -149,9 +184,16 @@ const AboutPage = () => {
 
             {/* Rachel Anderson */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
+              <div className="mb-6">
+                <img 
+                  src="/sarah-martinez-headshot.jpg" 
+                  alt="Rachel Anderson" 
+                  className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Rachel Anderson</h3>
               <p className="text-blue-600 font-semibold mb-4">VP of Operations & HR</p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs font-normal">
                 Rachel Anderson brings 16+ years of exceptional experience building high-performance teams 
                 and operational systems. Former Director of People Operations at Slack, she scaled the 
                 organization from 500 to 5,000+ employees with industry-leading satisfaction and retention rates. 

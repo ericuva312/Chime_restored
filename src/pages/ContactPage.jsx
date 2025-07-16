@@ -67,26 +67,34 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Schedule Your Free <span className="text-blue-600">Chime Consultation</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Schedule Your Free <span className="text-blue-400">Chime Consultation</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
             Get a personalized AI automation strategy for your Shopify store. We'll analyze your business and show you exactly how to achieve 15-25% revenue growth.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
             <div className="flex items-center">
-              <Clock className="w-5 h-5 text-blue-600 mr-2" />
+              <Clock className="w-5 h-5 text-blue-400 mr-2" />
               30-minute consultation
             </div>
             <div className="flex items-center">
-              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+              <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
               Completely free
             </div>
             <div className="flex items-center">
-              <Shield className="w-5 h-5 text-purple-600 mr-2" />
-              No obligation
+              <Shield className="w-5 h-5 text-purple-400 mr-2" />
+              🔒 Enterprise-grade security
+            </div>
+            <div className="flex items-center">
+              <TrendingUp className="w-5 h-5 text-blue-400 mr-2" />
+              ⏱️ 99.9% uptime guarantee
+            </div>
+            <div className="flex items-center">
+              <Users className="w-5 h-5 text-blue-400 mr-2" />
+              🚀 500+ successful implementations
             </div>
           </div>
         </div>
