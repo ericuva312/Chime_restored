@@ -15,7 +15,7 @@ const StripeCheckoutForm = ({ amount, planName, planType, customerData }) => {
         setLoading(true)
         setError('')
 
-        const apiUrl = import.meta.env.VITE_API_URL || 'https://chime-roi-backend-production.up.railway.app'
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://roi-calculator-backend-v2-production.up.railway.app'
         
         console.log('Creating checkout session with:', {
           apiUrl,

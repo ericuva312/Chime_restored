@@ -124,7 +124,7 @@ const EnhancedROICalculatorStreamlined = () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
       
-      const response = await fetch('https://chime-roi-backend-production.up.railway.app/api/roi-calculator', {
+      const response = await fetch('https://roi-calculator-backend-v2-production.up.railway.app/api/roi-calculator', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
