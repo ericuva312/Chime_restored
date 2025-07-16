@@ -121,7 +121,7 @@ const FixedNavigation = () => {
                 aria-expanded={showIndustries}
               >
                 <button 
-                  className="flex items-center text-sm font-medium transition-colors hover:text-blue-600"
+                  className="flex items-center text-xs font-medium transition-colors hover:text-blue-600"
                   aria-label="Industries menu"
                   aria-controls="industries-menu"
                   onClick={() => setShowIndustries(!showIndustries)}
@@ -164,7 +164,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/implementation" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/implementation') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -175,7 +175,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/pricing" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/pricing') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -186,7 +186,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/case-studies" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/case-studies') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -197,7 +197,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/faq" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/faq') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -208,7 +208,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/about" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/about') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
@@ -219,7 +219,7 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/roi-calculator" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-xs font-medium transition-colors hover:text-blue-600 ${
                   isActive('/roi-calculator') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
