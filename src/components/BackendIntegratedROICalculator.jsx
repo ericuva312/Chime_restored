@@ -205,11 +205,6 @@ const BackendIntegratedROICalculator = () => {
     return () => clearTimeout(debounceTimer);
   }, [formData.monthly_revenue, calculations]);
 
-  // Fallback calculation for when backend is unavailable (now using enhanced calculations)
-  const calculateFallbackProjections = () => {
-    return calculations;
-  };
-
   // Get current projections (enhanced local calculations)
   const projections = backendProjections || calculations;
   const currentProjection = projections[selectedScenario];
@@ -345,10 +340,6 @@ const BackendIntegratedROICalculator = () => {
       setIsSubmitting(false);
     }
   };
-
-  // Get current projections (backend or fallback)
-  const projections = backendProjections || calculateFallbackProjections();
-  const currentProjection = projections[selectedScenario];
 
   // Success popup component
   const SuccessPopup = () => (
