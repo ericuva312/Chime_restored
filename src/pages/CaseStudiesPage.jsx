@@ -361,7 +361,7 @@ const CaseStudiesPage = () => {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-blue-600">
-              <Link to="/roi-calculator">See your revenue potential</Link>
+              <Link to="/roi-calculator">See Your Revenue Potential</Link>
             </Button>
           </div>
         </div>

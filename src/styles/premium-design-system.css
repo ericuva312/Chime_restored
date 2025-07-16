@@ -453,14 +453,14 @@ p, .body-text {
 
 /* Global Button Contrast Fix - Apply to all pages */
 .btn-contrast-fix {
-  background-color: #ea580c !important; /* orange-600 */
+  background-color: #1f2937 !important; /* gray-800 - High contrast */
   color: white !important;
-  border-color: #ea580c !important;
+  border-color: #1f2937 !important;
 }
 
 .btn-contrast-fix:hover {
-  background-color: #c2410c !important; /* orange-700 */
-  border-color: #c2410c !important;
+  background-color: #111827 !important; /* gray-900 - Even darker on hover */
+  border-color: #111827 !important;
 }
 
 /* FAQ Font Size Reduction Fix */

@@ -512,12 +512,12 @@ export const PricingOptimizationPage = () => {
                   to="/roi-calculator"
                   className="bg-white hover:bg-gray-50 text-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700"
                 >
-                  See your revenue potential
+                  See Your Revenue Potential
                 </Link>
               </div>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Chime Pricing Results</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Pulse Pricing Results</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-600">Revenue Increase</span>

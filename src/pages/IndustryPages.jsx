@@ -28,7 +28,7 @@ export const FashionApparelPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="bg-gray-900 hover:bg-black text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-gray-900 hover:border-black"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700 shadow-lg btn-contrast-fix"
                 >
                   Dominate Fashion Trends
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -779,7 +779,7 @@ export const BeautyPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/contact"
-                  className="bg-gray-900 hover:bg-black text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-gray-900 hover:border-black"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700 shadow-lg btn-contrast-fix"
                 >
                   Predict Beauty Trends
                   <ArrowRight className="ml-2 w-5 h-5" />

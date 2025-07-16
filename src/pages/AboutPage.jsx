@@ -75,7 +75,7 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="w-80 h-80 rounded-full overflow-hidden border-8 border-white shadow-2xl">
                     <img 
-                      src="/upload/headshot.jpeg" 
+                      src="/src/assets/eric-uva-headshot.jpg" 
                       alt="Eric Uva - Founder & Managing Partner" 
                       className="w-full h-full object-cover"
                     />
@@ -273,9 +273,9 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/alexandra_chen.jpg" 
+                    src="/src/assets/alexandra-chen-headshot.jpg" 
                     alt="Alexandra Chen - Chief Strategy Officer" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -294,9 +294,9 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/robert_davis.jpg" 
+                    src="/src/assets/robert-davis-headshot.jpg" 
                     alt="Robert Davis - Chief Financial Officer" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -315,9 +315,9 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/james_mitchell.jpg" 
+                    src="/src/assets/james-mitchell-headshot.jpg" 
                     alt="Dr. James Mitchell - Chief Technology Officer" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -336,7 +336,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/emily_thompson.jpg" 
+                    src="/src/assets/emily-thompson-headshot.jpg" 
                     alt="Emily Thompson - Chief Marketing Officer" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -357,7 +357,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/david_wilson.jpg" 
+                    src="/src/assets/david-wilson-headshot.jpg" 
                     alt="David Wilson - Chief Operating Officer" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -378,7 +378,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src="/src/assets/images/team/rachel_anderson.jpg" 
+                    src="/src/assets/rachel-anderson-headshot.jpg" 
                     alt="Rachel Anderson - VP of Operations & HR" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
