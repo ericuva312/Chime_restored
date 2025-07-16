@@ -216,7 +216,7 @@ const HomePage = () => {
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Genesis - Strategic Business Engine</h3>
+                    <h3 className="text-xs font-bold text-gray-900">Genesis - Strategic Business Engine</h3>
                     <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-base font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
+                  <div>                    <h3 className="text-xs font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
                   </div>
                 </div>
                 
@@ -289,7 +289,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-purple-600 to-violet-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-base font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
+                  <div>                    <h3 className="text-xs font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
                   </div>
                 </div>
                 
@@ -327,7 +327,7 @@ const HomePage = () => {
                     <Heart className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Pulse - Customer Success Engine</h3>
+                    <h3 className="text-xs font-bold text-gray-900">Pulse - Customer Success Engine</h3>
                     <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
                   </div>
                 </div>
