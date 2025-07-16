@@ -36,13 +36,13 @@ const HomePage = () => {
             {/* CTA Buttons - Made Bigger and More Contrast */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-6 text-xl font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 border-2 border-orange-400">
+                <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white px-12 py-6 text-xl font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 border-2 border-orange-500">
                   Book Strategy Call
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               </Link>
               <Link to="/roi-calculator">
-                <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 px-12 py-6 text-xl font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 border-2 border-white">
+                <Button size="lg" className="bg-yellow-400 text-blue-900 hover:bg-yellow-300 px-12 py-6 text-xl font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 border-2 border-yellow-500">
                   See your revenue potential
                   <TrendingUp className="ml-3 h-6 w-6" />
                 </Button>
@@ -216,7 +216,7 @@ const HomePage = () => {
                     <Brain className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-gray-900">Genesis - Strategic Business Engine</h3>
+                    <h3 className="text-xs font-bold text-gray-900 ai-engine-title">Genesis - Strategic Business Engine</h3>
                     <p className="text-blue-600 font-semibold">Strategic Insights & Personal Assistants</p>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-xs font-bold text-gray-900">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
+                  <div>                    <h3 className="text-xs font-bold text-gray-900 ai-engine-title">Nexus - Revenue Optimization Engine</h3>                    <p className="text-green-600 font-semibold">Pricing, Running Ads & Cart Recovery</p>
                   </div>
                 </div>
                 
@@ -289,7 +289,7 @@ const HomePage = () => {
                   <div className="bg-gradient-to-br from-purple-600 to-violet-700 rounded-full p-4 mr-4 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <div>                    <h3 className="text-xs font-bold text-gray-900">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
+                  <div>                    <h3 className="text-xs font-bold text-gray-900 ai-engine-title">Catalyst - Operational Excellence Engine</h3>                    <p className="text-purple-600 font-semibold">Supply Chain and Inventory Optimization</p>
                   </div>
                 </div>
                 
@@ -327,7 +327,7 @@ const HomePage = () => {
                     <Heart className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-gray-900">Pulse - Customer Success Engine</h3>
+                    <h3 className="text-xs font-bold text-gray-900 ai-engine-title">Pulse - Customer Success Engine</h3>
                     <p className="text-orange-600 font-semibold">Pricing, Sales & Customer Success</p>
                   </div>
                 </div>

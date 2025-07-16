@@ -439,3 +439,10 @@ p, .body-text {
   color: var(--color-text-light);
 }
 
+
+/* AI Engine Title Override - Allow smaller font sizes */
+.ai-engine-title {
+  font-size: 0.75rem !important; /* 12px - equivalent to text-xs */
+  line-height: 1rem !important;
+}
+

@@ -41,7 +41,7 @@ const FixedNavigation = () => {
     { name: 'Electronics', href: '/industries/electronics' },
     { name: 'Health & Wellness', href: '/industries/health' },
     { name: 'Beauty & Cosmetics', href: '/industries/beauty' },
-    { name: 'Home & Garden', href: '/industries/home' },
+    { name: 'Home & Garden', href: '/industries/home-garden' },
     { name: 'Food & Beverage', href: '/industries/food' },
     { name: 'Pet Products', href: '/industries/pets' }
   ]

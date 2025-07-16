@@ -26,7 +26,10 @@ import {
   FashionApparelPage, 
   ElectronicsPage, 
   HealthWellnessPage, 
-  HomeGardenPage 
+  HomeGardenPage,
+  BeautyPage,
+  FoodPage,
+  PetsPage
 } from './pages/IndustryPages'
 import './App.css'
 import './hide-manus-badge.css'
@@ -76,6 +79,9 @@ function App() {
             <Route path="/industries/electronics" element={<ElectronicsPage />} />
             <Route path="/industries/health" element={<HealthWellnessPage />} />
             <Route path="/industries/home-garden" element={<HomeGardenPage />} />
+            <Route path="/industries/beauty" element={<BeautyPage />} />
+            <Route path="/industries/food" element={<FoodPage />} />
+            <Route path="/industries/pets" element={<PetsPage />} />
           </Routes>
         </main>
         <EnhancedFooter />

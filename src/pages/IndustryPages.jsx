@@ -750,3 +750,308 @@ export const HomeGardenPage = () => {
 }
 
 // Health & Wellness Page
+
+
+// Beauty & Cosmetics Page
+export const BeautyPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-pink-50 to-rose-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Losing <span className="text-pink-600">$75,000+ Monthly</span> to Beauty Trends You Can't Predict?
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                You're stuck with last season's lipstick shades while viral TikTok trends sell out everywhere else. Beauty moves at social media speed, but your inventory doesn't. Chime's AI predicts the next viral beauty trend before influencers even know it exists.
+              </p>
+              <div className="bg-pink-50 p-6 mb-8">
+                <h3 className="text-lg font-semibold text-pink-800 mb-2">The Beauty Nightmare:</h3>
+                <ul className="text-pink-700 space-y-1">
+                  <li>• $50,000+ in dead inventory from missed trends</li>
+                  <li>• Viral beauty products selling out before you can stock them</li>
+                  <li>• Customers buying from competitors who have trending shades</li>
+                  <li>• Missing seasonal launches that generate $100K+ in sales</li>
+                </ul>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/contact"
+                  className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-pink-600 hover:border-pink-700"
+                >
+                  Predict Beauty Trends
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+                <Link
+                  to="/roi-calculator"
+                  className="bg-white hover:bg-gray-50 text-pink-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-pink-600 hover:border-pink-700"
+                >
+                  Calculate Beauty ROI
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Chime Beauty Results</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Revenue Increase</span>
+                  <span className="text-2xl font-bold text-pink-600">+189%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Trend Prediction Accuracy</span>
+                  <span className="text-2xl font-bold text-pink-600">94%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Dead Inventory Reduction</span>
+                  <span className="text-2xl font-bold text-pink-600">-78%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Customer Retention</span>
+                  <span className="text-2xl font-bold text-pink-600">+156%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Stop Chasing Beauty Trends After They're Already Viral
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Chime's AI analyzes TikTok, Instagram, YouTube beauty content, and influencer activity to predict what will be trending 30-60 days before it goes viral. Be the store that sets trends, not follows them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-pink-600 to-rose-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Predict the Next Viral Beauty Trend?
+          </h2>
+          <p className="text-xl text-pink-100 mb-8">
+            Every day you wait is another viral trend you'll miss and another $25,000+ in lost revenue.
+          </p>
+          <Link
+            to="/contact"
+            className="bg-white hover:bg-gray-50 text-pink-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+          >
+            Dominate Beauty Trends
+            <ArrowRight className="ml-2 w-6 h-6" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+// Food & Beverage Page
+export const FoodPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Missing <span className="text-orange-600">$100,000+ Monthly</span> from Food Trends You Can't Predict?
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                You're stuck with expired inventory while viral food trends sell out everywhere else. Food moves at social media speed, but your supply chain doesn't. Chime's AI predicts the next viral food craze before it hits mainstream.
+              </p>
+              <div className="bg-orange-50 p-6 mb-8">
+                <h3 className="text-lg font-semibold text-orange-800 mb-2">The Food Business Nightmare:</h3>
+                <ul className="text-orange-700 space-y-1">
+                  <li>• $75,000+ in expired inventory from missed trends</li>
+                  <li>• Viral food products selling out before you can source them</li>
+                  <li>• Customers buying from competitors who stock trending items</li>
+                  <li>• Missing seasonal launches that generate $150K+ in sales</li>
+                </ul>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/contact"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700"
+                >
+                  Predict Food Trends
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+                <Link
+                  to="/roi-calculator"
+                  className="bg-white hover:bg-gray-50 text-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-orange-600 hover:border-orange-700"
+                >
+                  Calculate Food ROI
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Chime Food Results</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Revenue Increase</span>
+                  <span className="text-2xl font-bold text-orange-600">+267%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Trend Prediction Accuracy</span>
+                  <span className="text-2xl font-bold text-orange-600">91%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Waste Reduction</span>
+                  <span className="text-2xl font-bold text-orange-600">-82%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Customer Retention</span>
+                  <span className="text-2xl font-bold text-orange-600">+143%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Stop Chasing Food Trends After They're Already Mainstream
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Chime's AI analyzes social media food content, restaurant trends, and consumer behavior to predict what will be the next viral food craze 45-90 days before it hits mainstream. Be the store that introduces trends, not follows them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-orange-600 to-red-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Predict the Next Viral Food Trend?
+          </h2>
+          <p className="text-xl text-orange-100 mb-8">
+            Every day you wait is another viral food trend you'll miss and another $35,000+ in lost revenue.
+          </p>
+          <Link
+            to="/contact"
+            className="bg-white hover:bg-gray-50 text-orange-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+          >
+            Dominate Food Trends
+            <ArrowRight className="ml-2 w-6 h-6" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+// Pet Industry Page
+export const PetsPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Missing <span className="text-blue-600">$85,000+ Monthly</span> from Pet Trends You Can't Predict?
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                You're stuck with last season's pet toys while viral pet products sell out everywhere else. Pet trends move at social media speed, but your inventory doesn't. Chime's AI predicts the next viral pet craze before pet influencers even know it exists.
+              </p>
+              <div className="bg-blue-50 p-6 mb-8">
+                <h3 className="text-lg font-semibold text-blue-800 mb-2">The Pet Business Nightmare:</h3>
+                <ul className="text-blue-700 space-y-1">
+                  <li>• $60,000+ in dead inventory from missed pet trends</li>
+                  <li>• Viral pet products selling out before you can stock them</li>
+                  <li>• Pet parents buying from competitors who have trending items</li>
+                  <li>• Missing seasonal launches that generate $120K+ in sales</li>
+                </ul>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/contact"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                >
+                  Predict Pet Trends
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+                <Link
+                  to="/roi-calculator"
+                  className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center border-2 border-blue-600 hover:border-blue-700"
+                >
+                  Calculate Pet ROI
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Chime Pet Results</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Revenue Increase</span>
+                  <span className="text-2xl font-bold text-blue-600">+198%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Trend Prediction Accuracy</span>
+                  <span className="text-2xl font-bold text-blue-600">93%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Dead Inventory Reduction</span>
+                  <span className="text-2xl font-bold text-blue-600">-75%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Customer Retention</span>
+                  <span className="text-2xl font-bold text-blue-600">+167%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Stop Chasing Pet Trends After They're Already Viral
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Chime's AI analyzes pet social media content, influencer activity, and pet parent behavior to predict what will be the next viral pet product 30-60 days before it goes mainstream. Be the store that sets pet trends, not follows them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Predict the Next Viral Pet Trend?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Every day you wait is another viral pet trend you'll miss and another $30,000+ in lost revenue.
+          </p>
+          <Link
+            to="/contact"
+            className="bg-white hover:bg-gray-50 text-blue-600 px-12 py-4 rounded-lg text-xl font-semibold transition-colors inline-flex items-center border-2 border-white hover:border-gray-200"
+          >
+            Dominate Pet Trends
+            <ArrowRight className="ml-2 w-6 h-6" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}
+

@@ -109,6 +109,18 @@ const EnhancedFooter = () => {
                 <span className="w-2 h-2 bg-emerald-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
                 Home & Garden
               </Link></li>
+              <li><Link to="/industries/beauty" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
+                Beauty & Cosmetics
+              </Link></li>
+              <li><Link to="/industries/food" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
+                Food & Beverage
+              </Link></li>
+              <li><Link to="/industries/pets" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
+                Pet Products
+              </Link></li>
             </ul>
           </div>
 
