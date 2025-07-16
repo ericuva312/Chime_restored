@@ -52,7 +52,7 @@ const BackendIntegratedROICalculator = () => {
   };
 
   // Backend API base URL
-  const API_BASE_URL = 'https://web-production-9632.up.railway.app/api';
+  const API_BASE_URL = 'https://roi-calculator-backend-v2-production.up.railway.app/api;
 
   // Enhanced calculations with industry multipliers
   const calculations = useMemo(() => {
