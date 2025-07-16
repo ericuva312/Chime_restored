@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ShoppingCart, Mail, Package, DollarSign, TrendingUp, Clock, Users, Zap, Brain, Eye, Target, BarChart3, Lightbulb, Telescope, Sparkles } from 'lucide-react'
+import { ArrowRight, ShoppingCart, Mail, Package, DollarSign, TrendingUp, Clock, Users, Zap, Brain, Eye, Target, BarChart3, Lightbulb, Telescope, Crystal } from 'lucide-react'
 
 // Cart Recovery Page (Nexus)
 export const CartRecoveryPage = () => {
@@ -154,7 +154,7 @@ export const EmailAutomationPage = () => {
       description: "Analyzes 10,000+ data points across your industry to predict trends 6-8 weeks before they hit mainstream, giving you first-mover advantage on every opportunity."
     },
     {
-      icon: <Sparkles className="h-8 w-8 text-purple-600" />,
+      icon: <Crystal className="h-8 w-8 text-purple-600" />,
       title: "Trend Prediction Algorithm",
       description: "Uses machine learning to identify emerging patterns in customer behavior, seasonal shifts, and market dynamics before your competitors even notice them."
     },

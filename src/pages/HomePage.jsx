@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Shield } from 'lucide-react'
+import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Shield, AlertTriangle, Target, Heart, Brain, Eye, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import AnimatedCounter from '@/components/AnimatedCounter'
@@ -28,6 +28,7 @@ const HomePage = () => {
       description: "SOC 2 certified with bank-level encryption & protection"
     }
   ]
+  
   const stats = [
     { number: "188%", label: "Average Revenue Growth" },
     { number: "500+", label: "Successful Implementations" },
@@ -62,6 +63,45 @@ const HomePage = () => {
     }
   ]
 
+  const deathSpiralPoints = [
+    "85% of ecommerce businesses fail because they focus on acquisition instead of retention",
+    "You're spending $40+ to acquire customers who buy once for $35 and never return",
+    "Your competitors are building loyal armies while you chase one-time buyers",
+    "Every lost customer costs 5x more to replace than to retain",
+    "You're trapped in an endless cycle of expensive customer acquisition"
+  ]
+
+  const revolutionPoints = [
+    "Transform one-time buyers into loyal brand evangelists",
+    "Build a community of customers who advocate for your brand",
+    "Create predictable recurring revenue from existing customers",
+    "Reduce acquisition costs while increasing customer lifetime value",
+    "Dominate your market through customer loyalty, not just acquisition"
+  ]
+
+  const pulseCapabilities = [
+    {
+      icon: <Brain className="h-8 w-8 text-purple-600" />,
+      title: "Behavioral Intelligence",
+      description: "Deep learning algorithms analyze customer patterns, preferences, and purchase history to predict future behavior with 94% accuracy"
+    },
+    {
+      icon: <Eye className="h-8 w-8 text-blue-600" />,
+      title: "Churn Prevention",
+      description: "Identifies at-risk customers 30 days before they churn and automatically triggers personalized retention campaigns"
+    },
+    {
+      icon: <Heart className="h-8 w-8 text-red-600" />,
+      title: "Lifetime Value Optimization",
+      description: "Maximizes customer lifetime value through personalized product recommendations and dynamic pricing strategies"
+    },
+    {
+      icon: <Target className="h-8 w-8 text-emerald-600" />,
+      title: "Proactive Support",
+      description: "Anticipates customer needs and delivers proactive support before issues arise, increasing satisfaction by 67%"
+    }
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Premium Hero Section */}
@@ -69,11 +109,10 @@ const HomePage = () => {
         <div className="container-premium hero-content">
           <div className="text-center">
             <h1 className="h1 text-white mb-6">
-              Dominate Your Market with <span className="text-yellow-400">Guaranteed 15-25%</span> Revenue Growth
-              <br />or You Don't Pay a Dime
+              Stop Chasing Customers—Start Building an <span className="text-yellow-400">Empire of Loyal Fans</span> Who Buy Again and Again
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto body-text">
-              Transform from struggling competitor to market leader—Chime's elite AI automation system integrates seamlessly with your Shopify store to automate every revenue-generating task, recover abandoned sales, and deliver the competitive advantage that separates winners from the 95% who fail.
+              Chime's Four AI Engines transform one-time buyers into lifetime customers, building predictable recurring revenue that grows your empire while competitors fight over scraps.
             </p>
             
             {/* Trust Indicators */}
@@ -140,6 +179,93 @@ const HomePage = () => {
                   <AnimatedCounter end={stat.number} duration={2000} />
                 </div>
                 <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Death Spiral Section */}
+      <section className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <AlertTriangle className="h-16 w-16 text-red-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              The Brutal Reality
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+              Most e-commerce businesses are trapped in a death spiral of expensive customer acquisition
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {deathSpiralPoints.map((point, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-red-500">
+                <div className="flex items-start">
+                  <AlertTriangle className="h-6 w-6 text-red-600 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-700 font-medium">{point}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Customer Success Revolution Section */}
+      <section className="py-20 bg-gradient-to-br from-emerald-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <Lightbulb className="h-16 w-16 text-emerald-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              The Customer Success Revolution
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+              Break free from the acquisition trap and build a sustainable empire of loyal customers
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {revolutionPoints.map((point, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-emerald-500">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-emerald-600 mr-3 mt-1 flex-shrink-0" />
+                  <p className="text-gray-700 font-medium">{point}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Expanded Pulse Engine Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Pulse: Your Customer Intelligence Engine
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+              Pulse develops intimate knowledge of your customer base, predicting behavior, preventing churn, and maximizing customer lifetime value through personalized experiences and proactive support.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {pulseCapabilities.map((capability, index) => (
+              <div key={index} className="group">
+                <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1 border border-gray-100">
+                  <div className="flex items-center mb-6">
+                    <div className="p-3 bg-white rounded-xl shadow-sm mr-4">
+                      {capability.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {capability.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    {capability.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
