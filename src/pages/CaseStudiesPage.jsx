@@ -134,6 +134,22 @@ const CaseStudiesPage = () => {
               Discover how Chime has helped businesses across 7 industries achieve 
               guaranteed revenue growth through AI-powered automation.
             </p>
+            
+            {/* Hero Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                to="/contact" 
+                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"
+              >
+                Write your success story
+              </Link>
+              <Link 
+                to="/roi-calculator" 
+                className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-300 transition-colors"
+              >
+                See your revenue potential
+              </Link>
+            </div>
           </div>
         </div>
       </section>

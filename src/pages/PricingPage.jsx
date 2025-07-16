@@ -69,13 +69,14 @@ const PricingPage = () => {
       revenue: "$2.3M",
       growth: "188%",
       quote: "Chime's AI automation transformed our entire business. We went from manual processes to intelligent systems that work 24/7.",
-      image: "/images/sarah-chen.jpg",    },
+      image: "/src/assets/images/sarah-chen-headshot.jpg",    },
     {
       name: "Marcus Rodriguez",
       company: "TechGear Pro",
       revenue: "$1.8M",
       growth: "156%",
-      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",      image: "/images/marcus-rodriguez.jpg",
+      quote: "The ROI was immediate. Within 60 days, we saw a 156% increase in revenue and saved 25 hours per week.",
+      image: "/src/assets/images/marcus-rodriguez-headshot.jpg",
     }
   ]
 

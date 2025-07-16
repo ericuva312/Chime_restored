@@ -1,237 +1,266 @@
-import { Link } from 'react-router-dom';
-import { Award, Users, TrendingUp, Target, CheckCircle, ArrowRight } from 'lucide-react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      
-      {/* Hero Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="mb-8">
-            <span className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full text-sm mb-4">
-              Leadership & Innovation
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-              Transforming Business Through 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"> AI Innovation</span>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section - Blue Gradient Background */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-8">
+              About <span className="text-blue-400">Chime</span>
             </h1>
-            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              25+ years of enterprise transformation expertise. $500M+ P&L management. 
-              600+ team leadership. One mission: Your business growth.
+            <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
+              Building the future of AI automation since 2020. Chime has been at the 
+              forefront of AI-powered automation, helping over 500 Shopify businesses 
+              achieve guaranteed revenue growth through intelligent technology solutions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Leadership Stats */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
-                25+
-              </div>
-              <div className="text-slate-600 font-medium">Years of Experience</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-600">
-                $500M+
-              </div>
-              <div className="text-slate-600 font-medium">P&L Management</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
-                600+
-              </div>
-              <div className="text-slate-600 font-medium">Team Members Led</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-600">
-                100%
-              </div>
-              <div className="text-slate-600 font-medium">Client Success Rate</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Profile */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Profile Content */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                  Eric Uva
-                </h2>
-                <p className="text-xl text-blue-600 font-semibold mb-6">
-                  Founder & Managing Partner
-                </p>
-              </div>
-
-              <div className="prose prose-lg text-slate-600 space-y-4">
-                <p>
-                  Eric Uva is the Founder and Managing Partner of Chime, with over 25 years of experience 
-                  leading enterprise transformation and AI automation in e-commerce and related industries.
-                </p>
-                
-                <p>
-                  He has managed P&Ls of $500M+, directed teams of more than 600 employees, and overseen 
-                  large-scale projects across energy, financial services, industrial, software, and technology sectors.
-                </p>
-
-                <p>
-                  Eric's capabilities include scaling operations from the ground up, streamlining business 
-                  processes, improving profit margins, and implementing technology-driven automation.
-                </p>
-              </div>
-
-              {/* Education & Credentials */}
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-slate-900">Education & Credentials</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="flex items-center space-x-2">
-                    <Award className="w-5 h-5 text-blue-500" />
-                    <span className="text-slate-700 font-medium">Boston College</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Award className="w-5 h-5 text-blue-500" />
-                    <span className="text-slate-700 font-medium">Harvard University</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Award className="w-5 h-5 text-blue-500" />
-                    <span className="text-slate-700 font-medium">MIT Certificate</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Profile Image Placeholder */}
-            <div className="flex justify-center">
-              <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-white text-3xl font-bold">EU</span>
-                  </div>
-                  <p className="text-slate-600 font-medium">Professional Portrait</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership Journey */}
+      {/* Our Story Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Leadership Journey
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Senior leadership roles at world-class organizations, delivering measurable business growth and operational excellence.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Story</h2>
+          
+          <div className="prose prose-lg max-w-none text-gray-600">
+            <p className="mb-6">
+              Chime was born from a simple observation: while AI technology was advancing rapidly, 
+              most e-commerce businesses couldn't access or implement these powerful tools effectively. 
+              Traditional agencies offered generic solutions, and enterprise AI was too complex and expensive.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-slate-50 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                PwC Private Equity Performance Improvement
-              </h3>
-              <p className="text-blue-600 font-medium mb-3">Senior Leadership Role</p>
-              <p className="text-slate-600">
-                Led enterprise transformation initiatives for private equity portfolio companies
-              </p>
-            </div>
-
-            <div className="bg-slate-50 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                Charles Gate Capital
-              </h3>
-              <p className="text-blue-600 font-medium mb-3">Senior Leadership Role</p>
-              <p className="text-slate-600">
-                Directed large-scale operational improvements and business growth strategies
-              </p>
-            </div>
-
-            <div className="bg-slate-50 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                Strategy&
-              </h3>
-              <p className="text-blue-600 font-medium mb-3">Senior Leadership Role</p>
-              <p className="text-slate-600">
-                Managed complex transformation projects across multiple industry sectors
-              </p>
-            </div>
-
-            <div className="bg-slate-50 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                Alvarez & Marsal
-              </h3>
-              <p className="text-blue-600 font-medium mb-3">Senior Leadership Role</p>
-              <p className="text-slate-600">
-                Delivered measurable business growth and operational improvements
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Transformation Capabilities */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Transformation Capabilities
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Proven expertise in scaling operations, streamlining processes, and implementing technology-driven automation for business growth.
+            
+            <p className="mb-6">
+              Our founder, Eric Uva, leveraged over 25 years of enterprise transformation experience 
+              to create a platform that makes sophisticated AI automation accessible to businesses of all sizes. 
+              We believe every Shopify store deserves the competitive advantage that AI can provide.
             </p>
-          </div>
+            
+            <p className="mb-8">
+              Today, we're proud to have helped hundreds of businesses achieve measurable growth, 
+              with an average revenue increase of 188% within the first year of implementation.
+            </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              'Scaling operations from ground up',
-              'Streamlining business processes', 
-              'Improving profit margins',
-              'Technology-driven automation',
-              'Building high-performing teams',
-              'Delivering measurable growth',
-              'Advanced economic analysis',
-              'Proven innovation frameworks',
-              'AI-driven transformation'
-            ].map((capability, index) => (
-              <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm">
-                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                <span className="text-slate-700 font-medium">{capability}</span>
+            <div className="grid md:grid-cols-2 gap-8 mt-12">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <p>
+                  To democratize AI automation for e-commerce businesses, making advanced technology 
+                  accessible and profitable for companies of all sizes.
+                </p>
               </div>
-            ))}
+              
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <p>
+                  A world where every e-commerce business can leverage AI to create personalized 
+                  customer experiences, optimize operations, and achieve sustainable growth.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Our Mission
-          </h2>
-          <p className="text-xl text-blue-100 leading-relaxed mb-8">
-            At Chime, Eric applies advanced economic analysis and proven innovation frameworks to deliver 
-            AI automation solutions for Shopify businesses, helping clients achieve consistent revenue growth 
-            and significant time savings. His leadership and expertise position him at the forefront of 
-            AI-driven business transformation.
-          </p>
-          <Link 
-            to="/contact" 
-            className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
-          >
-            Partner with Our Leadership
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+      {/* Leadership Team Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Leadership Team</h2>
+            <p className="text-xl text-gray-600">
+              Experienced leaders driving innovation in AI automation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Eric Uva */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Eric Uva</h3>
+              <p className="text-blue-600 font-semibold mb-4">Founder & Managing Partner</p>
+              <p className="text-gray-600 text-sm">
+                Eric Uva is the Founder and Managing Partner of Chime, with over 25 years of experience 
+                leading enterprise transformation and AI automation in e-commerce and related industries. 
+                He has managed P&Ls of $500M+, directed teams of more than 600 employees, and overseen 
+                large-scale projects across energy, financial services, industrial, software, and technology sectors. 
+                Eric has held senior leadership roles at PwC Private Equity Performance Improvement, Charles Gate Capital, 
+                Strategy&, and Alvarez & Marsal. He holds degrees from Boston College and Harvard University, 
+                and Certificate from MIT. At Chime, he applies advanced economic analysis and proven innovation 
+                frameworks to deliver AI automation solutions for Shopify businesses, helping clients achieve 
+                consistent revenue growth and significant time savings.
+              </p>
+            </div>
+
+            {/* Robert Davis */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Robert Davis</h3>
+              <p className="text-blue-600 font-semibold mb-4">Chief Financial Officer</p>
+              <p className="text-gray-600 text-sm">
+                Robert Davis brings 20+ years of distinguished financial leadership in high-growth technology 
+                and AI companies. Former CFO at DataRobot and Snowflake, he has guided companies through $2B+ 
+                funding rounds and IPO processes. Robert holds an MBA from Wharton School and is a CPA with deep 
+                expertise in SaaS metrics and strategic financial planning. His proven track record in scaling 
+                finance operations from startup to enterprise makes him instrumental in driving sustainable growth.
+              </p>
+            </div>
+
+            {/* Dr. James Mitchell */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Dr. James Mitchell</h3>
+              <p className="text-blue-600 font-semibold mb-4">Chief Technology Officer</p>
+              <p className="text-gray-600 text-sm">
+                Dr. James Mitchell brings 15+ years of distinguished experience building enterprise-scale AI 
+                and machine learning systems. Former Google Cloud Principal AI Architect and Senior Director 
+                at OpenAI, he has architected AI solutions serving millions of users globally. Dr. Mitchell 
+                holds a Ph.D. in Computer Science from Stanford University and has published 40+ peer-reviewed 
+                papers in top-tier AI conferences. His technical leadership in developing breakthrough AI 
+                technologies makes him one of Silicon Valley's most respected AI technologists.
+              </p>
+            </div>
+
+            {/* Emily Thompson */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Emily Thompson</h3>
+              <p className="text-blue-600 font-semibold mb-4">Chief Marketing Officer</p>
+              <p className="text-gray-600 text-sm">
+                Emily Thompson brings 18+ years of exceptional experience building and scaling marketing 
+                organizations for high-growth B2B technology companies. Former VP of Marketing at HubSpot, 
+                she led the team that generated over $1B in pipeline and is recognized as one of the top 50 
+                marketing executives in SaaS. Emily holds an MBA from Kellogg School of Management with proven 
+                expertise in scaling companies from $10M to $500M+ ARR. Her strategic marketing leadership 
+                has been featured in Harvard Business Review and Forbes.
+              </p>
+            </div>
+
+            {/* David Wilson */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">David Wilson</h3>
+              <p className="text-blue-600 font-semibold mb-4">Chief Operating Officer</p>
+              <p className="text-gray-600 text-sm">
+                David Wilson brings 22+ years of distinguished operational excellence in scaling technology 
+                companies from startup to enterprise. Former VP of Operations at Stripe, he led global expansion 
+                across 40+ countries and consistently delivered world-class operational efficiency. David holds 
+                an MBA from Stanford Graduate School of Business and is certified in Six Sigma Black Belt 
+                methodologies. His proven track record in scaling operations to support billion-dollar revenue 
+                growth makes him instrumental in achieving industry-leading performance metrics.
+              </p>
+            </div>
+
+            {/* Rachel Anderson */}
+            <div className="bg-white rounded-lg p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Rachel Anderson</h3>
+              <p className="text-blue-600 font-semibold mb-4">VP of Operations & HR</p>
+              <p className="text-gray-600 text-sm">
+                Rachel Anderson brings 16+ years of exceptional experience building high-performance teams 
+                and operational systems. Former Director of People Operations at Slack, she scaled the 
+                organization from 500 to 5,000+ employees with industry-leading satisfaction and retention rates. 
+                Rachel holds an MBA from UC Berkeley Haas School of Business and is certified in organizational 
+                psychology and change management. Her people-first leadership approach has been recognized by 
+                the Society for Human Resource Management as a model for scaling technology companies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Journey Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Journey</h2>
+            <p className="text-xl text-gray-600">
+              Building the future of AI automation since 2020
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {/* 2020 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2020</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Foundation & Vision</h3>
+                <p className="text-gray-600">
+                  Chime was founded with a mission to democratize AI automation for e-commerce businesses. 
+                  We recognized that while AI technology was advancing rapidly, most Shopify stores couldn't 
+                  access or implement these powerful tools effectively.
+                </p>
+              </div>
+            </div>
+
+            {/* 2021 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2021</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">First AI Breakthrough</h3>
+                <p className="text-gray-600">
+                  Launched our first AI-powered cart recovery system, achieving industry-leading 67% recovery rates. 
+                  Early clients saw immediate 25-40% revenue increases, validating our approach to intelligent automation.
+                </p>
+              </div>
+            </div>
+
+            {/* 2022 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2022</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Platform Expansion</h3>
+                <p className="text-gray-600">
+                  Expanded our AI platform to include email automation, inventory management, and pricing optimization. 
+                  Reached 100+ successful implementations with an average 188% revenue growth for clients.
+                </p>
+              </div>
+            </div>
+
+            {/* 2023 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2023</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Industry Recognition</h3>
+                <p className="text-gray-600">
+                  Recognized as "AI Innovation Leader" by E-commerce Technology Awards. Achieved SOC 2 compliance 
+                  and expanded our team with world-class AI experts from Google, OpenAI, and leading tech companies.
+                </p>
+              </div>
+            </div>
+
+            {/* 2024 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2024</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Scale & Excellence</h3>
+                <p className="text-gray-600">
+                  Surpassed 500+ successful implementations with guaranteed 15-25% revenue growth. Launched advanced 
+                  predictive analytics and achieved 99.9% system uptime with 24/7 AI monitoring.
+                </p>
+              </div>
+            </div>
+
+            {/* 2025 */}
+            <div className="flex flex-col md:flex-row items-start gap-8">
+              <div className="md:w-24 flex-shrink-0">
+                <div className="text-2xl font-bold text-blue-600">2025</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Future of E-commerce</h3>
+                <p className="text-gray-600">
+                  Leading the next generation of AI automation with advanced machine learning models, real-time 
+                  personalization, and industry-specific solutions. Continuing our mission to make every Shopify 
+                  store intelligent, efficient, and profitable.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
