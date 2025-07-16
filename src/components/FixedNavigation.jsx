@@ -30,10 +30,10 @@ const FixedNavigation = () => {
   }, [])
 
   const solutions = [
-    { name: 'Cart Recovery', href: '/solutions/cart-recovery' },
-    { name: 'Email Automation', href: '/solutions/email' },
-    { name: 'Inventory Management', href: '/solutions/inventory' },
-    { name: 'Pricing Optimization', href: '/solutions/pricing' }
+    { name: 'Revenue Optimization Engine', href: '/solutions/cart-recovery' },
+    { name: 'Strategic Growth Engine', href: '/solutions/email' },
+    { name: 'Operational Excellence Engine', href: '/solutions/inventory' },
+    { name: 'Customer Success Engine', href: '/solutions/pricing' }
   ]
 
   const industries = [

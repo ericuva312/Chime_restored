@@ -68,23 +68,23 @@ const EnhancedFooter = () => {
 
           {/* Solutions */}
           <div>
-            <h3 className="font-bold text-lg mb-6 text-white">AI Solutions</h3>
+            <h3 className="font-bold text-lg mb-6 text-white">AI Engines</h3>
             <ul className="space-y-3 text-sm">
               <li><Link to="/solutions/cart-recovery" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
                 <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
-                Cart Recovery AI
+                Revenue Optimization Engine
               </Link></li>
               <li><Link to="/solutions/email" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
                 <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
-                Email Automation
+                Strategic Growth Engine
               </Link></li>
               <li><Link to="/solutions/inventory" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
                 <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
-                Inventory Intelligence
+                Operational Excellence Engine
               </Link></li>
               <li><Link to="/solutions/pricing" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
                 <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-yellow-400 transition-colors"></span>
-                Pricing Optimization
+                Customer Success Engine
               </Link></li>
             </ul>
           </div>
