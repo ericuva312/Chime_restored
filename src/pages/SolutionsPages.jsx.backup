@@ -13,19 +13,43 @@ export const CartRecoveryPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Stop Leaving Money on the Table—Start <span className="text-blue-600">Maximizing Every Revenue Stream</span>
+                Stop Hemorrhaging <span className="text-red-600">$50,000+ Monthly</span> Through Revenue Leaks
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Nexus is your AI Revenue Multiplier that identifies and fixes every revenue leak in your funnel, turning your existing traffic into 2-3x more revenue without spending another dollar on ads.
               </p>
-              <div className="bg-red-50 p-6 mb-8">
-                <h3 className="text-lg font-semibold text-red-800 mb-2">The Revenue Leak Reality:</h3>
-                <ul className="text-red-700 space-y-1">
-                  <li>• 70% of your customers abandon their carts—that's $50,000+ walking away monthly</li>
-                  <li>• You're manually sending generic "forgot something?" emails that get ignored</li>
-                  <li>• You watch your analytics knowing customers were THIS close to buying</li>
-                  <li>• You feel helpless watching potential revenue slip away daily</li>
-                </ul>
+              
+              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+                <h3 className="text-lg font-bold text-red-800 mb-4">The Revenue Death Spiral:</h3>
+                <p className="text-red-700 mb-4">You're watching money walk away through cart abandonment, pricing mistakes, and conversion leaks while AI-powered competitors capture every dollar.</p>
+                
+                <div className="space-y-2 text-red-700">
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>67% cart abandonment rate (industry average)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>Suboptimal pricing costs you $10,000+ monthly</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>Manual A/B testing takes months and misses opportunities</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>You're converting 1-2% when AI-powered stores convert 5-8%</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>Every visitor who doesn't buy is lost revenue you'll never recover</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-lg font-bold text-blue-800 mb-2">Nexus Transformation:</h3>
+                <p className="text-blue-700 text-lg">Your existing traffic → 2-3x more revenue without spending another dollar on ads.</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -43,25 +67,36 @@ export const CartRecoveryPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">What Nexus Recovers For You</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Revenue Recovery Rate</span>
-                  <span className="text-2xl font-bold text-green-600">67%</span>
+            <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-green-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Results from Revenue Multipliers</h3>
+              <div className="space-y-6">
+                <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Average Conversion Boost</span>
+                    <span className="text-3xl font-bold text-green-600">+156%</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Monthly Revenue Recovered</span>
-                  <span className="text-2xl font-bold text-blue-600">$47,320</span>
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Cart Recovery Rate</span>
+                    <span className="text-3xl font-bold text-blue-600">67%</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Revenue Multiplier</span>
-                  <span className="text-2xl font-bold text-purple-600">2.3x</span>
+                <div className="bg-purple-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Average Monthly Increase</span>
+                    <span className="text-2xl font-bold text-purple-600">+$127K</span>
+                  </div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg mt-6">
-                  <p className="text-green-800 font-semibold">ROI: 1,847% in first 90 days</p>
-                  <p className="text-green-700 text-sm">Turn existing traffic into 2-3x more revenue</p>
+                <div className="bg-orange-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Time to Results</span>
+                    <span className="text-2xl font-bold text-orange-600">28 days</span>
+                  </div>
                 </div>
+              </div>
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600 italic">Turn existing traffic into 2-3x more revenue</p>
               </div>
             </div>
           </div>
@@ -185,19 +220,44 @@ export const EmailAutomationPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Transform From Reactive Follower to <span className="text-blue-600">Market Prophet</span> in 90 Days
+                Stop Being a Reactive Follower—Become the <span className="text-blue-600">Market Prophet</span> Your Competitors Fear
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Genesis is your AI Chief Strategy Officer that gives you Fortune 500-level market intelligence, predicting trends 6-8 weeks before competitors and turning you into the trendsetter in your niche.
+                Genesis is your AI Chief Strategy Officer that gives you Fortune 500-level market intelligence, predicting trends 6-8 weeks before competitors even know they exist.
               </p>
-              <div className="bg-red-50 p-6 mb-8">
-                <h3 className="text-lg font-semibold text-red-800 mb-2">The Reactive Business Trap:</h3>
-                <ul className="text-red-700 space-y-1">
-                  <li>• Always playing catch-up while competitors set the trends</li>
-                  <li>• Missing profitable opportunities because you see them too late</li>
-                  <li>• Making strategic decisions based on outdated data and gut feelings</li>
-                  <li>• Watching market leaders dominate while you react to their moves</li>
-                </ul>
+              
+              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+                <h3 className="text-lg font-bold text-red-800 mb-4">The Strategic Death Spiral:</h3>
+                <p className="text-red-700 mb-4">You're making gut decisions while AI-powered competitors use data to predict and dominate. Every reactive move costs you market share you'll never recover.</p>
+                
+                <div className="space-y-2 text-red-700">
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>You're always 6-8 weeks behind market trends</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>Competitors seem to have "insider knowledge" about what's coming next</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>You're spending $50,000+ on inventory that becomes dead stock</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>Manual market research takes weeks and is already outdated</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                    <span>You're the follower, never the trendsetter</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-lg font-bold text-blue-800 mb-2">Genesis Transformation:</h3>
+                <p className="text-blue-700 text-lg">From reactive follower → market prophet who sets trends instead of chasing them.</p>
+              </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -215,25 +275,36 @@ export const EmailAutomationPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Genesis Strategic Advantage</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Trend Prediction Accuracy</span>
-                  <span className="text-2xl font-bold text-blue-600">94%</span>
+            <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-green-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Results from Market Prophets</h3>
+              <div className="space-y-6">
+                <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Trend Prediction Accuracy</span>
+                    <span className="text-3xl font-bold text-green-600">94%</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Market Lead Time</span>
-                  <span className="text-2xl font-bold text-purple-600">6-8 weeks</span>
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Average Revenue Growth</span>
+                    <span className="text-3xl font-bold text-blue-600">+347%</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Strategic Insights Daily</span>
-                  <span className="text-2xl font-bold text-emerald-600">47+</span>
+                <div className="bg-purple-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Competitive Advantage</span>
+                    <span className="text-2xl font-bold text-purple-600">6-8 weeks</span>
+                  </div>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg mt-6">
-                  <p className="text-blue-800 font-semibold">ROI: 2,340% in first quarter</p>
-                  <p className="text-blue-700 text-sm">Become the trendsetter, not the follower</p>
+                <div className="bg-orange-50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 font-medium">Average Revenue Impact</span>
+                    <span className="text-2xl font-bold text-orange-600">$2.8M</span>
+                  </div>
                 </div>
+              </div>
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600 italic">Become the trendsetter, not the follower</p>
               </div>
             </div>
           </div>
