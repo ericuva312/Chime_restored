@@ -51,8 +51,7 @@ const BackendIntegratedROICalculator = () => {
     'Other': 1.50
   };
 
-  // Backend API base URL
-  const API_BASE_URL = 'https://roi-calculator-backend-v2-production.up.railway.app/api';
+  const API_BASE_URL = '/api';
 
   // Enhanced calculations with industry multipliers
   const calculations = useMemo(() => {
@@ -175,7 +174,7 @@ const BackendIntegratedROICalculator = () => {
       if (formData.monthly_revenue && parseFloat(formData.monthly_revenue) > 0) {
         try {
           // Try backend calculation for validation/logging
-        const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {          method: 'POST',
+        const response = await fetch(`${API_BASE_URL}/submit-roi`, {          method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -311,7 +310,7 @@ const BackendIntegratedROICalculator = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {
+      const response = await fetch(`${API_BASE_URL}/submit-roi`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
