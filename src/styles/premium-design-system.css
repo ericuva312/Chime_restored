@@ -488,3 +488,189 @@ p, .body-text {
 /* Fix for duplicate "The Brutal Reality" text in hero section - JavaScript approach */
 /* This will be handled by JavaScript in the HomePage component */
 
+
+
+/* Custom Animations for Premium Thank You Popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium Thank You Popup Specific Styles */
+.popup-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.popup-container {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.popup-header-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-header-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.popup-success-icon {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 
+    0 10px 25px -5px rgba(16, 185, 129, 0.4),
+    0 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.popup-cta-button {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 
+    0 10px 25px -5px rgba(37, 99, 235, 0.4),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popup-cta-button:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 
+    0 20px 40px -10px rgba(37, 99, 235, 0.5),
+    0 8px 16px -4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.popup-cta-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.popup-score-container {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-score-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.popup-tier-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-tier-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 640px) {
+  .popup-container {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .popup-header-gradient {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+  
+  .popup-success-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .popup-success-icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* High contrast mode support for popup */
+@media (prefers-contrast: high) {
+  .popup-header-gradient {
+    background: #000000;
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .popup-success-icon {
+    background: #00ff00;
+    color: #000000;
+  }
+  
+  .popup-cta-button {
+    background: #0000ff;
+    border: 2px solid #ffffff;
+  }
+}
+
+/* Reduced motion support for popup */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeIn,
+  .animate-slideUp {
+    animation: none;
+  }
+  
+  .popup-cta-button:hover {
+    transform: none;
+  }
+  
+  .popup-tier-badge::before {
+    animation: none;
+  }
+}
+

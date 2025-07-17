@@ -339,41 +339,97 @@ const BackendIntegratedROICalculator = () => {
     }
   };
 
-  // Success popup component
+  // Success popup component with premium Chime branding
   const SuccessPopup = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-8 h-8 text-green-600" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Success!</h3>
-        <p className="text-gray-600 mb-6">
-          {submissionResult?.message || 'Your ROI analysis has been submitted successfully!'}
-        </p>
-        {submissionResult && (
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
-            <div className="text-sm text-gray-600 mb-2">Your Lead Score</div>
-            <div className="text-2xl font-bold text-blue-600">
-              {submissionResult.lead_score}/150
-            </div>
-            <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-2 ${
-              submissionResult.tier === 'Hot' ? 'bg-red-100 text-red-800' :
-              submissionResult.tier === 'Warm' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-gray-100 text-gray-800'
-            }`}>
-              {submissionResult.tier} Lead
-            </div>
+    <div className="fixed inset-0 bg-black bg-opacity-60 popup-backdrop flex items-center justify-center z-50 p-4 animate-fadeIn">
+      <div className="bg-white rounded-3xl popup-container max-w-lg w-full overflow-hidden transform animate-slideUp">
+        {/* Header with gradient background */}
+        <div className="popup-header-gradient px-8 pt-8 pb-6 text-center relative">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/20 to-transparent"></div>
+          <div className="absolute top-4 right-4 w-20 h-20 bg-blue-400/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-2 left-4 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+          
+          {/* Success icon with enhanced styling */}
+          <div className="relative z-10 w-20 h-20 popup-success-icon rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-white drop-shadow-sm" />
           </div>
-        )}
-        <p className="text-sm text-gray-500 mb-4">
-          Check your email for your detailed growth blueprint and next steps.
-        </p>
-        <button
-          onClick={() => setIsSubmitted(false)}
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-        >
-          Close
-        </button>
+          
+          {/* Main heading */}
+          <h3 className="text-3xl font-bold text-white mb-3 tracking-tight">
+            Thank You!
+          </h3>
+          <p className="text-blue-100 text-lg font-medium">
+            Your personalized growth projection is on its way
+          </p>
+        </div>
+
+        {/* Content section */}
+        <div className="px-8 py-6">
+          {/* Main message */}
+          <div className="text-center mb-6">
+            <p className="text-gray-700 text-lg leading-relaxed mb-4">
+              Your personalized growth projection is already on its way to your inbox.
+            </p>
+            <p className="text-gray-600 text-base leading-relaxed">
+              Ready to see your transformation plan in action?
+            </p>
+          </div>
+
+          {/* Lead score section (if available) */}
+          {submissionResult && (
+            <div className="popup-score-container rounded-2xl p-6 mb-6 relative">
+              <div className="text-center relative z-10">
+                <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                  Your Growth Potential Score
+                </div>
+                <div className="text-4xl font-bold text-slate-800 mb-3">
+                  {submissionResult.lead_score}<span className="text-2xl text-gray-500">/150</span>
+                </div>
+                <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold tracking-wide popup-tier-badge ${
+                  submissionResult.tier === 'Hot' ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg' :
+                  submissionResult.tier === 'Warm' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-lg' :
+                  'bg-gradient-to-r from-gray-400 to-gray-500 text-white shadow-lg'
+                }`}>
+                  <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                  {submissionResult.tier} Lead
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Call to action section */}
+          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-6 mb-6 border border-slate-200">
+            <p className="text-slate-700 text-center font-medium mb-4 leading-relaxed">
+              Click the button below to schedule your free 30-minute strategy call. During that call, we'll walk through how our AI Engines can deliver at least 15% more revenue in 90 days—or we pay you $1,000.
+            </p>
+            
+            {/* CTA Button */}
+            <a
+              href="https://calendly.com/chime-strategy-call" // Update this with actual Calendly link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full popup-cta-button text-white text-center py-4 px-6 rounded-xl font-bold text-lg"
+            >
+              Schedule Your Strategy Call Now
+            </a>
+          </div>
+
+          {/* Footer message */}
+          <div className="text-center">
+            <p className="text-slate-600 text-sm leading-relaxed mb-4">
+              We're excited to show you what market leadership looks like.
+            </p>
+            
+            {/* Close button */}
+            <button
+              onClick={() => setIsSubmitted(false)}
+              className="text-slate-500 hover:text-slate-700 text-sm font-medium transition-colors duration-200 underline decoration-dotted underline-offset-4"
+            >
+              Close this window
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
