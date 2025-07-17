@@ -217,74 +217,39 @@ const EnhancedROICalculatorStreamlined = () => {
               </h1>
               
               <p className="text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
-                We've received your information and are excited to help you unlock your business's growth potential.
+                Thank you for submitting your details!
               </p>
               
               <div className="bg-white/10 rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl mb-12">
-                <h2 className="text-3xl font-bold text-white mb-8">Here's What Happens Next:</h2>
-                
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl font-bold text-blue-400">1</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">Check Your Email</h3>
-                    <p className="text-blue-100">
-                      For instant access to your revenue generation report and personalized growth projections.
-                    </p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl font-bold text-blue-400">2</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">View Your Report</h3>
-                    <p className="text-blue-100">
-                      As soon as your report arrives, open it to discover your tailored growth projection and actionable insights.
-                    </p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl font-bold text-blue-400">3</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">Connect with Us</h3>
-                    <p className="text-blue-100">
-                      Schedule a call to review your results, answer any questions, and discuss your next steps for getting started.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white/10 rounded-3xl p-8 border border-white/20 mb-12">
-                <h2 className="text-3xl font-bold text-white mb-6">Ready to Get Started?</h2>
                 <p className="text-xl text-blue-100 mb-8">
-                  Schedule a Strategy Call and get started with Chime today.
+                  Your personalized growth projection is already on its way to your inbox.
                 </p>
-                <p className="text-lg text-blue-100">
-                  Questions? Reply to your confirmation email or contact us at <a href="mailto:hello@chimehq.co" className="text-blue-400 hover:text-blue-300 underline">hello@chimehq.co</a>.
+                
+                <p className="text-xl text-blue-100 mb-8">
+                  Ready to see your transformation plan in action?
                 </p>
-                <p className="text-lg text-blue-100 mt-4">
-                  We're excited to partner with you—get ready to see results in as little as 48 hours!
+                
+                <p className="text-lg text-blue-100 mb-8">
+                  Click the button below to schedule your free 30-minute strategy call. During that call, we'll walk through how our AI Engines can deliver at least 15% more revenue in 90 days—or we pay you $1,000.
+                </p>
+                
+                <div className="text-center mb-8">
+                  <a 
+                    href="https://chimehq.co/#/contact" 
+                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg text-lg"
+                  >
+                    <Users className="w-5 h-5 mr-2" />
+                    Schedule Your Strategy Call Now
+                  </a>
+                </div>
+                
+                <p className="text-lg text-blue-100 text-center">
+                  We're excited to show you what market leadership looks like.
                 </p>
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <a 
-                  href="https://chimehq.co/#/contact" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg"
-                >
-                  <Users className="w-5 h-5 mr-2" />
-                  Schedule Strategy Call
-                </a>
-                <a 
-                  href="https://chimehq.co/#/implementation" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white/20 hover:bg-white/30 text-white rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 border border-white/30"
-                >
-                  <ArrowRight className="w-5 h-5 mr-2" />
-                  Learn More
-                </a>
+
               </div>
+
               
               <div className="text-center mt-12">
                 <p className="text-blue-200 text-sm flex items-center justify-center">
