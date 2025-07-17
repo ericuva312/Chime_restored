@@ -174,7 +174,7 @@ const BackendIntegratedROICalculator = () => {
       if (formData.monthly_revenue && parseFloat(formData.monthly_revenue) > 0) {
         try {
           // Try backend calculation for validation/logging
-        const response = await fetch(`${API_BASE_URL}/submit-roi`, {          method: 'POST',
+        const response = await fetch(`${API_BASE_URL}/roi-calculator/calculate`, {          method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -247,7 +247,8 @@ const BackendIntegratedROICalculator = () => {
     }
     
     if (step === 2) {
-      if (!formData.industry || formData.industry === '' || formData.industry === 'Select your industry') {
+      // More robust industry validation
+      if (!formData.industry || formData.industry.trim() === '' || formData.industry === 'Select your industry') {
         newErrors.industry = 'Industry selection is required';
       }
       if (!formData.conversion_rate || parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
@@ -256,13 +257,15 @@ const BackendIntegratedROICalculator = () => {
       if (!formData.cart_abandonment_rate || parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
         newErrors.cart_abandonment_rate = 'Cart abandonment rate must be between 0 and 100';
       }
-      if (!formData.manual_hours_per_week || formData.manual_hours_per_week === '' || parseInt(formData.manual_hours_per_week) < 0) {
+      // More robust manual hours validation
+      if (!formData.manual_hours_per_week || formData.manual_hours_per_week.toString().trim() === '' || parseInt(formData.manual_hours_per_week) < 0) {
         newErrors.manual_hours_per_week = 'Manual hours per week is required';
       }
-      if (!formData.business_stage || formData.business_stage === '' || formData.business_stage === 'Select business stage') {
+      // More robust business stage validation
+      if (!formData.business_stage || formData.business_stage.trim() === '' || formData.business_stage === 'Select business stage') {
         newErrors.business_stage = 'Business stage is required';
       }
-      if (formData.biggest_challenges.length === 0) {
+      if (!formData.biggest_challenges || formData.biggest_challenges.length === 0) {
         newErrors.biggest_challenges = 'Please select at least one challenge';
       }
     }
@@ -310,7 +313,7 @@ const BackendIntegratedROICalculator = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/submit-roi`, {
+      const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
