@@ -248,7 +248,7 @@ const BackendIntegratedROICalculator = () => {
     }
     
     if (step === 2) {
-      if (!formData.industry) {
+      if (!formData.industry || formData.industry === '' || formData.industry === 'Select your industry') {
         newErrors.industry = 'Industry selection is required';
       }
       if (!formData.conversion_rate || parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
@@ -257,10 +257,10 @@ const BackendIntegratedROICalculator = () => {
       if (!formData.cart_abandonment_rate || parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
         newErrors.cart_abandonment_rate = 'Cart abandonment rate must be between 0 and 100';
       }
-      if (!formData.manual_hours_per_week || parseInt(formData.manual_hours_per_week) < 0) {
+      if (!formData.manual_hours_per_week || formData.manual_hours_per_week === '' || parseInt(formData.manual_hours_per_week) < 0) {
         newErrors.manual_hours_per_week = 'Manual hours per week is required';
       }
-      if (!formData.business_stage) {
+      if (!formData.business_stage || formData.business_stage === '' || formData.business_stage === 'Select business stage') {
         newErrors.business_stage = 'Business stage is required';
       }
       if (formData.biggest_challenges.length === 0) {
