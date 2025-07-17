@@ -444,28 +444,51 @@ const BackendIntegratedROICalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Calculator className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">ROI Calculator</h1>
-                <p className="text-sm text-gray-500">Discover your growth potential</p>
+      <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-6">
+              <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                <BarChart3 className="w-8 h-8 text-blue-300" />
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-500">
-                Step {currentStep} of 3
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              Business Growth Intelligence Calculator
+            </h1>
+            <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto leading-relaxed">
+              Discover the strategic insights and growth opportunities that successful e-commerce leaders use to build market-leading businesses
+            </p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 max-w-2xl mx-auto mb-6">
+              <p className="text-blue-50 leading-relaxed">
+                Our comprehensive business analysis tool provides you with the same strategic insights that have helped hundreds of e-commerce businesses transform their operations and achieve sustainable growth.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-blue-200 text-sm">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-4 h-4" />
+                <span>500+ Successful Transformations</span>
               </div>
-              <div className="w-32 bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${(currentStep / 3) * 100}%` }}
+              <div className="flex items-center space-x-2">
+                <Award className="w-4 h-4" />
+                <span>Proven Methodologies</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Shield className="w-4 h-4" />
+                <span>Industry Expertise</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center space-x-4 text-blue-200">
+            <span className="text-sm">Step {currentStep} of 3</span>
+            <div className="flex space-x-2">
+              {[1, 2, 3].map((step) => (
+                <div
+                  key={step}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    step <= currentStep ? 'bg-blue-300' : 'bg-blue-700'
+                  }`}
                 />
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -475,12 +498,17 @@ const BackendIntegratedROICalculator = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left Column - Form */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            {/* Step 1: Business Metrics */}
+            {/* Step 1: Business Foundation Analysis */}
             {currentStep === 1 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Metrics</h2>
-                  <p className="text-gray-600">Tell us about your current business performance</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Current Business Performance Analysis</h2>
+                  <p className="text-gray-600 mb-4">Help us understand your current business metrics to provide accurate strategic recommendations</p>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p className="text-blue-800 text-sm leading-relaxed">
+                      These foundational metrics allow our analysis engine to provide recommendations specifically calibrated to your business size and market position. Our insights are based on data from over 500 successful e-commerce transformations.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -488,6 +516,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Revenue ($)
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">Your current monthly revenue helps us understand your business scale and growth stage</p>
                     <input
                       type="number"
                       value={formData.monthly_revenue}
@@ -506,6 +535,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Average Order Value ($)
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">This metric indicates customer purchasing behavior and pricing effectiveness</p>
                     <input
                       type="number"
                       value={formData.average_order_value}
@@ -524,6 +554,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Orders
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">Order volume reveals operational capacity and market penetration</p>
                     <input
                       type="number"
                       value={formData.monthly_orders}
@@ -541,12 +572,17 @@ const BackendIntegratedROICalculator = () => {
               </div>
             )}
 
-            {/* Step 2: Performance & Operations */}
+            {/* Step 2: Strategic Context & Challenges */}
             {currentStep === 2 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Performance & Operations</h2>
-                  <p className="text-gray-600">Help us understand your business context</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Context & Strategic Challenges</h2>
+                  <p className="text-gray-600 mb-4">Understanding your industry, growth stage, and current challenges enables us to provide targeted strategic recommendations</p>
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <p className="text-amber-800 text-sm leading-relaxed">
+                      Your industry context helps us apply relevant benchmarks and best practices from similar successful businesses. This information allows us to calibrate our recommendations to your specific market dynamics and competitive landscape.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -706,12 +742,17 @@ const BackendIntegratedROICalculator = () => {
               </div>
             )}
 
-            {/* Step 3: Contact Information */}
+            {/* Step 3: Strategic Analysis & Implementation Consultation */}
             {currentStep === 3 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Contact Information</h2>
-                  <p className="text-gray-600">Get your personalized growth blueprint</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis & Implementation Consultation</h2>
+                  <p className="text-gray-600 mb-4">Receive your personalized business transformation analysis and discuss implementation strategies with our team</p>
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <p className="text-purple-800 text-sm leading-relaxed">
+                      Your comprehensive analysis includes detailed recommendations, implementation roadmap, and strategic insights. Our team of e-commerce transformation specialists will review your results and provide personalized guidance on the most effective next steps for your business.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -868,8 +909,13 @@ const BackendIntegratedROICalculator = () => {
           {/* Right Column - Results */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Growth Potential</h3>
-              <p className="text-gray-600">Real-time projections based on your data</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Business Transformation Analysis</h3>
+              <p className="text-gray-600">Comprehensive strategic insights based on your business profile and proven success methodologies</p>
+              <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
+                <p className="text-green-800 text-sm">
+                  <strong>Based on Real Results:</strong> Analysis derived from 500+ successful e-commerce transformations with an average 156% revenue increase within 12 months.
+                </p>
+              </div>
             </div>
 
             {projections && formData.monthly_revenue ? (
@@ -997,11 +1043,11 @@ const BackendIntegratedROICalculator = () => {
                   {/* Call to Action */}
                   <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white text-center">
                     <div className="flex items-center justify-center space-x-2 mb-2">
-                      <Rocket className="w-5 h-5" />
-                      <span className="text-lg font-semibold">Ready to unlock this potential?</span>
+                      <BarChart3 className="w-5 h-5" />
+                      <span className="text-lg font-semibold">Get Your Strategic Analysis</span>
                     </div>
                     <div className="text-sm opacity-90 mb-3">
-                      Complete the form to get your personalized growth blueprint
+                      Receive your comprehensive business transformation analysis and strategic recommendations
                     </div>
                     <div className="flex items-center justify-center space-x-4 text-sm">
                       <div className="flex items-center space-x-1">
@@ -1010,7 +1056,11 @@ const BackendIntegratedROICalculator = () => {
                       </div>
                       <div className="flex items-center space-x-1">
                         <CheckCircle className="w-4 h-4" />
-                        <span>Implementation Plan</span>
+                        <span>Implementation Roadmap</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <CheckCircle className="w-4 h-4" />
+                        <span>Strategic Consultation</span>
                       </div>
                     </div>
                   </div>
