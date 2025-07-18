@@ -256,7 +256,7 @@ const BackendIntegratedROICalculator = () => {
 
   // Add debugging for currentStep changes
   useEffect(() => {
-    console.log(`🔄 CURRENT STEP CHANGED TO: ${currentStep}`);
+    console.log(`🔄 currentStep changed to: ${currentStep}`);
   }, [currentStep]);
 
   const handleInputChange = (field, value) => {
@@ -372,14 +372,20 @@ const BackendIntegratedROICalculator = () => {
   };
 
   const nextStep = () => {
+    console.log(`🔧 nextStep called - currentStep: ${currentStep}`);
     const isValid = validateStep(currentStep);
+    console.log(`✅ Validation result: ${isValid}`);
     
     if (isValid) {
       if (currentStep < 3) {
+        console.log(`📈 Moving from step ${currentStep} to step ${currentStep + 1}`);
         setCurrentStep(currentStep + 1);
       } else {
+        console.log(`📋 Showing contact form`);
         setShowContactForm(true);
       }
+    } else {
+      console.log(`❌ Validation failed for step ${currentStep}`);
     }
   };
 
