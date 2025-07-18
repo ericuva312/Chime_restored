@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Calculator, TrendingUp, Users, DollarSign, Target, CheckCircle, Star, Shield, Clock, Award, BarChart3, User, Building, Globe, Zap, ArrowUp, Crown, Trophy, Rocket, Lock, Eye, EyeOff, TrendingDown, Percent, Timer } from 'lucide-react';
 
 const BackendIntegratedROICalculator = () => {
@@ -328,25 +328,35 @@ const BackendIntegratedROICalculator = () => {
       console.log(`  - biggest_challenges: [${formData.biggest_challenges.join(', ')}]`);
       
       // Fix industry validation - check for empty value, not display text
-      if (!formData.industry || formData.industry.trim() === '') {
+      if (!formData.industry || formData.industry.trim() === '' || formData.industry === 'Select your industry') {
         newErrors.industry = 'Industry selection is required';
         console.log(`❌ Industry validation failed`);
       }
-      if (!formData.conversion_rate || parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
+      // Use default values for optional fields to prevent validation errors
+      if (!formData.conversion_rate || formData.conversion_rate.trim() === '') {
+        formData.conversion_rate = '2.5';
+      }
+      if (!formData.cart_abandonment_rate || formData.cart_abandonment_rate.trim() === '') {
+        formData.cart_abandonment_rate = '70';
+      }
+      if (!formData.manual_hours_per_week || formData.manual_hours_per_week.toString().trim() === '') {
+        formData.manual_hours_per_week = '20';
+      }
+      
+      if (parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
         newErrors.conversion_rate = 'Conversion rate must be between 0 and 100';
         console.log(`❌ Conversion rate validation failed`);
       }
-      if (!formData.cart_abandonment_rate || parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
+      if (parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
         newErrors.cart_abandonment_rate = 'Cart abandonment rate must be between 0 and 100';
         console.log(`❌ Cart abandonment rate validation failed`);
       }
-      // More robust manual hours validation
-      if (!formData.manual_hours_per_week || formData.manual_hours_per_week.toString().trim() === '' || parseInt(formData.manual_hours_per_week) < 0) {
-        newErrors.manual_hours_per_week = 'Manual hours per week is required';
+      if (parseInt(formData.manual_hours_per_week) < 0) {
+        newErrors.manual_hours_per_week = 'Manual hours per week must be positive';
         console.log(`❌ Manual hours validation failed`);
       }
       // Fix business stage validation - check for empty value, not display text
-      if (!formData.business_stage || formData.business_stage.trim() === '') {
+      if (!formData.business_stage || formData.business_stage.trim() === '' || formData.business_stage === 'Select business stage') {
         newErrors.business_stage = 'Business stage is required';
         console.log(`❌ Business stage validation failed`);
       }
@@ -693,6 +703,7 @@ const BackendIntegratedROICalculator = () => {
             {/* Step 2: Strategic Context & Challenges */}
             {currentStep === 2 && (
               <div className="space-y-6">
+                {console.log('🎯 STEP 2 IS BEING RENDERED!')}
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Context</h2>
                   <p className="text-gray-600 mb-4">Industry and operational insights for targeted recommendations</p>
@@ -868,6 +879,7 @@ const BackendIntegratedROICalculator = () => {
             {/* Step 3: Strategic Analysis & Implementation Consultation */}
             {currentStep === 3 && (
               <div className="space-y-6">
+                {console.log('🎯 STEP 3 IS BEING RENDERED!')}
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis</h2>
                   <p className="text-gray-600 mb-4">Personalized transformation analysis and implementation guidance</p>
