@@ -269,8 +269,10 @@ const BackendIntegratedROICalculator = () => {
         [field]: value
       };
       console.log(`📊 Updated formData:`, newData);
-      console.log(`📊 Field ${field} updated from "${prev[field]}" to "${value}"`);
-      return newData;
+      console.log(`📊 Field ${field} updated from "${prev[field] || 'undefined'}" to "${value}"`);
+      
+      // Force re-render by creating a completely new object
+      return { ...newData };
     });
     
     // Clear error when user starts typing
