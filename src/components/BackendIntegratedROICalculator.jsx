@@ -453,14 +453,14 @@ const BackendIntegratedROICalculator = () => {
               </div>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-              Business Growth Intelligence Calculator
+              Growth Intelligence Calculator
             </h1>
             <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto leading-relaxed">
-              Discover the strategic insights and growth opportunities that successful e-commerce leaders use to build market-leading businesses
+              Strategic insights for market-leading e-commerce businesses
             </p>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 max-w-2xl mx-auto mb-6">
               <p className="text-blue-50 leading-relaxed">
-                Our comprehensive business analysis tool provides you with the same strategic insights that have helped hundreds of e-commerce businesses transform their operations and achieve sustainable growth.
+                Analysis tool based on 500+ successful transformations with proven methodologies.
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 text-blue-200 text-sm">
@@ -502,11 +502,11 @@ const BackendIntegratedROICalculator = () => {
             {currentStep === 1 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Current Business Performance Analysis</h2>
-                  <p className="text-gray-600 mb-4">Help us understand your current business metrics to provide accurate strategic recommendations</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Performance</h2>
+                  <p className="text-gray-600 mb-4">Current metrics for strategic analysis</p>
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <p className="text-blue-800 text-sm leading-relaxed">
-                      These foundational metrics allow our analysis engine to provide recommendations specifically calibrated to your business size and market position. Our insights are based on data from over 500 successful e-commerce transformations.
+                      Metrics calibrated to your business size and market position. Based on 500+ transformations.
                     </p>
                   </div>
                 </div>
@@ -516,7 +516,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Revenue ($)
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Your current monthly revenue helps us understand your business scale and growth stage</p>
+                    <p className="text-xs text-gray-500 mb-2">Indicates business scale and growth stage</p>
                     <input
                       type="number"
                       value={formData.monthly_revenue}
@@ -535,7 +535,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Average Order Value ($)
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">This metric indicates customer purchasing behavior and pricing effectiveness</p>
+                    <p className="text-xs text-gray-500 mb-2">Customer purchasing behavior and pricing effectiveness</p>
                     <input
                       type="number"
                       value={formData.average_order_value}
@@ -554,7 +554,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Orders
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Order volume reveals operational capacity and market penetration</p>
+                    <p className="text-xs text-gray-500 mb-2">Operational capacity and market penetration</p>
                     <input
                       type="number"
                       value={formData.monthly_orders}
@@ -576,11 +576,11 @@ const BackendIntegratedROICalculator = () => {
             {currentStep === 2 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Context & Strategic Challenges</h2>
-                  <p className="text-gray-600 mb-4">Understanding your industry, growth stage, and current challenges enables us to provide targeted strategic recommendations</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Context</h2>
+                  <p className="text-gray-600 mb-4">Industry and operational insights for targeted recommendations</p>
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                     <p className="text-amber-800 text-sm leading-relaxed">
-                      Your industry context helps us apply relevant benchmarks and best practices from similar successful businesses. This information allows us to calibrate our recommendations to your specific market dynamics and competitive landscape.
+                      Industry context applies relevant benchmarks and best practices from similar successful businesses.
                     </p>
                   </div>
                 </div>
@@ -618,6 +618,7 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Conversion Rate (%)
                       </label>
+                      <p className="text-xs text-gray-500 mb-2">Visitors who complete purchases</p>
                       <input
                         type="number"
                         step="0.01"
@@ -637,6 +638,7 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Cart Abandonment (%)
                       </label>
+                      <p className="text-xs text-gray-500 mb-2">Customers who leave without buying</p>
                       <input
                         type="number"
                         step="0.01"
@@ -658,6 +660,7 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Monthly Ad Spend ($) <span className="text-gray-400">(Optional)</span>
                       </label>
+                      <p className="text-xs text-gray-500 mb-2">Current advertising investment</p>
                       <input
                         type="number"
                         value={formData.monthly_ad_spend}
@@ -671,6 +674,7 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Manual Hours/Week
                       </label>
+                      <p className="text-xs text-gray-500 mb-2">Time spent on repetitive tasks</p>
                       <input
                         type="number"
                         value={formData.manual_hours_per_week}
@@ -690,6 +694,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Business Stage
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">Current phase of business development</p>
                     <select
                       value={formData.business_stage}
                       onChange={(e) => handleInputChange('business_stage', e.target.value)}
@@ -746,11 +751,11 @@ const BackendIntegratedROICalculator = () => {
             {currentStep === 3 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis & Implementation Consultation</h2>
-                  <p className="text-gray-600 mb-4">Receive your personalized business transformation analysis and discuss implementation strategies with our team</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis</h2>
+                  <p className="text-gray-600 mb-4">Personalized transformation analysis and implementation guidance</p>
                   <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
                     <p className="text-purple-800 text-sm leading-relaxed">
-                      Your comprehensive analysis includes detailed recommendations, implementation roadmap, and strategic insights. Our team of e-commerce transformation specialists will review your results and provide personalized guidance on the most effective next steps for your business.
+                      Comprehensive analysis with detailed recommendations, implementation roadmap, and strategic insights from transformation specialists.
                     </p>
                   </div>
                 </div>
@@ -798,6 +803,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">For analysis delivery and consultation scheduling</p>
                     <input
                       type="email"
                       value={formData.email}
@@ -816,6 +822,7 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Business Name
                     </label>
+                    <p className="text-xs text-gray-500 mb-2">Your company or brand name</p>
                     <input
                       type="text"
                       value={formData.business_name}
@@ -835,6 +842,7 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Website <span className="text-gray-400">(Optional)</span>
                       </label>
+                      <p className="text-xs text-gray-500 mb-2">Current e-commerce site URL</p>
                       <input
                         type="url"
                         value={formData.website}
@@ -909,11 +917,11 @@ const BackendIntegratedROICalculator = () => {
           {/* Right Column - Results */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Business Transformation Analysis</h3>
-              <p className="text-gray-600">Comprehensive strategic insights based on your business profile and proven success methodologies</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Business Analysis</h3>
+              <p className="text-gray-600">Strategic insights based on proven methodologies</p>
               <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
                 <p className="text-green-800 text-sm">
-                  <strong>Based on Real Results:</strong> Analysis derived from 500+ successful e-commerce transformations with an average 156% revenue increase within 12 months.
+                  <strong>Based on Real Results:</strong> Analysis from 500+ transformations with 156% average revenue increase.
                 </p>
               </div>
             </div>
@@ -1044,10 +1052,10 @@ const BackendIntegratedROICalculator = () => {
                   <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white text-center">
                     <div className="flex items-center justify-center space-x-2 mb-2">
                       <BarChart3 className="w-5 h-5" />
-                      <span className="text-lg font-semibold">Get Your Strategic Analysis</span>
+                      <span className="text-lg font-semibold">Get Strategic Analysis</span>
                     </div>
                     <div className="text-sm opacity-90 mb-3">
-                      Receive your comprehensive business transformation analysis and strategic recommendations
+                      Comprehensive transformation analysis and strategic recommendations
                     </div>
                     <div className="flex items-center justify-center space-x-4 text-sm">
                       <div className="flex items-center space-x-1">
