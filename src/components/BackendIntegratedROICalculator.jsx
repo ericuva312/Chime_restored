@@ -207,6 +207,42 @@ const BackendIntegratedROICalculator = () => {
   const projections = backendProjections || calculations;
   const currentProjection = projections[selectedScenario];
 
+  // Fallback event handler binding for dropdowns
+  useEffect(() => {
+    console.log('🔧 Setting up fallback event handlers...');
+    
+    const industrySelect = document.querySelector('select[value="' + formData.industry + '"]') || 
+                          document.querySelector('select:first-of-type');
+    const stageSelect = document.querySelector('select:last-of-type');
+    
+    if (industrySelect) {
+      const handleIndustryChange = (e) => {
+        console.log('🔧 Fallback industry change:', e.target.value);
+        handleInputChange('industry', e.target.value);
+      };
+      
+      industrySelect.removeEventListener('change', handleIndustryChange);
+      industrySelect.addEventListener('change', handleIndustryChange);
+      console.log('✅ Industry fallback handler attached');
+    }
+    
+    if (stageSelect) {
+      const handleStageChange = (e) => {
+        console.log('🔧 Fallback stage change:', e.target.value);
+        handleInputChange('business_stage', e.target.value);
+      };
+      
+      stageSelect.removeEventListener('change', handleStageChange);
+      stageSelect.addEventListener('change', handleStageChange);
+      console.log('✅ Stage fallback handler attached');
+    }
+    
+    return () => {
+      if (industrySelect) industrySelect.removeEventListener('change', handleIndustryChange);
+      if (stageSelect) stageSelect.removeEventListener('change', handleStageChange);
+    };
+  }, [currentStep]); // Re-run when step changes
+
   const handleInputChange = (field, value) => {
     console.log(`🔧 handleInputChange called: ${field} = "${value}"`);
     console.log(`🔧 Event source: ${field} dropdown onChange`);
