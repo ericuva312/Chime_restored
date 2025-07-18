@@ -3,6 +3,7 @@ import { ChevronRight, ChevronLeft, Calculator, TrendingUp, Users, DollarSign, T
 
 const BackendIntegratedROICalculator = () => {
   console.log('🚀 BackendIntegratedROICalculator component is mounting...');
+  console.log('🎯 Component function called - about to set up state...');
   
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedScenario, setSelectedScenario] = useState('expected');
@@ -535,11 +536,15 @@ const BackendIntegratedROICalculator = () => {
   );
 
   console.log('🎯 Component about to render, currentStep:', currentStep);
+  console.log('🎯 isSubmitted:', isSubmitted);
+  console.log('🎯 About to check isSubmitted condition...');
   
   if (isSubmitted) {
+    console.log('🎯 Returning SuccessPopup...');
     return <SuccessPopup />;
   }
 
+  console.log('🎯 About to return main component JSX...');
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
