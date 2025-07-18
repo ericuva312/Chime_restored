@@ -244,6 +244,11 @@ const BackendIntegratedROICalculator = () => {
     };
   }, [currentStep]); // Re-run when step changes
 
+  // Debug state changes
+  useEffect(() => {
+    console.log(`🔍 FormData state changed:`, formData);
+  }, [formData]);
+
   const handleInputChange = (field, value) => {
     console.log(`🔧 handleInputChange called: ${field} = "${value}"`);
     console.log(`🔧 Event source: ${field} dropdown onChange`);
