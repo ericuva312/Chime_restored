@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Calculator, TrendingUp, Users, DollarSign, Target, CheckCircle, Star, Shield, Clock, Award, BarChart3, User, Building, Globe, Zap, ArrowUp, Crown, Trophy, Rocket, Lock, Eye, EyeOff, TrendingDown, Percent, Timer } from 'lucide-react';
 
 const BackendIntegratedROICalculator = () => {
+  console.log('🚀 BackendIntegratedROICalculator component is mounting...');
+  
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedScenario, setSelectedScenario] = useState('expected');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -9,6 +11,11 @@ const BackendIntegratedROICalculator = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [backendProjections, setBackendProjections] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
+  
+  useEffect(() => {
+    console.log('🎯 Component mounted successfully!');
+    return () => console.log('🔄 Component unmounting...');
+  }, []);
   
   const [formData, setFormData] = useState({
     // Business Metrics - with default values for immediate projections
