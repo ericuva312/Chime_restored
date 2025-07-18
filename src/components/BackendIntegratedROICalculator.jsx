@@ -850,22 +850,6 @@ const BackendIntegratedROICalculator = () => {
                 />
               </div>
             )}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone <span className="text-gray-400">(Optional)</span>
-                      </label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400"
-                        placeholder="+1 (555) 123-4567"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* Navigation Buttons */}
             <div className="flex justify-between pt-8 border-t">
