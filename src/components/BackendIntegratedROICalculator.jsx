@@ -23,7 +23,7 @@ const BackendIntegratedROICalculator = () => {
     monthly_ad_spend: '',
     
     // Operations
-    manual_hours_per_week: '',
+    manual_hours_per_week: '20',
     business_stage: '',
     biggest_challenges: [],
     
@@ -268,15 +268,27 @@ const BackendIntegratedROICalculator = () => {
   };
 
   const handleChallengeToggle = (challenge) => {
-    setFormData(prev => ({
-      ...prev,
-      biggest_challenges: prev.biggest_challenges.includes(challenge)
+    console.log(`🔧 Challenge toggle called: ${challenge}`);
+    setFormData(prev => {
+      const newChallenges = prev.biggest_challenges.includes(challenge)
         ? prev.biggest_challenges.filter(c => c !== challenge)
-        : [...prev.biggest_challenges, challenge]
-    }));
+        : [...prev.biggest_challenges, challenge];
+      
+      const newData = {
+        ...prev,
+        biggest_challenges: newChallenges
+      };
+      
+      console.log(`📊 Updated challenges:`, newChallenges);
+      console.log(`📊 Updated formData:`, newData);
+      return newData;
+    });
   };
 
   const validateStep = (step) => {
+    console.log(`🔧 validateStep called for step ${step}`);
+    console.log(`📊 FormData for validation:`, formData);
+    
     const newErrors = {};
     
     if (step === 1) {
@@ -292,26 +304,40 @@ const BackendIntegratedROICalculator = () => {
     }
     
     if (step === 2) {
+      console.log(`🔍 Validating Step 2 fields:`);
+      console.log(`  - industry: "${formData.industry}"`);
+      console.log(`  - conversion_rate: "${formData.conversion_rate}"`);
+      console.log(`  - cart_abandonment_rate: "${formData.cart_abandonment_rate}"`);
+      console.log(`  - manual_hours_per_week: "${formData.manual_hours_per_week}"`);
+      console.log(`  - business_stage: "${formData.business_stage}"`);
+      console.log(`  - biggest_challenges: [${formData.biggest_challenges.join(', ')}]`);
+      
       // Fix industry validation - check for empty value, not display text
       if (!formData.industry || formData.industry.trim() === '') {
         newErrors.industry = 'Industry selection is required';
+        console.log(`❌ Industry validation failed`);
       }
       if (!formData.conversion_rate || parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
         newErrors.conversion_rate = 'Conversion rate must be between 0 and 100';
+        console.log(`❌ Conversion rate validation failed`);
       }
       if (!formData.cart_abandonment_rate || parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
         newErrors.cart_abandonment_rate = 'Cart abandonment rate must be between 0 and 100';
+        console.log(`❌ Cart abandonment rate validation failed`);
       }
       // More robust manual hours validation
       if (!formData.manual_hours_per_week || formData.manual_hours_per_week.toString().trim() === '' || parseInt(formData.manual_hours_per_week) < 0) {
         newErrors.manual_hours_per_week = 'Manual hours per week is required';
+        console.log(`❌ Manual hours validation failed`);
       }
       // Fix business stage validation - check for empty value, not display text
       if (!formData.business_stage || formData.business_stage.trim() === '') {
         newErrors.business_stage = 'Business stage is required';
+        console.log(`❌ Business stage validation failed`);
       }
       if (!formData.biggest_challenges || formData.biggest_challenges.length === 0) {
         newErrors.biggest_challenges = 'Please select at least one challenge';
+        console.log(`❌ Challenges validation failed`);
       }
     }
     
@@ -332,17 +358,30 @@ const BackendIntegratedROICalculator = () => {
       }
     }
     
+    console.log(`🔍 Validation errors found:`, newErrors);
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    const isValid = Object.keys(newErrors).length === 0;
+    console.log(`✅ Validation result: ${isValid}`);
+    return isValid;
   };
 
   const nextStep = () => {
-    if (validateStep(currentStep)) {
+    console.log(`🔧 nextStep called for step ${currentStep}`);
+    console.log(`📊 Current formData:`, formData);
+    
+    const isValid = validateStep(currentStep);
+    console.log(`✅ Validation result for step ${currentStep}:`, isValid);
+    
+    if (isValid) {
       if (currentStep < 3) {
+        console.log(`➡️ Moving to step ${currentStep + 1}`);
         setCurrentStep(currentStep + 1);
       } else {
+        console.log(`📝 Showing contact form`);
         setShowContactForm(true);
       }
+    } else {
+      console.log(`❌ Validation failed for step ${currentStep}`, errors);
     }
   };
 
