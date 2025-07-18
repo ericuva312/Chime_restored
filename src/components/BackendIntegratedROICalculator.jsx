@@ -301,9 +301,6 @@ const BackendIntegratedROICalculator = () => {
   };
 
   const validateStep = (step) => {
-    console.log(`🔧 validateStep called for step ${step}`);
-    console.log(`📊 FormData for validation:`, formData);
-    
     const newErrors = {};
     
     if (step === 1) {
@@ -319,18 +316,9 @@ const BackendIntegratedROICalculator = () => {
     }
     
     if (step === 2) {
-      console.log(`🔍 Validating Step 2 fields:`);
-      console.log(`  - industry: "${formData.industry}"`);
-      console.log(`  - conversion_rate: "${formData.conversion_rate}"`);
-      console.log(`  - cart_abandonment_rate: "${formData.cart_abandonment_rate}"`);
-      console.log(`  - manual_hours_per_week: "${formData.manual_hours_per_week}"`);
-      console.log(`  - business_stage: "${formData.business_stage}"`);
-      console.log(`  - biggest_challenges: [${formData.biggest_challenges.join(', ')}]`);
-      
       // Fix industry validation - check for empty value, not display text
       if (!formData.industry || formData.industry.trim() === '' || formData.industry === 'Select your industry') {
         newErrors.industry = 'Industry selection is required';
-        console.log(`❌ Industry validation failed`);
       }
       // Use default values for optional fields to prevent validation errors
       if (!formData.conversion_rate || formData.conversion_rate.trim() === '') {
@@ -345,24 +333,19 @@ const BackendIntegratedROICalculator = () => {
       
       if (parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
         newErrors.conversion_rate = 'Conversion rate must be between 0 and 100';
-        console.log(`❌ Conversion rate validation failed`);
       }
       if (parseFloat(formData.cart_abandonment_rate) < 0 || parseFloat(formData.cart_abandonment_rate) > 100) {
         newErrors.cart_abandonment_rate = 'Cart abandonment rate must be between 0 and 100';
-        console.log(`❌ Cart abandonment rate validation failed`);
       }
       if (parseInt(formData.manual_hours_per_week) < 0) {
         newErrors.manual_hours_per_week = 'Manual hours per week must be positive';
-        console.log(`❌ Manual hours validation failed`);
       }
       // Fix business stage validation - check for empty value, not display text
       if (!formData.business_stage || formData.business_stage.trim() === '' || formData.business_stage === 'Select business stage') {
         newErrors.business_stage = 'Business stage is required';
-        console.log(`❌ Business stage validation failed`);
       }
       if (!formData.biggest_challenges || formData.biggest_challenges.length === 0) {
         newErrors.biggest_challenges = 'Please select at least one challenge';
-        console.log(`❌ Challenges validation failed`);
       }
     }
     
@@ -383,49 +366,20 @@ const BackendIntegratedROICalculator = () => {
       }
     }
     
-    console.log(`🔍 Validation errors found:`, newErrors);
     setErrors(newErrors);
     const isValid = Object.keys(newErrors).length === 0;
-    console.log(`✅ Validation result: ${isValid}`);
     return isValid;
   };
 
   const nextStep = () => {
-    console.log(`🔧 nextStep called for step ${currentStep}`);
-    console.log(`📊 Current formData:`, formData);
-    
-    // Add critical debugging before validation
-    console.log(`🔍 CRITICAL DEBUG - Before validation:`);
-    console.log(`  Current step: ${currentStep}`);
-    console.log(`  Form data keys:`, Object.keys(formData));
-    console.log(`  Form data values:`, formData);
-    
     const isValid = validateStep(currentStep);
-    console.log(`✅ Validation result for step ${currentStep}:`, isValid);
-    console.log(`❌ Current errors:`, errors);
     
     if (isValid) {
       if (currentStep < 3) {
-        console.log(`➡️ ATTEMPTING TO MOVE to step ${currentStep + 1}`);
-        console.log(`🔍 Before setCurrentStep - currentStep is:`, currentStep);
-        
-        try {
-          setCurrentStep(currentStep + 1);
-          console.log(`✅ setCurrentStep called successfully`);
-        } catch (error) {
-          console.error(`❌ Error in setCurrentStep:`, error);
-        }
+        setCurrentStep(currentStep + 1);
       } else {
-        console.log(`📝 Showing contact form`);
         setShowContactForm(true);
       }
-    } else {
-      console.log(`❌ VALIDATION FAILED for step ${currentStep}`);
-      console.log(`❌ Specific errors:`, errors);
-      console.log(`❌ Error count:`, Object.keys(errors).length);
-      
-      // Show alert for debugging
-      alert(`Validation failed for step ${currentStep}. Errors: ${JSON.stringify(errors, null, 2)}`);
     }
   };
 
@@ -703,7 +657,6 @@ const BackendIntegratedROICalculator = () => {
             {/* Step 2: Strategic Context & Challenges */}
             {currentStep === 2 && (
               <div className="space-y-6">
-                {console.log('🎯 STEP 2 IS BEING RENDERED!')}
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Context</h2>
                   <p className="text-gray-600 mb-4">Industry and operational insights for targeted recommendations</p>
@@ -879,7 +832,6 @@ const BackendIntegratedROICalculator = () => {
             {/* Step 3: Strategic Analysis & Implementation Consultation */}
             {currentStep === 3 && (
               <div className="space-y-6">
-                {console.log('🎯 STEP 3 IS BEING RENDERED!')}
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis</h2>
                   <p className="text-gray-600 mb-4">Personalized transformation analysis and implementation guidance</p>
