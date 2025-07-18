@@ -35,29 +35,9 @@ const BackendIntegratedROICalculator = () => {
   console.log('🎯 About to initialize formData state...');
   
   const [formData, setFormData] = useState({
-    // Business Metrics - with default values for immediate projections
     monthly_revenue: '50000',
     average_order_value: '75',
-    monthly_orders: '667',
-    
-    // Performance Data
-    industry: '',
-    conversion_rate: '2.5',
-    cart_abandonment_rate: '70',
-    monthly_ad_spend: '',
-    
-    // Operations
-    manual_hours_per_week: '20',
-    business_stage: '',
-    biggest_challenges: [],
-    
-    // Contact Info
-    first_name: '',
-    last_name: '',
-    email: '',
-    business_name: '',
-    website: '',
-    phone: ''
+    monthly_orders: '667'
   });
   
   console.log('🎯 formData state initialized successfully!');
