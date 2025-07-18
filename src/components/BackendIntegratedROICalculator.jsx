@@ -208,10 +208,15 @@ const BackendIntegratedROICalculator = () => {
   const currentProjection = projections[selectedScenario];
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    console.log(`🔧 handleInputChange called: ${field} = "${value}"`);
+    setFormData(prev => {
+      const newData = {
+        ...prev,
+        [field]: value
+      };
+      console.log(`📊 Updated formData:`, newData);
+      return newData;
+    });
     
     // Clear error when user starts typing
     if (errors[field]) {
