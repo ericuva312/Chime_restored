@@ -249,10 +249,15 @@ const BackendIntegratedROICalculator = () => {
     console.log(`🔍 FormData state changed:`, formData);
   }, [formData]);
 
-  // Debug component mount
+  // Debug state changes
   useEffect(() => {
     console.log(`🔧 Component mounted with initial formData:`, formData);
   }, []);
+
+  // Add debugging for currentStep changes
+  useEffect(() => {
+    console.log(`🔄 CURRENT STEP CHANGED TO: ${currentStep}`);
+  }, [currentStep]);
 
   const handleInputChange = (field, value) => {
     console.log(`🔧 handleInputChange called: ${field} = "${value}"`);
@@ -379,19 +384,38 @@ const BackendIntegratedROICalculator = () => {
     console.log(`🔧 nextStep called for step ${currentStep}`);
     console.log(`📊 Current formData:`, formData);
     
+    // Add critical debugging before validation
+    console.log(`🔍 CRITICAL DEBUG - Before validation:`);
+    console.log(`  Current step: ${currentStep}`);
+    console.log(`  Form data keys:`, Object.keys(formData));
+    console.log(`  Form data values:`, formData);
+    
     const isValid = validateStep(currentStep);
     console.log(`✅ Validation result for step ${currentStep}:`, isValid);
+    console.log(`❌ Current errors:`, errors);
     
     if (isValid) {
       if (currentStep < 3) {
-        console.log(`➡️ Moving to step ${currentStep + 1}`);
-        setCurrentStep(currentStep + 1);
+        console.log(`➡️ ATTEMPTING TO MOVE to step ${currentStep + 1}`);
+        console.log(`🔍 Before setCurrentStep - currentStep is:`, currentStep);
+        
+        try {
+          setCurrentStep(currentStep + 1);
+          console.log(`✅ setCurrentStep called successfully`);
+        } catch (error) {
+          console.error(`❌ Error in setCurrentStep:`, error);
+        }
       } else {
         console.log(`📝 Showing contact form`);
         setShowContactForm(true);
       }
     } else {
-      console.log(`❌ Validation failed for step ${currentStep}`, errors);
+      console.log(`❌ VALIDATION FAILED for step ${currentStep}`);
+      console.log(`❌ Specific errors:`, errors);
+      console.log(`❌ Error count:`, Object.keys(errors).length);
+      
+      // Show alert for debugging
+      alert(`Validation failed for step ${currentStep}. Errors: ${JSON.stringify(errors, null, 2)}`);
     }
   };
 
