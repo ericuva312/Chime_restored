@@ -51,7 +51,7 @@ const BackendIntegratedROICalculator = () => {
     'Other': 1.50
   };
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://vgh0i1cowloz.manus.space/api';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://chime-roi-backend-production.up.railway.app/api';
 
   // Enhanced calculations with industry multipliers
   const calculations = useMemo(() => {
