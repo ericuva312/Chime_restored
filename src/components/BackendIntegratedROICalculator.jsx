@@ -835,111 +835,19 @@ const BackendIntegratedROICalculator = () => {
               </div>
             )}
 
-            {/* Step 3: Strategic Analysis & Implementation Consultation */}
+            {/* Step 3: Test Version */}
             {currentStep === 3 && (
               <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Strategic Analysis</h2>
-                  <p className="text-gray-600 mb-4">Personalized transformation analysis and implementation guidance</p>
-                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                    <p className="text-purple-800 text-sm leading-relaxed">
-                      Comprehensive analysis with detailed recommendations, implementation roadmap, and strategic insights from transformation specialists.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.first_name}
-                        onChange={(e) => handleInputChange('first_name', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
-                          errors.first_name ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="John"
-                      />
-                      {errors.first_name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.last_name}
-                        onChange={(e) => handleInputChange('last_name', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
-                          errors.last_name ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="Smith"
-                      />
-                      {errors.last_name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.last_name}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
-                    </label>
-                    <p className="text-xs text-gray-500 mb-2">Delivers personalized growth blueprint and strategic recommendations</p>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
-                        errors.email ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="john@company.com"
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Business Name
-                    </label>
-                    <p className="text-xs text-gray-500 mb-2">Customizes recommendations for your specific business context</p>
-                    <input
-                      type="text"
-                      value={formData.business_name}
-                      onChange={(e) => handleInputChange('business_name', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
-                        errors.business_name ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Your Company Inc."
-                    />
-                    {errors.business_name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.business_name}</p>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Website <span className="text-gray-400">(Optional)</span>
-                      </label>
-                      <p className="text-xs text-gray-500 mb-2">Enables site-specific optimization and technical analysis</p>
-                      <input
-                        type="url"
-                        value={formData.website}
-                        onChange={(e) => handleInputChange('website', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400"
-                        placeholder="https://yourcompany.com"
-                      />
-                    </div>
-
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 3 Test</h2>
+                <p>Testing Step 3 rendering</p>
+                <input
+                  type="email"
+                  value={formData.email || ''}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  placeholder="test@example.com"
+                />
+              </div>
+            )}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Phone <span className="text-gray-400">(Optional)</span>
