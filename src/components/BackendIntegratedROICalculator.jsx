@@ -6,17 +6,33 @@ const BackendIntegratedROICalculator = () => {
   console.log('🎯 Component function called - about to set up state...');
   
   const [currentStep, setCurrentStep] = useState(1);
+  console.log('🎯 currentStep state initialized');
+  
   const [selectedScenario, setSelectedScenario] = useState('expected');
+  console.log('🎯 selectedScenario state initialized');
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
+  console.log('🎯 isSubmitting state initialized');
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
+  console.log('🎯 isSubmitted state initialized');
+  
   const [showContactForm, setShowContactForm] = useState(false);
+  console.log('🎯 showContactForm state initialized');
+  
   const [backendProjections, setBackendProjections] = useState(null);
+  console.log('🎯 backendProjections state initialized');
+  
   const [submissionResult, setSubmissionResult] = useState(null);
+  console.log('🎯 submissionResult state initialized');
   
   useEffect(() => {
+    console.log('🎯 useEffect starting...');
     console.log('🎯 Component mounted successfully!');
     return () => console.log('🔄 Component unmounting...');
   }, []);
+  
+  console.log('🎯 About to initialize formData state...');
   
   const [formData, setFormData] = useState({
     // Business Metrics - with default values for immediate projections
