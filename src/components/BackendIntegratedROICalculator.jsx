@@ -249,6 +249,11 @@ const BackendIntegratedROICalculator = () => {
     console.log(`🔍 FormData state changed:`, formData);
   }, [formData]);
 
+  // Debug component mount
+  useEffect(() => {
+    console.log(`🔧 Component mounted with initial formData:`, formData);
+  }, []);
+
   const handleInputChange = (field, value) => {
     console.log(`🔧 handleInputChange called: ${field} = "${value}"`);
     console.log(`🔧 Event source: ${field} dropdown onChange`);
