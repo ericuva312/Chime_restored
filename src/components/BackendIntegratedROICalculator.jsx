@@ -59,8 +59,11 @@ const BackendIntegratedROICalculator = () => {
     website: '',
     phone: ''
   });
+  
+  console.log('🎯 formData state initialized successfully!');
 
   const [errors, setErrors] = useState({});
+  console.log('🎯 errors state initialized successfully!');
 
   // Industry multipliers for enhanced accuracy
   const industryMultipliers = {
@@ -74,8 +77,14 @@ const BackendIntegratedROICalculator = () => {
     'Automotive': 1.89,
     'Other': 1.50
   };
+  
+  console.log('🎯 industryMultipliers object initialized successfully!');
 
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://chime-roi-backend-production.up.railway.app/api';
+  
+  console.log('🎯 API_BASE_URL initialized successfully!');
+  
+  console.log('🎯 About to initialize calculations useMemo...');
 
   // Enhanced calculations with industry multipliers
   const calculations = useMemo(() => {
