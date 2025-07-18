@@ -211,9 +211,10 @@ const BackendIntegratedROICalculator = () => {
   useEffect(() => {
     console.log('🔧 Setting up fallback event handlers...');
     
+    // Use more specific selectors to target the correct dropdowns
     const industrySelect = document.querySelector('select[value="' + formData.industry + '"]') || 
-                          document.querySelector('select:first-of-type');
-    const stageSelect = document.querySelector('select:last-of-type');
+                          document.querySelectorAll('select')[0]; // First select is industry
+    const stageSelect = document.querySelectorAll('select')[1]; // Second select is business stage
     
     if (industrySelect) {
       const handleIndustryChange = (e) => {
