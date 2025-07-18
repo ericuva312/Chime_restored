@@ -247,8 +247,8 @@ const BackendIntegratedROICalculator = () => {
     }
     
     if (step === 2) {
-      // More robust industry validation
-      if (!formData.industry || formData.industry.trim() === '' || formData.industry === 'Select your industry') {
+      // Fix industry validation - check for empty value, not display text
+      if (!formData.industry || formData.industry.trim() === '') {
         newErrors.industry = 'Industry selection is required';
       }
       if (!formData.conversion_rate || parseFloat(formData.conversion_rate) < 0 || parseFloat(formData.conversion_rate) > 100) {
@@ -261,8 +261,8 @@ const BackendIntegratedROICalculator = () => {
       if (!formData.manual_hours_per_week || formData.manual_hours_per_week.toString().trim() === '' || parseInt(formData.manual_hours_per_week) < 0) {
         newErrors.manual_hours_per_week = 'Manual hours per week is required';
       }
-      // More robust business stage validation
-      if (!formData.business_stage || formData.business_stage.trim() === '' || formData.business_stage === 'Select business stage') {
+      // Fix business stage validation - check for empty value, not display text
+      if (!formData.business_stage || formData.business_stage.trim() === '') {
         newErrors.business_stage = 'Business stage is required';
       }
       if (!formData.biggest_challenges || formData.biggest_challenges.length === 0) {
