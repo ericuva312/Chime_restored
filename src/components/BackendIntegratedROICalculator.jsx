@@ -547,7 +547,7 @@ const BackendIntegratedROICalculator = () => {
               </div>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-              Growth Intelligence Calculator
+              Revenue Growth Calculator
             </h1>
             <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto leading-relaxed">
               Strategic insights for market-leading e-commerce businesses
@@ -610,12 +610,12 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Revenue ($)
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Indicates business scale and growth stage</p>
+                    <p className="text-xs text-gray-500 mb-2">Helps us calibrate growth projections to your current business scale</p>
                     <input
                       type="number"
                       value={formData.monthly_revenue}
                       onChange={(e) => handleInputChange('monthly_revenue', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.monthly_revenue ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="50000"
@@ -629,12 +629,12 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Average Order Value ($)
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Customer purchasing behavior and pricing effectiveness</p>
+                    <p className="text-xs text-gray-500 mb-2">Enables precise pricing optimization and revenue forecasting strategies</p>
                     <input
                       type="number"
                       value={formData.average_order_value}
                       onChange={(e) => handleInputChange('average_order_value', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.average_order_value ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="75"
@@ -648,12 +648,12 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Orders
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Operational capacity and market penetration</p>
+                    <p className="text-xs text-gray-500 mb-2">Determines optimal automation strategies for your transaction volume</p>
                     <input
                       type="number"
                       value={formData.monthly_orders}
                       onChange={(e) => handleInputChange('monthly_orders', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.monthly_orders ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="667"
@@ -687,7 +687,7 @@ const BackendIntegratedROICalculator = () => {
                     <select
                       value={formData.industry}
                       onChange={(e) => handleInputChange('industry', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.industry ? 'border-red-500' : 'border-gray-300'
                       }`}
                     >
@@ -712,13 +712,13 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Conversion Rate (%)
                       </label>
-                      <p className="text-xs text-gray-500 mb-2">Visitors who complete purchases</p>
+                      <p className="text-xs text-gray-500 mb-2">Identifies conversion optimization opportunities for revenue growth</p>
                       <input
                         type="number"
                         step="0.01"
                         value={formData.conversion_rate}
                         onChange={(e) => handleInputChange('conversion_rate', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                           errors.conversion_rate ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="2.5"
@@ -732,13 +732,13 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Cart Abandonment (%)
                       </label>
-                      <p className="text-xs text-gray-500 mb-2">Customers who leave without buying</p>
+                      <p className="text-xs text-gray-500 mb-2">Calculates recovery potential and automated retention strategies</p>
                       <input
                         type="number"
                         step="0.01"
                         value={formData.cart_abandonment_rate}
                         onChange={(e) => handleInputChange('cart_abandonment_rate', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                           errors.cart_abandonment_rate ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="70"
@@ -754,12 +754,12 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Monthly Ad Spend ($) <span className="text-gray-400">(Optional)</span>
                       </label>
-                      <p className="text-xs text-gray-500 mb-2">Current advertising investment</p>
+                      <p className="text-xs text-gray-500 mb-2">Optimizes ad efficiency and ROI calculations for your budget</p>
                       <input
                         type="number"
                         value={formData.monthly_ad_spend}
                         onChange={(e) => handleInputChange('monthly_ad_spend', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400"
                         placeholder="5000"
                       />
                     </div>
@@ -768,12 +768,12 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Manual Hours/Week
                       </label>
-                      <p className="text-xs text-gray-500 mb-2">Time spent on repetitive tasks</p>
+                      <p className="text-xs text-gray-500 mb-2">Quantifies automation savings and efficiency improvements</p>
                       <input
                         type="number"
                         value={formData.manual_hours_per_week}
                         onChange={(e) => handleInputChange('manual_hours_per_week', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                           errors.manual_hours_per_week ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="20"
@@ -788,11 +788,11 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Business Stage
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Current phase of business development</p>
+                    <p className="text-xs text-gray-500 mb-2">Tailors growth strategies to your business maturity level</p>
                     <select
                       value={formData.business_stage}
                       onChange={(e) => handleInputChange('business_stage', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.business_stage ? 'border-red-500' : 'border-gray-300'
                       }`}
                     >
@@ -864,7 +864,7 @@ const BackendIntegratedROICalculator = () => {
                         type="text"
                         value={formData.first_name}
                         onChange={(e) => handleInputChange('first_name', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                           errors.first_name ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="John"
@@ -882,7 +882,7 @@ const BackendIntegratedROICalculator = () => {
                         type="text"
                         value={formData.last_name}
                         onChange={(e) => handleInputChange('last_name', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                           errors.last_name ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="Smith"
@@ -897,12 +897,12 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">For analysis delivery and consultation scheduling</p>
+                    <p className="text-xs text-gray-500 mb-2">Delivers personalized growth blueprint and strategic recommendations</p>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.email ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="john@company.com"
@@ -916,12 +916,12 @@ const BackendIntegratedROICalculator = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Business Name
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Your company or brand name</p>
+                    <p className="text-xs text-gray-500 mb-2">Customizes recommendations for your specific business context</p>
                     <input
                       type="text"
                       value={formData.business_name}
                       onChange={(e) => handleInputChange('business_name', e.target.value)}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400 ${
                         errors.business_name ? 'border-red-500' : 'border-gray-300'
                       }`}
                       placeholder="Your Company Inc."
@@ -936,12 +936,12 @@ const BackendIntegratedROICalculator = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Website <span className="text-gray-400">(Optional)</span>
                       </label>
-                      <p className="text-xs text-gray-500 mb-2">Current e-commerce site URL</p>
+                      <p className="text-xs text-gray-500 mb-2">Enables site-specific optimization and technical analysis</p>
                       <input
                         type="url"
                         value={formData.website}
                         onChange={(e) => handleInputChange('website', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400"
                         placeholder="https://yourcompany.com"
                       />
                     </div>
@@ -954,7 +954,7 @@ const BackendIntegratedROICalculator = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-blue-400"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
