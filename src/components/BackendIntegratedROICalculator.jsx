@@ -534,6 +534,8 @@ const BackendIntegratedROICalculator = () => {
     </div>
   );
 
+  console.log('🎯 Component about to render, currentStep:', currentStep);
+  
   if (isSubmitted) {
     return <SuccessPopup />;
   }
