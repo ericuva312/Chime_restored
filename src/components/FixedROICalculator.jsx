@@ -54,6 +54,16 @@ const FixedROICalculator = () => {
     setFormData(prev => {
       const newData = { ...prev, [field]: value };
       console.log(`📊 Updated ${field}:`, newData[field]);
+      console.log(`📊 Full formData after update:`, newData);
+      
+      // Special logging for Step 2 fields
+      if (field === 'industry' || field === 'business_stage') {
+        console.log(`🎯 Step 2 validation check after ${field} update:`);
+        console.log(`  - industry: "${newData.industry}" (${!!newData.industry})`);
+        console.log(`  - business_stage: "${newData.business_stage}" (${!!newData.business_stage})`);
+        console.log(`  - Step 2 valid: ${!!(newData.industry && newData.business_stage)}`);
+      }
+      
       return newData;
     });
   };
@@ -424,8 +434,7 @@ const FixedROICalculator = () => {
                   </button>
                   <button
                     onClick={nextStep}
-                    disabled={!validateStep(2)}
-                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Next Step <ChevronRight className="inline ml-2 w-5 h-5" />
                   </button>
