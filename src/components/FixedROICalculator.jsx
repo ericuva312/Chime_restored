@@ -17,7 +17,7 @@ const FixedROICalculator = () => {
     monthly_ad_spend: '5000',
     manual_hours_per_week: '35',
     business_stage: '',
-    biggest_challenges: ['Manual processes', 'Low conversion rates', 'High cart abandonment'],
+    challenges: ['Manual processes', 'Low conversion rates', 'High cart abandonment'],
     first_name: '',
     last_name: '',
     email: '',
@@ -63,9 +63,9 @@ const FixedROICalculator = () => {
     console.log(`🔄 Challenge toggle: ${challenge}`);
     setFormData(prev => ({
       ...prev,
-      biggest_challenges: prev.biggest_challenges.includes(challenge)
-        ? prev.biggest_challenges.filter(c => c !== challenge)
-        : [...prev.biggest_challenges, challenge]
+      challenges: prev.challenges.includes(challenge)
+        ? prev.challenges.filter(c => c !== challenge)
+        : [...prev.challenges, challenge]
     }));
   };
   
@@ -84,7 +84,7 @@ const FixedROICalculator = () => {
         console.log(`✅ Step 2 validation:`);
         console.log(`  - industry: "${formData.industry}" (${!!formData.industry})`);
         console.log(`  - business_stage: "${formData.business_stage}" (${!!formData.business_stage})`);
-        console.log(`  - challenges: ${formData.biggest_challenges.length} items (optional)`);
+        console.log(`  - challenges: ${formData.challenges.length} items (optional)`);
         console.log(`✅ Step 2 valid: ${step2Valid}`);
         return step2Valid;
       case 3:
@@ -404,7 +404,7 @@ const FixedROICalculator = () => {
                         <label key={challenge} className="flex items-center">
                           <input
                             type="checkbox"
-                            checked={formData.biggest_challenges.includes(challenge)}
+                            checked={formData.challenges.includes(challenge)}
                             onChange={() => handleChallengeToggle(challenge)}
                             className="mr-3 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                           />
