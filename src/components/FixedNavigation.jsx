@@ -29,6 +29,13 @@ const FixedNavigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false)
+    setShowSolutions(false)
+    setShowIndustries(false)
+  }, [location])
+
   const solutions = [
     { name: 'Revenue Optimization Engine', href: '/solutions/cart-recovery' },
     { name: 'Strategic Growth Engine', href: '/solutions/email' },
@@ -47,327 +54,436 @@ const FixedNavigation = () => {
   ]
 
   return (
-    <header role="banner">
-      <nav className="nav-premium" role="navigation" aria-label="Main navigation">
-        <div className="container-premium">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center" aria-label="Chime homepage">
-              <ChimeLogo className="h-8" />
+    <header role="banner" className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+      <style jsx>{`
+        /* Navigation Font Consistency */
+        .nav-link {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #374151;
+          text-decoration: none;
+          transition: color 0.2s ease;
+          padding: 0.5rem 0.75rem;
+          border-radius: 0.375rem;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+        
+        .nav-link:hover {
+          color: #3b82f6;
+          background-color: #f8fafc;
+        }
+        
+        .nav-link.active {
+          color: #3b82f6;
+          background-color: #eff6ff;
+        }
+        
+        .nav-button {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 0.5rem 1rem;
+          border-radius: 0.375rem;
+          transition: all 0.2s ease;
+        }
+        
+        .nav-button.primary {
+          background-color: #3b82f6;
+          color: white;
+          border: 1px solid #3b82f6;
+        }
+        
+        .nav-button.primary:hover {
+          background-color: #2563eb;
+          border-color: #2563eb;
+        }
+        
+        .nav-button.secondary {
+          background-color: transparent;
+          color: #374151;
+          border: 1px solid #d1d5db;
+        }
+        
+        .nav-button.secondary:hover {
+          background-color: #f9fafb;
+          border-color: #9ca3af;
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          border-bottom: 1px solid #e5e7eb;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          max-height: calc(100vh - 64px);
+          overflow-y: auto;
+        }
+        
+        .mobile-nav-link {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-size: 1rem;
+          font-weight: 500;
+          color: #374151;
+          text-decoration: none;
+          padding: 0.75rem 1rem;
+          border-bottom: 1px solid #f3f4f6;
+          display: block;
+          transition: background-color 0.2s ease;
+        }
+        
+        .mobile-nav-link:hover {
+          background-color: #f9fafb;
+          color: #3b82f6;
+        }
+        
+        .mobile-nav-link.active {
+          background-color: #eff6ff;
+          color: #3b82f6;
+        }
+        
+        /* Dropdown Styles */
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          min-width: 200px;
+          z-index: 50;
+        }
+        
+        .dropdown-link {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-size: 0.875rem;
+          font-weight: 400;
+          color: #374151;
+          text-decoration: none;
+          padding: 0.75rem 1rem;
+          display: block;
+          transition: background-color 0.2s ease;
+        }
+        
+        .dropdown-link:hover {
+          background-color: #f9fafb;
+          color: #3b82f6;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none;
+          }
+          
+          .mobile-nav {
+            display: flex;
+          }
+        }
+        
+        @media (min-width: 769px) {
+          .desktop-nav {
+            display: flex;
+          }
+          
+          .mobile-nav {
+            display: none;
+          }
+          
+          .mobile-menu {
+            display: none;
+          }
+        }
+      `}</style>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center" aria-label="Chime homepage">
+            <ChimeLogo className="h-8" />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="desktop-nav items-center space-x-6" role="menubar">
+            {/* AI Engines Dropdown */}
+            <div 
+              ref={solutionsRef}
+              className="relative"
+              onMouseEnter={() => setShowSolutions(true)}
+              onMouseLeave={() => setShowSolutions(false)}
+              role="menuitem"
+              aria-haspopup="true"
+              aria-expanded={showSolutions}
+            >
+              <button 
+                className="nav-link"
+                aria-label="AI Engines menu"
+                aria-controls="solutions-menu"
+                onClick={() => setShowSolutions(!showSolutions)}
+              >
+                AI Engines
+                <ChevronDown 
+                  className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} 
+                  aria-hidden="true" 
+                />
+              </button>
+              {showSolutions && (
+                <div 
+                  id="solutions-menu"
+                  className="dropdown-menu"
+                  role="menu"
+                  aria-label="AI Engines submenu"
+                >
+                  {solutions.map((solution) => (
+                    <Link
+                      key={solution.href}
+                      to={solution.href}
+                      className="dropdown-link"
+                      role="menuitem"
+                      onClick={() => setShowSolutions(false)}
+                    >
+                      {solution.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Industries Dropdown */}
+            <div 
+              ref={industriesRef}
+              className="relative"
+              onMouseEnter={() => setShowIndustries(true)}
+              onMouseLeave={() => setShowIndustries(false)}
+              role="menuitem"
+              aria-haspopup="true"
+              aria-expanded={showIndustries}
+            >
+              <button 
+                className="nav-link"
+                aria-label="Industries menu"
+                aria-controls="industries-menu"
+                onClick={() => setShowIndustries(!showIndustries)}
+              >
+                Industries
+                <ChevronDown 
+                  className={`ml-1 h-4 w-4 transition-transform duration-200 ${showIndustries ? 'rotate-180' : ''}`} 
+                  aria-hidden="true" 
+                />
+              </button>
+              {showIndustries && (
+                <div 
+                  id="industries-menu"
+                  className="dropdown-menu"
+                  role="menu"
+                  aria-label="Industries submenu"
+                >
+                  {industries.map((industry) => (
+                    <Link
+                      key={industry.href}
+                      to={industry.href}
+                      className="dropdown-link"
+                      role="menuitem"
+                      onClick={() => setShowIndustries(false)}
+                    >
+                      {industry.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link 
+              to="/implementation" 
+              className={`nav-link ${isActive('/implementation') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/implementation') ? 'page' : undefined}
+            >
+              Implementation
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center nav-links space-x-8" role="menubar">
-              {/* Solutions Dropdown */}
-              <div 
-                ref={solutionsRef}
-                className="relative"
-                onMouseEnter={() => setShowSolutions(true)}
-                onMouseLeave={() => setShowSolutions(false)}
+            <Link 
+              to="/pricing" 
+              className={`nav-link ${isActive('/pricing') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/pricing') ? 'page' : undefined}
+            >
+              Pricing
+            </Link>
+
+            <Link 
+              to="/case-studies" 
+              className={`nav-link ${isActive('/case-studies') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/case-studies') ? 'page' : undefined}
+            >
+              Case Studies
+            </Link>
+
+            <Link 
+              to="/faq" 
+              className={`nav-link ${isActive('/faq') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/faq') ? 'page' : undefined}
+            >
+              FAQ
+            </Link>
+
+            <Link 
+              to="/about" 
+              className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/about') ? 'page' : undefined}
+            >
+              About
+            </Link>
+
+            <Button asChild className="nav-button primary">
+              <Link to="/contact" role="menuitem">
+                Book Strategy Call
+              </Link>
+            </Button>
+
+            <Button asChild className="nav-button primary">
+              <Link to="/roi-calculator" role="menuitem">
+                See Your Revenue Potential
+              </Link>
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="mobile-nav">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              aria-label={isOpen ? 'Close mobile menu' : 'Open mobile menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              {isOpen ? 
+                <X className="h-6 w-6" aria-hidden="true" /> : 
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              }
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div 
+            id="mobile-menu"
+            className="mobile-menu"
+            role="menu"
+            aria-label="Mobile navigation menu"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <Link 
+                to="/" 
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-haspopup="true"
-                aria-expanded={showSolutions}
+                onClick={() => setIsOpen(false)}
               >
-                <button 
-                  className="nav-link flex items-center font-medium text-base"
-                  aria-label="AI Engines menu"
-                  aria-controls="solutions-menu"
-                  onClick={() => setShowSolutions(!showSolutions)}
-                  style={{ 
-                    color: '#1e40af',
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    outline: 'none',
-                    fontSize: '16px',
-                    fontWeight: '500'
-                  }}
-                >
-                  <span style={{ color: '#1e40af' }}>AI Engines</span>
-                  <ChevronDown 
-                    className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} 
-                    style={{ color: '#1e40af' }} 
-                    aria-hidden="true" 
-                  />
-                </button>
-                {showSolutions && (
-                  <div 
-                    id="solutions-menu"
-                    className="absolute top-full left-0 mt-2 w-64 bg-blue-600 rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
-                    role="menu"
-                    aria-label="AI Engines submenu"
+                Home
+              </Link>
+
+              <div className="py-2">
+                <div className="text-sm font-semibold text-gray-900 px-3 py-2">AI Engines</div>
+                {solutions.map((solution) => (
+                  <Link
+                    key={solution.href}
+                    to={solution.href}
+                    className="mobile-nav-link pl-6"
+                    role="menuitem"
+                    onClick={() => setIsOpen(false)}
                   >
-                    {solutions.map((solution) => (
-                      <Link
-                        key={solution.href}
-                        to={solution.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-blue-700 hover:text-white text-white"
-                        role="menuitem"
-                        style={{ color: '#ffffff !important' }}
-                        onClick={() => setShowSolutions(false)}
-                      >
-                        {solution.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                    {solution.name}
+                  </Link>
+                ))}
               </div>
 
-              {/* Industries Dropdown */}
-              <div 
-                ref={industriesRef}
-                className="relative"
-                onMouseEnter={() => setShowIndustries(true)}
-                onMouseLeave={() => setShowIndustries(false)}
-                role="menuitem"
-                aria-haspopup="true"
-                aria-expanded={showIndustries}
-              >
-                <button 
-                  className="flex items-center font-medium text-base transition-colors hover:text-blue-600"
-                  aria-label="Industries menu"
-                  aria-controls="industries-menu"
-                  onClick={() => setShowIndustries(!showIndustries)}
-                  style={{ 
-                    color: '#1e40af',
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    outline: 'none',
-                    fontSize: '16px',
-                    fontWeight: '500'
-                  }}
-                >
-                  <span style={{ color: '#1e40af' }}>Industries</span>
-                  <ChevronDown 
-                    className={`ml-1 h-4 w-4 transition-transform duration-200 ${showIndustries ? 'rotate-180' : ''}`} 
-                    style={{ color: '#1e40af' }} 
-                    aria-hidden="true" 
-                  />
-                </button>
-                {showIndustries && (
-                  <div 
-                    id="industries-menu"
-                    className="absolute top-full left-0 mt-2 w-64 bg-blue-600 rounded-lg shadow-lg border py-2 z-50 animate-in fade-in-0 zoom-in-95"
-                    role="menu"
-                    aria-label="Industries submenu"
+              <div className="py-2">
+                <div className="text-sm font-semibold text-gray-900 px-3 py-2">Industries</div>
+                {industries.map((industry) => (
+                  <Link
+                    key={industry.href}
+                    to={industry.href}
+                    className="mobile-nav-link pl-6"
+                    role="menuitem"
+                    onClick={() => setIsOpen(false)}
                   >
-                    {industries.map((industry) => (
-                      <Link
-                        key={industry.href}
-                        to={industry.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-blue-700 hover:text-white text-white"
-                        role="menuitem"
-                        style={{ color: '#ffffff !important' }}
-                        onClick={() => setShowIndustries(false)}
-                      >
-                        {industry.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                    {industry.name}
+                  </Link>
+                ))}
               </div>
 
               <Link 
                 to="/implementation" 
-                className={`font-medium text-base transition-colors hover:text-blue-600 ${
-                  isActive('/implementation') ? 'text-blue-600' : 'text-gray-700'
-                }`}
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-current={isActive('/implementation') ? 'page' : undefined}
-                style={{ fontSize: '16px', fontWeight: '500' }}
+                onClick={() => setIsOpen(false)}
               >
                 Implementation
               </Link>
 
               <Link 
                 to="/pricing" 
-                className={`font-medium text-base transition-colors hover:text-blue-600 ${
-                  isActive('/pricing') ? 'text-blue-600' : 'text-gray-700'
-                }`}
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-current={isActive('/pricing') ? 'page' : undefined}
-                style={{ fontSize: '16px', fontWeight: '500' }}
+                onClick={() => setIsOpen(false)}
               >
                 Pricing
               </Link>
 
               <Link 
                 to="/case-studies" 
-                className={`font-medium text-base transition-colors hover:text-blue-600 ${
-                  isActive('/case-studies') ? 'text-blue-600' : 'text-gray-700'
-                }`}
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-current={isActive('/case-studies') ? 'page' : undefined}
-                style={{ fontSize: '16px', fontWeight: '500' }}
+                onClick={() => setIsOpen(false)}
               >
                 Case Studies
               </Link>
 
               <Link 
                 to="/faq" 
-                className={`font-medium text-base transition-colors hover:text-blue-600 ${
-                  isActive('/faq') ? 'text-blue-600' : 'text-gray-700'
-                }`}
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-current={isActive('/faq') ? 'page' : undefined}
-                style={{ fontSize: '16px', fontWeight: '500' }}
+                onClick={() => setIsOpen(false)}
               >
                 FAQ
               </Link>
 
               <Link 
                 to="/about" 
-                className={`font-medium text-base transition-colors hover:text-blue-600 ${
-                  isActive('/about') ? 'text-blue-600' : 'text-gray-700'
-                }`}
+                className="mobile-nav-link"
                 role="menuitem"
-                aria-current={isActive('/about') ? 'page' : undefined}
-                style={{ fontSize: '16px', fontWeight: '500' }}
+                onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
 
-              <Button asChild className="bg-blue-600 hover:bg-blue-700 font-medium text-base px-6 py-2">
-                <Link to="/roi-calculator" role="menuitem" style={{ fontSize: '16px', fontWeight: '500' }}>
-                  See Your Revenue Potential
-                </Link>
-              </Button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="transition-colors p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                aria-label={isOpen ? 'Close mobile menu' : 'Open mobile menu'}
-                aria-expanded={isOpen}
-                aria-controls="mobile-menu"
-                style={{ 
-                  color: '#ffffff',
-                  backgroundColor: '#2563eb',
-                  border: '2px solid #2563eb',
-                  outline: 'none',
-                  minWidth: '48px',
-                  minHeight: '48px'
-                }}
-              >
-                {isOpen ? 
-                  <X className="h-6 w-6" style={{ color: '#ffffff' }} aria-hidden="true" /> : 
-                  <Menu className="h-6 w-6" style={{ color: '#ffffff' }} aria-hidden="true" />
-                }
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div 
-              id="mobile-menu"
-              className="lg:hidden py-4 border-t bg-white shadow-lg"
-              role="menu"
-              aria-label="Mobile navigation menu"
-            >
-              <div className="flex flex-col space-y-4 px-4">
-                <Link 
-                  to="/" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
-
-                <div className="space-y-2" role="group" aria-labelledby="mobile-solutions-heading">
-                  <div id="mobile-solutions-heading" className="text-base font-semibold text-gray-900">AI Engines</div>
-                  {solutions.map((solution) => (
-                    <Link
-                      key={solution.href}
-                      to={solution.href}
-                      className="block pl-3 py-1 text-sm text-gray-600 hover:text-blue-600 transition-colors"
-                      role="menuitem"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {solution.name}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="space-y-2" role="group" aria-labelledby="mobile-industries-heading">
-                  <div id="mobile-industries-heading" className="text-base font-semibold text-gray-900">Industries</div>
-                  {industries.map((industry) => (
-                    <Link
-                      key={industry.href}
-                      to={industry.href}
-                      className="block pl-3 py-1 text-sm text-gray-600 hover:text-blue-600 transition-colors"
-                      role="menuitem"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {industry.name}
-                    </Link>
-                  ))}
-                </div>
-
-                <Link 
-                  to="/implementation" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Implementation
-                </Link>
-
-                <Link 
-                  to="/pricing" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Pricing
-                </Link>
-
-                <Link 
-                  to="/case-studies" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Case Studies
-                </Link>
-
-                <Link 
-                  to="/faq" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  FAQ
-                </Link>
-
-                <Link 
-                  to="/about" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  About
-                </Link>
-
-                <Link 
-                  to="/roi-calculator" 
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors py-2 block"
-                  role="menuitem"
-                  onClick={() => setIsOpen(false)}
-                >
-                  ROI Calculator
-                </Link>
-
-                <Button asChild className="bg-blue-600 hover:bg-blue-700 w-full mt-4 py-3 text-lg">
-                  <Link to="/contact" role="menuitem" onClick={() => setIsOpen(false)}>Get Started</Link>
+              <div className="px-3 py-4 space-y-2">
+                <Button asChild className="nav-button secondary w-full">
+                  <Link to="/contact" role="menuitem" onClick={() => setIsOpen(false)}>
+                    Book Strategy Call
+                  </Link>
+                </Button>
+                
+                <Button asChild className="nav-button primary w-full">
+                  <Link to="/roi-calculator" role="menuitem" onClick={() => setIsOpen(false)}>
+                    See Your Revenue Potential
+                  </Link>
                 </Button>
               </div>
             </div>
-          )}
-        </div>
-      </nav>
+          </div>
+        )}
+      </div>
     </header>
   )
 }
