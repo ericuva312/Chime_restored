@@ -125,6 +125,31 @@ const FixedNavigation = () => {
           overflow-y: auto;
         }
         
+        /* Mobile Menu Button - Force Chime Blue */
+        .mobile-menu-button {
+          color: #3b82f6 !important;
+          border-color: #3b82f6 !important;
+          background-color: transparent !important;
+          font-weight: 500 !important;
+          font-size: 0.875rem !important;
+          padding: 0.5rem 0.75rem !important;
+          border-radius: 0.375rem !important;
+          border-width: 1px !important;
+          border-style: solid !important;
+          transition: all 0.2s ease !important;
+        }
+        
+        .mobile-menu-button:hover {
+          background-color: #eff6ff !important;
+          color: #2563eb !important;
+          border-color: #2563eb !important;
+        }
+        
+        .mobile-menu-button:focus {
+          outline: 2px solid #3b82f6 !important;
+          outline-offset: 2px !important;
+        }
+        
         .mobile-nav-link {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
           font-size: 1rem;
@@ -364,7 +389,7 @@ const FixedNavigation = () => {
           <div className="mobile-nav">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="px-3 py-2 rounded-md text-blue-600 border border-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 font-medium text-sm transition-colors duration-200"
+              className="mobile-menu-button"
               aria-label={isOpen ? 'Close mobile menu' : 'Open mobile menu'}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
