@@ -1,11 +1,10 @@
 import React from 'react';
-import BackendIntegratedROICalculator from '../components/BackendIntegratedROICalculator';
+import FixedROICalculator from '../components/FixedROICalculator';
 
 const ROICalculatorPage = () => {
   console.log('📄 ROICalculatorPage is rendering...');
   
-  try {
-    return (
+  return (
       <div className="roi-calculator-page">
         {/* Enhanced page styling without affecting the calculator */}
         <style jsx>{`
@@ -1027,52 +1026,10 @@ const ROICalculatorPage = () => {
           </div>
         </div>
 
-        {/* Calculator component remains unchanged */}
-        <BackendIntegratedROICalculator />
-      </div>
-    );
-  } catch (error) {
-    console.error('❌ Error in ROICalculatorPage:', error);
-    return (
-      <div style={{ 
-        padding: '40px', 
-        textAlign: 'center', 
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          padding: '2rem',
-          borderRadius: '1rem',
-          border: '1px solid rgba(255, 255, 255, 0.2)'
-        }}>
-          <h1 style={{ marginBottom: '1rem', fontSize: '2rem' }}>Error Loading ROI Calculator</h1>
-          <p style={{ marginBottom: '1rem' }}>Please refresh the page or contact support.</p>
-          <button 
-            onClick={() => window.location.reload()}
-            style={{
-              background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-              color: 'white',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '0.5rem',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              fontWeight: '600'
-            }}
-          >
-            Refresh Page
-          </button>
-        </div>
-      </div>
-    );
-  }
+      {/* ROI Calculator Component */}
+      <FixedROICalculator />
+    </div>
+  );
 };
 
 export default ROICalculatorPage;
