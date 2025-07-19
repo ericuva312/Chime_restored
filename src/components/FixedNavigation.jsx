@@ -57,7 +57,7 @@ const FixedNavigation = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center nav-links space-x-4" role="menubar">
+            <div className="hidden lg:flex items-center nav-links space-x-8" role="menubar">
               {/* Solutions Dropdown */}
               <div 
                 ref={solutionsRef}
@@ -69,7 +69,7 @@ const FixedNavigation = () => {
                 aria-expanded={showSolutions}
               >
                 <button 
-                  className="nav-link flex items-center"
+                  className="nav-link flex items-center font-medium text-base"
                   aria-label="AI Engines menu"
                   aria-controls="solutions-menu"
                   onClick={() => setShowSolutions(!showSolutions)}
@@ -77,7 +77,9 @@ const FixedNavigation = () => {
                     color: '#1e40af',
                     backgroundColor: 'transparent',
                     border: 'none',
-                    outline: 'none'
+                    outline: 'none',
+                    fontSize: '16px',
+                    fontWeight: '500'
                   }}
                 >
                   <span style={{ color: '#1e40af' }}>AI Engines</span>
@@ -121,7 +123,7 @@ const FixedNavigation = () => {
                 aria-expanded={showIndustries}
               >
                 <button 
-                  className="flex items-center text-xs font-medium transition-colors hover:text-blue-600"
+                  className="flex items-center font-medium text-base transition-colors hover:text-blue-600"
                   aria-label="Industries menu"
                   aria-controls="industries-menu"
                   onClick={() => setShowIndustries(!showIndustries)}
@@ -129,7 +131,9 @@ const FixedNavigation = () => {
                     color: '#1e40af',
                     backgroundColor: 'transparent',
                     border: 'none',
-                    outline: 'none'
+                    outline: 'none',
+                    fontSize: '16px',
+                    fontWeight: '500'
                   }}
                 >
                   <span style={{ color: '#1e40af' }}>Industries</span>
@@ -164,72 +168,68 @@ const FixedNavigation = () => {
 
               <Link 
                 to="/implementation" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`font-medium text-base transition-colors hover:text-blue-600 ${
                   isActive('/implementation') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
                 aria-current={isActive('/implementation') ? 'page' : undefined}
+                style={{ fontSize: '16px', fontWeight: '500' }}
               >
                 Implementation
               </Link>
 
               <Link 
                 to="/pricing" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`font-medium text-base transition-colors hover:text-blue-600 ${
                   isActive('/pricing') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
                 aria-current={isActive('/pricing') ? 'page' : undefined}
+                style={{ fontSize: '16px', fontWeight: '500' }}
               >
                 Pricing
               </Link>
 
               <Link 
                 to="/case-studies" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`font-medium text-base transition-colors hover:text-blue-600 ${
                   isActive('/case-studies') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
                 aria-current={isActive('/case-studies') ? 'page' : undefined}
+                style={{ fontSize: '16px', fontWeight: '500' }}
               >
                 Case Studies
               </Link>
 
               <Link 
                 to="/faq" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`font-medium text-base transition-colors hover:text-blue-600 ${
                   isActive('/faq') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
                 aria-current={isActive('/faq') ? 'page' : undefined}
+                style={{ fontSize: '16px', fontWeight: '500' }}
               >
                 FAQ
               </Link>
 
               <Link 
                 to="/about" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`font-medium text-base transition-colors hover:text-blue-600 ${
                   isActive('/about') ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 role="menuitem"
                 aria-current={isActive('/about') ? 'page' : undefined}
+                style={{ fontSize: '16px', fontWeight: '500' }}
               >
                 About
               </Link>
 
-              <Link 
-                to="/roi-calculator" 
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                  isActive('/roi-calculator') ? 'text-blue-600' : 'text-gray-700'
-                }`}
-                role="menuitem"
-                aria-current={isActive('/roi-calculator') ? 'page' : undefined}
-              >
-                ROI Calculator
-              </Link>
-
-              <Button asChild className="bg-blue-600 hover:bg-blue-700">
-                <Link to="/contact" role="menuitem">Get Started</Link>
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 font-medium text-base px-6 py-2">
+                <Link to="/roi-calculator" role="menuitem" style={{ fontSize: '16px', fontWeight: '500' }}>
+                  See Your Revenue Potential
+                </Link>
               </Button>
             </div>
 
@@ -237,7 +237,7 @@ const FixedNavigation = () => {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="transition-colors p-2 rounded hover:bg-blue-700"
+                className="transition-colors p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 aria-label={isOpen ? 'Close mobile menu' : 'Open mobile menu'}
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
@@ -245,7 +245,9 @@ const FixedNavigation = () => {
                   color: '#ffffff',
                   backgroundColor: '#2563eb',
                   border: '2px solid #2563eb',
-                  outline: 'none'
+                  outline: 'none',
+                  minWidth: '48px',
+                  minHeight: '48px'
                 }}
               >
                 {isOpen ? 

@@ -29,7 +29,7 @@ const FixedROICalculator = () => {
   console.log('🎯 FixedROICalculator initialized!');
   
   // Production backend URL (deployed to Manus)
-  const API_BASE_URL = 'https://9yhyi3cz500o.manus.space';
+  const API_BASE_URL = 'https://77h9ikczlzgq.manus.space';
   
   // Industry options
   const industries = [
@@ -80,11 +80,11 @@ const FixedROICalculator = () => {
         console.log(`✅ Step 1 valid: ${step1Valid}`);
         return step1Valid;
       case 2:
-        const step2Valid = formData.industry && formData.business_stage && formData.biggest_challenges.length > 0;
+        const step2Valid = formData.industry && formData.business_stage;
         console.log(`✅ Step 2 validation:`);
         console.log(`  - industry: "${formData.industry}" (${!!formData.industry})`);
         console.log(`  - business_stage: "${formData.business_stage}" (${!!formData.business_stage})`);
-        console.log(`  - challenges: ${formData.biggest_challenges.length} items`);
+        console.log(`  - challenges: ${formData.biggest_challenges.length} items (optional)`);
         console.log(`✅ Step 2 valid: ${step2Valid}`);
         return step2Valid;
       case 3:
@@ -119,7 +119,7 @@ const FixedROICalculator = () => {
     console.log('🚀 Submitting form...', formData);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/roi-calculator/submit`, {
+      const response = await fetch(`${API_BASE_URL}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
