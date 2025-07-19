@@ -366,7 +366,13 @@ const FixedROICalculator = () => {
                     </label>
                     <select
                       value={formData.industry}
-                      onChange={(e) => handleInputChange('industry', e.target.value)}
+                      onChange={(e) => {
+                        console.log('🔥 Industry dropdown onChange triggered!');
+                        console.log('  - Selected value:', e.target.value);
+                        console.log('  - Current formData.industry:', formData.industry);
+                        handleInputChange('industry', e.target.value);
+                        console.log('  - After handleInputChange called');
+                      }}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select your industry</option>
@@ -382,7 +388,13 @@ const FixedROICalculator = () => {
                     </label>
                     <select
                       value={formData.business_stage}
-                      onChange={(e) => handleInputChange('business_stage', e.target.value)}
+                      onChange={(e) => {
+                        console.log('🔥 Business Stage dropdown onChange triggered!');
+                        console.log('  - Selected value:', e.target.value);
+                        console.log('  - Current formData.business_stage:', formData.business_stage);
+                        handleInputChange('business_stage', e.target.value);
+                        console.log('  - After handleInputChange called');
+                      }}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select your business stage</option>
@@ -433,7 +445,14 @@ const FixedROICalculator = () => {
                     <ChevronLeft className="inline mr-2 w-5 h-5" /> Previous
                   </button>
                   <button
-                    onClick={nextStep}
+                    onClick={() => {
+                      console.log('🚀 Next Step button clicked!');
+                      console.log('  - Current formData:', formData);
+                      console.log('  - Industry:', formData.industry);
+                      console.log('  - Business Stage:', formData.business_stage);
+                      console.log('  - Step 2 validation:', !!(formData.industry && formData.business_stage));
+                      nextStep();
+                    }}
                     className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Next Step <ChevronRight className="inline ml-2 w-5 h-5" />
