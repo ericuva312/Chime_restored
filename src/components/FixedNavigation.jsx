@@ -344,15 +344,18 @@ const FixedNavigation = () => {
               About
             </Link>
 
+            <Link 
+              to="/roi-calculator" 
+              className={`nav-link ${isActive('/roi-calculator') ? 'active' : ''}`}
+              role="menuitem"
+              aria-current={isActive('/roi-calculator') ? 'page' : undefined}
+            >
+              ROI Calculator
+            </Link>
+
             <Button asChild className="nav-button primary">
               <Link to="/contact" role="menuitem">
                 Book Strategy Call
-              </Link>
-            </Button>
-
-            <Button asChild className="nav-button primary">
-              <Link to="/roi-calculator" role="menuitem">
-                See Your Revenue Potential
               </Link>
             </Button>
           </div>
@@ -361,15 +364,12 @@ const FixedNavigation = () => {
           <div className="mobile-nav">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="px-3 py-2 rounded-md text-blue-600 border border-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 font-medium text-sm transition-colors duration-200"
               aria-label={isOpen ? 'Close mobile menu' : 'Open mobile menu'}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
             >
-              {isOpen ? 
-                <X className="h-6 w-6" aria-hidden="true" /> : 
-                <Menu className="h-6 w-6" aria-hidden="true" />
-              }
+              Menu
             </button>
           </div>
         </div>
@@ -467,16 +467,19 @@ const FixedNavigation = () => {
                 About
               </Link>
 
+              <Link 
+                to="/roi-calculator" 
+                className="mobile-nav-link"
+                role="menuitem"
+                onClick={() => setIsOpen(false)}
+              >
+                ROI Calculator
+              </Link>
+
               <div className="px-3 py-4 space-y-2">
                 <Button asChild className="nav-button secondary w-full">
                   <Link to="/contact" role="menuitem" onClick={() => setIsOpen(false)}>
                     Book Strategy Call
-                  </Link>
-                </Button>
-                
-                <Button asChild className="nav-button primary w-full">
-                  <Link to="/roi-calculator" role="menuitem" onClick={() => setIsOpen(false)}>
-                    See Your Revenue Potential
                   </Link>
                 </Button>
               </div>
