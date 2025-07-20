@@ -1,5 +1,5 @@
 import React from 'react';
-import FixedROICalculator from '../components/FixedROICalculator';
+import NewROICalculator from '../components/NewROICalculatorWithRubric';
 
 const ROICalculatorPage = () => {
   console.log('📄 ROICalculatorPage is rendering...');
@@ -329,7 +329,7 @@ const ROICalculatorPage = () => {
           </h1>
           
           <p className="hero-subtitle">
-            See exactly how much additional revenue your business can generate with Chime's AI-powered automation platform. Get instant projections without providing your email or business name.
+            Estimate how much additional revenue your business can generate with Chime's AI-powered automation platform. Get instant projections without providing your email or business name.
           </p>
           
           <div className="hero-features">
@@ -358,7 +358,7 @@ const ROICalculatorPage = () => {
       {/* Calculator Section */}
       <div className="calculator-section">
         <div className="calculator-container">
-          <FixedROICalculator />
+          <NewROICalculator />
         </div>
       </div>
 

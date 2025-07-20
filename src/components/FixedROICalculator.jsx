@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 const FixedROICalculator = () => {
@@ -7,7 +7,8 @@ const FixedROICalculator = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submissionResult, setSubmissionResult] = useState(null);
   
-  const [formData, setFormData] = useState({
+  // Persistent form data that survives component re-initializations
+  const formDataRef = useRef({
     monthly_revenue: '75000',
     average_order_value: '125',
     monthly_orders: '600',
@@ -25,8 +26,17 @@ const FixedROICalculator = () => {
     website: '',
     phone: ''
   });
+  
+  const [formData, setFormData] = useState(formDataRef.current);
 
   console.log('🎯 FixedROICalculator initialized!');
+  
+  // Debug: Monitor formData changes
+  useEffect(() => {
+    console.log('🔄 formData changed:', formData);
+    console.log('  - industry:', formData.industry);
+    console.log('  - business_stage:', formData.business_stage);
+  }, [formData]);
   
   // Production backend URL (deployed to Manus)
   const API_BASE_URL = 'https://77h9ikczlzgq.manus.space';
@@ -49,24 +59,26 @@ const FixedROICalculator = () => {
   ];
   
   // Handle input changes with proper state management
-  const handleInputChange = (field, value) => {
+  const handleInputChange = useCallback((field, value) => {
     console.log(`🔄 handleInputChange: ${field} = "${value}"`);
-    setFormData(prev => {
-      const newData = { ...prev, [field]: value };
-      console.log(`📊 Updated ${field}:`, newData[field]);
-      console.log(`📊 Full formData after update:`, newData);
-      
-      // Special logging for Step 2 fields
-      if (field === 'industry' || field === 'business_stage') {
-        console.log(`🎯 Step 2 validation check after ${field} update:`);
-        console.log(`  - industry: "${newData.industry}" (${!!newData.industry})`);
-        console.log(`  - business_stage: "${newData.business_stage}" (${!!newData.business_stage})`);
-        console.log(`  - Step 2 valid: ${!!(newData.industry && newData.business_stage)}`);
-      }
-      
-      return newData;
-    });
-  };
+    
+    // Update both state and persistent ref
+    const newData = { ...formDataRef.current, [field]: value };
+    formDataRef.current = newData;
+    
+    setFormData(newData);
+    
+    console.log(`📊 Updated ${field}:`, newData[field]);
+    console.log(`📊 Full formData after update:`, newData);
+    
+    // Special logging for Step 2 fields
+    if (field === 'industry' || field === 'business_stage') {
+      console.log(`🎯 Step 2 validation check after ${field} update:`);
+      console.log(`  - industry: "${newData.industry}" (${!!newData.industry})`);
+      console.log(`  - business_stage: "${newData.business_stage}" (${!!newData.business_stage})`);
+      console.log(`  - Step 2 valid: ${!!(newData.industry && newData.business_stage)}`);
+    }
+  }, []);
   
   // Handle challenge selection
   const handleChallengeToggle = (challenge) => {
@@ -366,13 +378,7 @@ const FixedROICalculator = () => {
                     </label>
                     <select
                       value={formData.industry}
-                      onChange={(e) => {
-                        console.log('🔥 Industry dropdown onChange triggered!');
-                        console.log('  - Selected value:', e.target.value);
-                        console.log('  - Current formData.industry:', formData.industry);
-                        handleInputChange('industry', e.target.value);
-                        console.log('  - After handleInputChange called');
-                      }}
+                      onChange={(e) => handleInputChange('industry', e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select your industry</option>
@@ -388,13 +394,7 @@ const FixedROICalculator = () => {
                     </label>
                     <select
                       value={formData.business_stage}
-                      onChange={(e) => {
-                        console.log('🔥 Business Stage dropdown onChange triggered!');
-                        console.log('  - Selected value:', e.target.value);
-                        console.log('  - Current formData.business_stage:', formData.business_stage);
-                        handleInputChange('business_stage', e.target.value);
-                        console.log('  - After handleInputChange called');
-                      }}
+                      onChange={(e) => handleInputChange('business_stage', e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select your business stage</option>
