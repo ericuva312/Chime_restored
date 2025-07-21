@@ -170,11 +170,34 @@ const CleanROICalculator = () => {
       return mapping[industry] || industry;
     };
 
-    // Prepare data with HubSpot-compatible values
+    // Prepare data with correct field names and HubSpot-compatible values
     const submissionData = {
-      ...formData,
-      business_stage: mapBusinessStageForHubSpot(formData.business_stage),
-      industry: mapIndustryForHubSpot(formData.industry),
+      // Basic business metrics
+      monthly_revenue: parseFloat(formData.monthly_revenue) || 0,
+      industry: formData.industry, // Keep original values, not mapped
+      business_stage: formData.business_stage, // Keep original values, not mapped
+      
+      // Performance metrics with corrected field names
+      conversion_rate: parseFloat(formData.conversion_rate) || 2.5,
+      cart_abandonment_rate: parseFloat(formData.cart_abandonment) || 70, // ✅ Fixed field name
+      monthly_ad_spend: parseFloat(formData.ad_spend) || 5000, // ✅ Fixed field name
+      manual_hours_per_week: parseFloat(formData.manual_hours) || 35, // ✅ Fixed field name
+      
+      // Add missing required fields with intelligent defaults
+      average_order_value: parseFloat(formData.monthly_revenue) * 0.002 || 150, // ✅ Added missing field
+      monthly_orders: Math.max(10, parseInt(parseFloat(formData.monthly_revenue) / 150)) || 500, // ✅ Added missing field
+      
+      // Contact information
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      email: formData.email,
+      business_name: formData.business_name,
+      
+      // Optional fields
+      website: formData.website || null,
+      phone: formData.phone || null,
+      
+      // Additional data
       calculations: liveCalculations[selectedScenario]
     };
 
