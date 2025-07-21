@@ -581,7 +581,7 @@ const FixedROICalculatorCorrected = () => {
                   <p className="text-gray-700 mb-6">Ready to supercharge your business? Schedule a no-obligation strategy call with us today and take the first step toward transformational growth.</p>
                   
                   <a
-                    href="https://calendly.com/chimehq/strategy-call?utm_source=roi_calculator&utm_medium=popup&utm_campaign=thank_you"
+                    href="https://www.chimehq.co/#/contact?utm_source=roi_calculator&utm_medium=popup&utm_campaign=thank_you"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-8 py-4 text-lg font-bold text-white rounded-xl transition-all duration-300"
