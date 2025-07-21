@@ -184,7 +184,8 @@ const CorrectedROICalculator = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-           const response = await fetch(`${API_BASE_URL}/submit`, {
+    try {
+      const response = await fetch(`${API_URL}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
