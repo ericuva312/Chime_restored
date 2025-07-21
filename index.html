@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://www.google-analytics.com https://analytics.google.com https://api.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.calendly.com https://chime-roi-backend-production.up.railway.app https://60h5imcydxdy.manus.space https://chime-roi-calculator-backend-secure-production.up.railway.app; frame-src https://js.stripe.com https://api.calendly.com https://calendly.com https://assets.calendly.com; object-src 'none'; base-uri 'self';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://www.google-analytics.com https://analytics.google.com https://api.calendly.com https://assets.apollo.io https://api.apollo.io https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.calendly.com https://chime-roi-backend-production.up.railway.app https://60h5imcydxdy.manus.space https://chime-roi-calculator-backend-secure-production.up.railway.app https://assets.apollo.io https://api.apollo.io; frame-src https://js.stripe.com https://api.calendly.com https://calendly.com https://assets.calendly.com; object-src 'none'; base-uri 'self';" />
     <title>Chime - AI-Powered Business Automation</title>
     <meta name="description" content="Boost your business revenue with Chime's AI-powered automation solutions. Get personalized ROI projections and see how we can grow your business." />
     <meta name="keywords" content="e-commerce automation, AI platform, ROI calculator, business growth, conversion optimization, Shopify automation, revenue growth, cart recovery, email automation" />
@@ -41,6 +41,13 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PP97DW9W');</script>
     <!-- End Google Tag Manager -->
+    
+    <!-- Apollo.io Tracking Script -->
+    <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+    o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+    o.onload=function(){window.trackingFunctions.onLoad({appId:"687e8b3d16d8ab00156a196e"})},
+    document.head.appendChild(o)}initApollo();</script>
+    <!-- End Apollo.io Tracking Script -->
     
     <!-- Accessibility -->
     <meta name="color-scheme" content="light" />
