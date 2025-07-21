@@ -91,25 +91,27 @@ const FixedNavigation = () => {
         }
         
         .nav-button.primary {
-          background-color: #3b82f6;
-          color: white;
+          background-color: transparent;
+          color: #3b82f6;
           border: 1px solid #3b82f6;
         }
         
         .nav-button.primary:hover {
-          background-color: #2563eb;
+          background-color: #eff6ff;
+          color: #2563eb;
           border-color: #2563eb;
         }
         
         .nav-button.secondary {
           background-color: transparent;
-          color: #374151;
-          border: 1px solid #d1d5db;
+          color: #3b82f6;
+          border: 1px solid #3b82f6;
         }
         
         .nav-button.secondary:hover {
-          background-color: #f9fafb;
-          border-color: #9ca3af;
+          background-color: #eff6ff;
+          color: #2563eb;
+          border-color: #2563eb;
         }
         
         /* Mobile Menu Styles */
