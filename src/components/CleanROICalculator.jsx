@@ -18,9 +18,7 @@ const CleanROICalculator = () => {
     business_name: ''
   });
 
-  const [showResults, setShowResults] = useState(false);
   const [selectedScenario, setSelectedScenario] = useState('expected');
-  const [calculations, setCalculations] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   
@@ -135,78 +133,8 @@ const CleanROICalculator = () => {
     formData.manual_hours
   ]);
 
-  const calculateROI = () => {
-    console.log('🧮 Calculating detailed ROI...');
-    
-    const revenue = parseFloat(formData.monthly_revenue) || 0;
-    const conversionRate = parseFloat(formData.conversion_rate) || 2.5;
-    const cartAbandonment = parseFloat(formData.cart_abandonment) || 70;
-    const adSpend = parseFloat(formData.ad_spend) || 5000;
-    const manualHours = parseFloat(formData.manual_hours) || 35;
-
-    const industryMultipliers = {
-      'Fashion & Apparel': 1.2,
-      'Electronics': 1.15,
-      'Health & Wellness': 1.25,
-      'Home & Garden': 1.1,
-      'Beauty & Cosmetics': 1.3,
-      'Food & Beverage': 1.05,
-      'Pet Products': 1.2,
-      'Sports & Fitness': 1.15,
-      'Automotive': 1.1,
-      'Books & Media': 1.05,
-      'Toys & Games': 1.2,
-      'Other': 1.1
-    };
-
-    const stageMultipliers = {
-      'Startup': 1.3,
-      'Growth': 1.25,
-      'Established': 1.15,
-      'Mature': 1.1
-    };
-
-    const industryMultiplier = industryMultipliers[formData.industry] || 1.1;
-    const stageMultiplier = stageMultipliers[formData.business_stage] || 1.1;
-
-    const baseGrowth = revenue * industryMultiplier * stageMultiplier;
-    const conversionImprovement = (conversionRate * 0.4 * revenue) / 100;
-    const cartRecovery = (cartAbandonment * 0.3 * revenue) / 100;
-    const adEfficiency = adSpend * 0.25;
-    const timeValue = (manualHours * 50) * 4.33;
-
-    const scenarios = {
-      conservative: {
-        totalMonthlyBenefit: Math.round(baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5),
-        totalAnnualBenefit: Math.round((baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5) * 12),
-        paybackPeriod: 1.8,
-        annualRevenueIncrease: 15
-      },
-      expected: {
-        totalMonthlyBenefit: Math.round(baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7),
-        totalAnnualBenefit: Math.round((baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7) * 12),
-        paybackPeriod: 1.3,
-        annualRevenueIncrease: 20
-      },
-      optimistic: {
-        totalMonthlyBenefit: Math.round(baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue),
-        totalAnnualBenefit: Math.round((baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue) * 12),
-        paybackPeriod: 0.9,
-        annualRevenueIncrease: 25
-      }
-    };
-
-    console.log('📊 Calculated detailed scenarios:', scenarios);
-    setCalculations(scenarios);
-    setShowResults(true);
-  };
-
-  const handleCalculate = () => {
-    console.log('🎯 Calculate button clicked');
-    calculateROI();
-  };
-
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     console.log('📤 Form submitted');
     setIsSubmitting(true);
@@ -247,7 +175,7 @@ const CleanROICalculator = () => {
       ...formData,
       business_stage: mapBusinessStageForHubSpot(formData.business_stage),
       industry: mapIndustryForHubSpot(formData.industry),
-      calculations: calculations[selectedScenario] || liveCalculations[selectedScenario]
+      calculations: liveCalculations[selectedScenario]
     };
 
     console.log('📊 Submission data with mapping:', submissionData);
@@ -568,15 +496,6 @@ const CleanROICalculator = () => {
                 />
               </div>
             </div>
-
-            <div className="mt-10 text-center">
-              <button
-                onClick={handleCalculate}
-                className="cta-button"
-              >
-                Get Detailed Revenue Analysis
-              </button>
-            </div>
           </div>
         </div>
 
@@ -643,65 +562,9 @@ const CleanROICalculator = () => {
         </div>
       </div>
 
-      {/* Results Section */}
-      {showResults && (
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-lg p-8 mb-8 mt-12">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Your Detailed Revenue Growth Analysis</h3>
-          
-          {/* Scenario Selector */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-white rounded-lg p-1 shadow-md">
-              {Object.keys(calculations).map((scenario) => (
-                <button
-                  key={scenario}
-                  onClick={() => setSelectedScenario(scenario)}
-                  className={`px-8 py-4 rounded-md font-semibold transition-colors text-lg ${
-                    selectedScenario === scenario
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:text-blue-600'
-                  }`}
-                >
-                  {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Results Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 text-center shadow-md">
-              <div className="text-4xl font-bold text-green-600 mb-3">
-                ${calculations[selectedScenario]?.totalMonthlyBenefit?.toLocaleString()}
-              </div>
-              <div className="text-sm text-gray-600 font-medium">Additional Monthly Benefit</div>
-            </div>
-            
-            <div className="bg-white rounded-lg p-6 text-center shadow-md">
-              <div className="text-4xl font-bold text-blue-600 mb-3">
-                ${calculations[selectedScenario]?.totalAnnualBenefit?.toLocaleString()}
-              </div>
-              <div className="text-sm text-gray-600 font-medium">Additional Annual Benefit</div>
-            </div>
-            
-            <div className="bg-white rounded-lg p-6 text-center shadow-md">
-              <div className="text-4xl font-bold text-purple-600 mb-3">
-                {calculations[selectedScenario]?.paybackPeriod} months
-              </div>
-              <div className="text-sm text-gray-600 font-medium">Payback Period</div>
-            </div>
-            
-            <div className="bg-white rounded-lg p-6 text-center shadow-md">
-              <div className="text-4xl font-bold text-orange-600 mb-3">
-                {calculations[selectedScenario]?.annualRevenueIncrease}%
-              </div>
-              <div className="text-sm text-gray-600 font-medium">Annual Revenue Increase</div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Contact Form Section */}
-      {showResults && (
+      {showLiveProjections && (
+
         <div className="form-section">
           <div className="text-center mb-10">
             <h3 className="text-3xl font-bold text-gray-900 mb-6">
