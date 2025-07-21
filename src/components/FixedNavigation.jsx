@@ -63,7 +63,7 @@ const FixedNavigation = () => {
           font-weight: 500;
           color: #374151;
           text-decoration: none;
-          transition: color 0.2s ease;
+          transition: all 0.2s ease;
           padding: 0.5rem 0.75rem;
           border-radius: 0.375rem;
           display: flex;
@@ -79,6 +79,18 @@ const FixedNavigation = () => {
         .nav-link.active {
           color: #3b82f6;
           background-color: #eff6ff;
+        }
+        
+        /* Chime-branded blue background for AI Engines and Industries */
+        .nav-link.chime-branded {
+          background-color: #3b82f6;
+          color: white;
+          font-weight: 600;
+        }
+        
+        .nav-link.chime-branded:hover {
+          background-color: #2563eb;
+          color: white;
         }
         
         .nav-button {
@@ -249,7 +261,7 @@ const FixedNavigation = () => {
               aria-expanded={showSolutions}
             >
               <button 
-                className="nav-link"
+                className="nav-link chime-branded"
                 aria-label="AI Engines menu"
                 aria-controls="solutions-menu"
                 onClick={() => setShowSolutions(!showSolutions)}
@@ -293,7 +305,7 @@ const FixedNavigation = () => {
               aria-expanded={showIndustries}
             >
               <button 
-                className="nav-link"
+                className="nav-link chime-branded"
                 aria-label="Industries menu"
                 aria-controls="industries-menu"
                 onClick={() => setShowIndustries(!showIndustries)}
