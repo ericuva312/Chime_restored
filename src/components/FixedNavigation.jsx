@@ -91,14 +91,14 @@ const FixedNavigation = () => {
         }
         
         .nav-button.primary {
-          background-color: transparent;
-          color: #3b82f6;
+          background-color: #3b82f6;
+          color: white;
           border: 1px solid #3b82f6;
         }
         
         .nav-button.primary:hover {
-          background-color: #eff6ff;
-          color: #2563eb;
+          background-color: #2563eb;
+          color: white;
           border-color: #2563eb;
         }
         
