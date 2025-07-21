@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Clock, Target, User, Mail, Building, BarChart3, Zap, Users, ShoppingCart, Send, CheckCircle, X, Calendar, Star } from 'lucide-react';
+import { trackROICalculator, trackContactForm, trackEngagement } from '../utils/analytics';
 
 const FixedROICalculatorCorrected = () => {
   console.log('🚀 FixedROICalculatorCorrected is loading and executing!');
@@ -31,12 +32,76 @@ const FixedROICalculatorCorrected = () => {
   console.log('🔍 FixedROICalculatorCorrected formData:', formData);
   console.log('🔍 Show live projections:', showLiveProjections);
 
+  // Track component mount and calculator start
+  useEffect(() => {
+    console.log('🚀 ROI Calculator component mounted');
+    window.calculatorStartTime = Date.now(); // Track start time for completion duration
+    trackROICalculator.start();
+  }, []);
+
+  // Track when contact form becomes visible
+  useEffect(() => {
+    const showContactForm = formData.monthly_revenue && formData.industry && formData.business_stage;
+    if (showContactForm) {
+      trackContactForm.start('roi_calculator');
+    }
+  }, [formData.monthly_revenue, formData.industry, formData.business_stage]);
+
   const handleInputChange = (field, value) => {
     console.log(`📝 FixedROICalculatorCorrected input changed: ${field} = ${value}`);
+    
+    // Track field completion
+    const completionPercentage = calculateCompletionPercentage({ ...formData, [field]: value });
+    trackROICalculator.fieldComplete(field, value, completionPercentage);
+    
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
+  };
+
+  // Helper function to calculate completion percentage
+  const calculateCompletionPercentage = (data) => {
+    const requiredFields = ['monthly_revenue', 'industry', 'business_stage'];
+    const optionalFields = ['conversion_rate', 'cart_abandonment', 'ad_spend', 'manual_hours'];
+    const contactFields = ['first_name', 'last_name', 'email', 'business_name'];
+    
+    const requiredComplete = requiredFields.filter(field => data[field]).length;
+    const optionalComplete = optionalFields.filter(field => data[field]).length;
+    const contactComplete = contactFields.filter(field => data[field]).length;
+    
+    const totalFields = requiredFields.length + optionalFields.length + contactFields.length;
+    const completedFields = requiredComplete + optionalComplete + contactComplete;
+    
+    return Math.round((completedFields / totalFields) * 100);
+  };
+
+  // Helper function to calculate lead score
+  const calculateLeadScore = (data) => {
+    let score = 0;
+    
+    // Revenue scoring (0-40 points)
+    const revenue = parseFloat(data.monthly_revenue) || 0;
+    if (revenue >= 100000) score += 40;
+    else if (revenue >= 50000) score += 30;
+    else if (revenue >= 25000) score += 20;
+    else if (revenue >= 10000) score += 10;
+    
+    // Industry scoring (0-20 points)
+    const highValueIndustries = ['electronics', 'fashion', 'health_beauty'];
+    if (highValueIndustries.includes(data.industry)) score += 20;
+    else if (data.industry) score += 10;
+    
+    // Business stage scoring (0-20 points)
+    if (data.business_stage === 'growth') score += 20;
+    else if (data.business_stage === 'established') score += 15;
+    else if (data.business_stage === 'startup') score += 10;
+    
+    // Contact info scoring (0-20 points)
+    if (data.email && data.first_name) score += 15;
+    if (data.business_name) score += 5;
+    
+    return Math.min(score, 100);
   };
 
   // Real-time calculations for ALL fields including performance data
@@ -121,6 +186,17 @@ const FixedROICalculatorCorrected = () => {
       setLiveCalculations(liveCalcs);
       setShowLiveProjections(true);
       console.log('📊 Live calculations updated:', liveCalcs);
+      
+      // Track projection view
+      trackROICalculator.projectionView({
+        monthlyRevenue: parseFloat(formData.monthly_revenue) || 0,
+        industry: formData.industry,
+        businessStage: formData.business_stage,
+        scenarios: liveCalcs,
+        timeSavings: liveCalcs.expected?.timeSaved || 0,
+        roiPercentage: liveCalcs.expected?.revenueIncrease || 0,
+        leadScore: calculateLeadScore(formData)
+      });
     } else {
       console.log('❌ Not enough basic fields for live projections');
       setShowLiveProjections(false);
@@ -134,6 +210,9 @@ const FixedROICalculatorCorrected = () => {
 
     try {
       console.log('🚀 Submitting form data:', formData);
+      
+      // Track form submission attempt
+      trackContactForm.submit(formData, 'roi_calculator');
       
       // Prepare data for backend
       const submitData = {
@@ -164,6 +243,24 @@ const FixedROICalculatorCorrected = () => {
       console.log('📥 Backend response:', result);
 
       if (response.ok && result.status === 'success') {
+        // Track successful form submission
+        const leadScore = calculateLeadScore(formData);
+        trackContactForm.success({
+          leadId: result.lead_id || 'unknown',
+          leadScore: leadScore,
+          leadTier: leadScore >= 80 ? 'high' : leadScore >= 60 ? 'medium' : 'low',
+          emailSent: result.email_sent || false,
+          hubspotCreated: result.hubspot_created || false,
+          estimatedValue: parseFloat(formData.monthly_revenue) * 0.35 || 0
+        }, 'roi_calculator');
+        
+        // Track calculator completion
+        trackROICalculator.complete({
+          ...formData,
+          completionTime: Date.now() - (window.calculatorStartTime || Date.now()),
+          totalProjectedValue: parseFloat(formData.monthly_revenue) * 0.35 || 0
+        }, leadScore);
+        
         setSubmitSuccess(true);
         setSubmitMessage(result.message || 'Thank you! Your growth analysis is on the way.');
         setShowThankYouPopup(true);
@@ -173,6 +270,15 @@ const FixedROICalculatorCorrected = () => {
       }
     } catch (error) {
       console.error('❌ Form submission error:', error);
+      
+      // Track form submission error
+      trackContactForm.error({
+        type: 'submission_error',
+        message: error.message || 'Unknown error',
+        fieldErrors: [],
+        attempt: 1
+      }, 'roi_calculator');
+      
       setSubmitSuccess(false);
       setSubmitMessage('There was an error submitting your information. Please try again.');
     } finally {

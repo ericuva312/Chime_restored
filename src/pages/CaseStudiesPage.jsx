@@ -2,8 +2,18 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, TrendingUp, Users, ShoppingCart, DollarSign } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { trackBusinessEvent, trackPageView } from '../utils/analytics'
+import { useEffect } from 'react'
 
 const CaseStudiesPage = () => {
+  // Track case studies page view
+  useEffect(() => {
+    trackPageView('case_studies', {
+      category: 'marketing',
+      section: 'social_proof'
+    });
+  }, []);
+
   const caseStudies = [
     {
       industry: "Fashion & Apparel",

@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react'
 import { CheckCircle, Clock, Shield, Users, TrendingUp, Zap } from 'lucide-react'
+import { trackBusinessEvent, trackPageView } from '../utils/analytics'
 
 const ContactPage = () => {
   const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false)
 
   useEffect(() => {
+    // Track contact page view
+    trackPageView('contact', {
+      category: 'conversion',
+      section: 'consultation_booking'
+    });
+
     // Create a global Calendly function if it doesn't exist
     if (!window.Calendly) {
       window.Calendly = {}
@@ -18,13 +25,12 @@ const ContactPage = () => {
       setIsCalendlyLoaded(true)
       console.log('Calendly script loaded successfully')
       
-      // Track Calendly widget load in Google Analytics
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'calendly_widget_loaded', {
-          event_category: 'engagement',
-          event_label: 'Calendly Widget Loaded'
-        });
-      }
+      // Track Calendly widget load
+      trackBusinessEvent.consultationBooked({
+        source: 'contact_page',
+        type: 'widget_loaded',
+        method: 'calendly_widget'
+      });
       
       // Force Calendly to initialize
       if (window.Calendly && window.Calendly.initInlineWidget) {

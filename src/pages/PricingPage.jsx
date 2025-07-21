@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom'
 import { Check, ArrowRight, Star, Shield, Zap, TrendingUp, Crown, Sparkles, Target } from 'lucide-react'
 import BorderedButton from '../components/BorderedButton'
+import { trackBusinessEvent, trackPageView } from '../utils/analytics'
+import { useEffect } from 'react'
 
-const PricingPage = () => {  const plans = [
+const PricingPage = () => {
+  // Track pricing page view
+  useEffect(() => {
+    trackPageView('pricing', {
+      category: 'marketing',
+      section: 'pricing_plans'
+    });
+  }, []);
+
+  const plans = [
     {
       name: "MARKET DOMINATOR",
       setupFee: "$2,997",
