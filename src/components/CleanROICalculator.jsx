@@ -181,7 +181,7 @@ const CleanROICalculator = () => {
     console.log('📊 Submission data with mapping:', submissionData);
 
     try {
-      const response = await fetch('https://roi-calculator-backend-production-8b8b.up.railway.app/api/submit', {
+      const response = await fetch('https://chime-roi-calculator-backend-secure-production.up.railway.app/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -563,7 +563,7 @@ const CleanROICalculator = () => {
       </div>
 
       {/* Contact Form Section */}
-      {showLiveProjections && (
+      {(formData.monthly_revenue && formData.industry && formData.business_stage) && (
 
         <div className="form-section">
           <div className="text-center mb-10">
