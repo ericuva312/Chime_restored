@@ -278,6 +278,7 @@ const FixedROICalculator = () => {
             font-size: 1rem;
             transition: all 0.2s ease;
             background: #fafafa;
+            color: #1f2937;
           }
           
           .input-field:focus {
@@ -522,34 +523,32 @@ const FixedROICalculator = () => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-semibold mb-3">
-                          <User className="w-4 h-4 inline mr-2" />
-                          First Name
-                        </label>
-                        <input
-                          type="text"
-                          value={formData.first_name}
-                          onChange={(e) => handleInputChange('first_name', e.target.value)}
-                          className="input-field"
-                          required
-                        />
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-semibold mb-3">
-                          <User className="w-4 h-4 inline mr-2" />
-                          Last Name
-                        </label>
-                        <input
-                          type="text"
-                          value={formData.last_name}
-                          onChange={(e) => handleInputChange('last_name', e.target.value)}
-                          className="input-field"
-                          required
-                        />
-                      </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-3">
+                        <User className="w-4 h-4 inline mr-2" />
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.first_name}
+                        onChange={(e) => handleInputChange('first_name', e.target.value)}
+                        className="input-field"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold mb-3">
+                        <User className="w-4 h-4 inline mr-2" />
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.last_name}
+                        onChange={(e) => handleInputChange('last_name', e.target.value)}
+                        className="input-field"
+                        required
+                      />
                     </div>
                     
                     <div>
@@ -616,19 +615,19 @@ const FixedROICalculator = () => {
                 <div className="form-section">
                   <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
                     <TrendingUp className="w-6 h-6 mr-3 text-green-600" />
-                    Live Revenue Projections
+                    Real-time Growth Projections
                   </h3>
                   
                   {/* Scenario Selector */}
-                  <div className="flex space-x-2 mb-8">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {['conservative', 'expected', 'optimistic'].map((scenario) => (
                       <button
                         key={scenario}
                         onClick={() => setSelectedScenario(scenario)}
-                        className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all flex-1 min-w-0 ${
                           selectedScenario === scenario
                             ? 'bg-blue-600 text-white shadow-lg'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            : 'bg-gray-400 text-white hover:bg-gray-500'
                         }`}
                       >
                         {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
