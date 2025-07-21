@@ -692,12 +692,18 @@ const FixedROICalculator = () => {
         
         {/* Premium Thank You Popup */}
         {showThankYouPopup && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl max-w-2xl w-full mx-4 relative overflow-hidden shadow-2xl">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-4" style={{
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)'
+          }}>
+            <div className="bg-white rounded-2xl max-w-2xl w-full mx-4 relative overflow-hidden shadow-2xl transform transition-all duration-300 ease-out scale-100 opacity-100" style={{
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+            }}>
               {/* Close Button */}
               <button
                 onClick={() => setShowThankYouPopup(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10"
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-all duration-200 z-10 hover:scale-110"
               >
                 <X className="w-6 h-6" />
               </button>
