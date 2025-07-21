@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, DollarSign, Clock, Target, User, Mail, Building, BarChart3, Zap, Users, ShoppingCart, Send, CheckCircle } from 'lucide-react';
+import { TrendingUp, DollarSign, Clock, Target, User, Mail, Building, BarChart3, Zap, Users, ShoppingCart, Send, CheckCircle, X, Calendar, Star } from 'lucide-react';
 
 const FixedROICalculator = () => {
   console.log('🚀 FixedROICalculator is loading and executing!');
@@ -22,6 +22,7 @@ const FixedROICalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [showThankYouPopup, setShowThankYouPopup] = useState(false);
   
   // Live projections state
   const [showLiveProjections, setShowLiveProjections] = useState(false);
@@ -185,6 +186,7 @@ const FixedROICalculator = () => {
 
       if (response.ok) {
         setSubmitSuccess(true);
+        setShowThankYouPopup(true);
         setSubmitMessage(result.message || 'Thank you! Your detailed growth analysis report is on the way.');
         
         // Reset form after successful submission
@@ -620,19 +622,26 @@ const FixedROICalculator = () => {
                   
                   {/* Scenario Selector */}
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {['conservative', 'expected', 'optimistic'].map((scenario) => (
-                      <button
-                        key={scenario}
-                        onClick={() => setSelectedScenario(scenario)}
-                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all flex-1 min-w-0 ${
-                          selectedScenario === scenario
-                            ? 'bg-blue-600 text-white shadow-lg'
-                            : 'bg-gray-400 text-white hover:bg-gray-500'
-                        }`}
-                      >
-                        {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
-                      </button>
-                    ))}
+                    {['conservative', 'expected', 'optimistic'].map((scenario) => {
+                      const displayNames = {
+                        'conservative': 'Low',
+                        'expected': 'Expected',
+                        'optimistic': 'High'
+                      };
+                      return (
+                        <button
+                          key={scenario}
+                          onClick={() => setSelectedScenario(scenario)}
+                          className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all flex-1 min-w-0 ${
+                            selectedScenario === scenario
+                              ? 'bg-blue-600 text-white shadow-lg'
+                              : 'bg-gray-400 text-white hover:bg-gray-500'
+                          }`}
+                        >
+                          {displayNames[scenario]}
+                        </button>
+                      );
+                    })}
                   </div>
                   
                   {/* Live Metrics */}
@@ -680,6 +689,97 @@ const FixedROICalculator = () => {
             )}
           </div>
         </div>
+        
+        {/* Premium Thank You Popup */}
+        {showThankYouPopup && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-2xl w-full mx-4 relative overflow-hidden shadow-2xl">
+              {/* Close Button */}
+              <button
+                onClick={() => setShowThankYouPopup(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              {/* Header with gradient background */}
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-indigo-700/90"></div>
+                <div className="relative z-10">
+                  <CheckCircle className="w-16 h-16 mx-auto mb-4 text-green-300" />
+                  <h2 className="text-3xl font-bold mb-2">Thank You!</h2>
+                  <p className="text-xl opacity-90">Your Growth Analysis Report is On Its Way</p>
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    🚀 Ready to Transform Your Business?
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    You've just discovered your growth potential. Now let's make it reality. 
+                    <strong className="text-blue-600"> Chime's AI-powered automation platform</strong> has helped 
+                    <strong className="text-green-600"> 2,847+ businesses</strong> achieve an average of 
+                    <strong className="text-blue-600"> 35% revenue growth</strong> in their first year.
+                  </p>
+                  
+                  <div className="grid grid-cols-3 gap-4 mb-8">
+                    <div className="text-center p-4 bg-blue-50 rounded-lg">
+                      <Star className="w-8 h-8 mx-auto text-blue-600 mb-2" />
+                      <div className="font-bold text-blue-900">98%</div>
+                      <div className="text-sm text-blue-700">Client Satisfaction</div>
+                    </div>
+                    <div className="text-center p-4 bg-green-50 rounded-lg">
+                      <TrendingUp className="w-8 h-8 mx-auto text-green-600 mb-2" />
+                      <div className="font-bold text-green-900">$50M+</div>
+                      <div className="text-sm text-green-700">Revenue Generated</div>
+                    </div>
+                    <div className="text-center p-4 bg-purple-50 rounded-lg">
+                      <Zap className="w-8 h-8 mx-auto text-purple-600 mb-2" />
+                      <div className="font-bold text-purple-900">6 Weeks</div>
+                      <div className="text-sm text-purple-700">Average ROI</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Next Steps */}
+                <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">What Happens Next:</h4>
+                  <div className="space-y-2 text-gray-700">
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                      <span>Your detailed growth analysis report will arrive in your inbox within 5 minutes</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                      <span>Review your personalized automation opportunities and ROI projections</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                      <span>Schedule a strategy call to discuss implementation and next steps</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* CTA Button */}
+                <div className="text-center">
+                  <a
+                    href="https://www.chimehq.co/#/contact"
+                    className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  >
+                    <Calendar className="w-6 h-6 mr-3" />
+                    Schedule Your Strategy Call
+                  </a>
+                  <p className="text-sm text-gray-500 mt-3">
+                    Free 30-minute consultation • No commitment required
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
