@@ -187,21 +187,60 @@ const WorkingROICalculatorFixed = () => {
     setIsSubmitting(true);
     setSubmitMessage('');
 
+    // Map business stage for HubSpot compatibility
+    const mapBusinessStageForHubSpot = (stage) => {
+      const mapping = {
+        'Startup': 'startup',
+        'Growth': 'growing',
+        'Established': 'established',
+        'Mature': 'enterprise'
+      };
+      return mapping[stage] || stage;
+    };
+
+    // Map industry for HubSpot compatibility  
+    const mapIndustryForHubSpot = (industry) => {
+      const mapping = {
+        'Fashion & Apparel': 'fashion_apparel',
+        'Electronics': 'electronics',
+        'Health & Wellness': 'health_wellness',
+        'Home & Garden': 'home_garden',
+        'Beauty & Cosmetics': 'beauty_cosmetics',
+        'Food & Beverage': 'food_beverage',
+        'Pet Products': 'pet_products',
+        'Sports & Fitness': 'sports_fitness',
+        'Automotive': 'automotive',
+        'Books & Media': 'books_media',
+        'Toys & Games': 'toys_games',
+        'Other': 'other'
+      };
+      return mapping[industry] || industry;
+    };
+
+    // Prepare data with HubSpot-compatible values
+    const submissionData = {
+      ...formData,
+      business_stage: mapBusinessStageForHubSpot(formData.business_stage),
+      industry: mapIndustryForHubSpot(formData.industry),
+      calculations: calculations[selectedScenario]
+    };
+
+    console.log('📊 Submission data with mapping:', submissionData);
+
     try {
       const response = await fetch('https://roi-calculator-backend-production-8b8b.up.railway.app/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          calculations: calculations[selectedScenario]
-        }),
+        body: JSON.stringify(submissionData),
       });
 
       if (response.ok) {
         setSubmitMessage('✅ Thank you! Your detailed growth report has been sent to your email.');
       } else {
+        const errorData = await response.text();
+        console.error('Submit error response:', errorData);
         setSubmitMessage('❌ There was an error sending your report. Please try again.');
       }
     } catch (error) {
