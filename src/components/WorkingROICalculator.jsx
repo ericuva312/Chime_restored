@@ -334,6 +334,22 @@ const WorkingROICalculator = () => {
                 />
               </div>
               
+              {/* Last Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <User className="w-4 h-4 inline mr-1" />
+                  Last Name
+                  <span className="text-gray-500 text-xs block">For personalized recommendations</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.last_name}
+                  onChange={(e) => handleInputChange('last_name', e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Smith"
+                />
+              </div>
+              
               {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -347,6 +363,22 @@ const WorkingROICalculator = () => {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="john@company.com"
+                />
+              </div>
+              
+              {/* Business Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Building className="w-4 h-4 inline mr-1" />
+                  Business Name
+                  <span className="text-gray-500 text-xs block">For business-specific insights</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.business_name}
+                  onChange={(e) => handleInputChange('business_name', e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Your Company Inc."
                 />
               </div>
             </div>
