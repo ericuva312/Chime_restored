@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkingROICalculator from '../components/WorkingROICalculator';
+import TestMinimalComponent from '../components/TestMinimalComponent';
 
 const ROICalculatorPage = () => {
   console.log('📄 ROICalculatorPage is rendering...');
@@ -358,7 +358,7 @@ const ROICalculatorPage = () => {
       {/* Calculator Section */}
       <div className="calculator-section">
         <div className="calculator-container">
-          <WorkingROICalculator />
+          <TestMinimalComponent />
         </div>
       </div>
 

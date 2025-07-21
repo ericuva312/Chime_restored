@@ -379,7 +379,7 @@ const WorkingROICalculator = () => {
                       : 'text-gray-600 hover:text-blue-600'
                   }`}
                 >
-                  {scenario.charAt(0).toUpperCase() + scenario.slice(1)} ({calculations[scenario].confidenceLevel}% confidence)
+                  {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
                 </button>
               ))}
             </div>
@@ -423,13 +423,10 @@ const WorkingROICalculator = () => {
         <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Optional: Get Your Detailed Growth Analysis Report
+              Want to learn more? Get Your Detailed Growth Analysis Report
             </h3>
-            <p className="text-green-600 font-medium mb-2">
-              ✓ You can see your results above without providing any information
-            </p>
             <p className="text-gray-600">
-              Provide your contact info to receive a detailed growth analysis report with industry-specific insights and implementation roadmap.
+              Enter your contact details below to get a detailed report featuring industry-specific insights and a step-by-step implementation roadmap, delivered directly to your inbox.
             </p>
           </div>
 
@@ -440,7 +437,6 @@ const WorkingROICalculator = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <User className="w-4 h-4 inline mr-1" />
                   First Name
-                  <span className="text-gray-500 text-xs block">For personalized recommendations</span>
                 </label>
                 <input
                   type="text"
@@ -456,7 +452,6 @@ const WorkingROICalculator = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <User className="w-4 h-4 inline mr-1" />
                   Last Name
-                  <span className="text-gray-500 text-xs block">For personalized recommendations</span>
                 </label>
                 <input
                   type="text"
@@ -472,7 +467,6 @@ const WorkingROICalculator = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Mail className="w-4 h-4 inline mr-1" />
                   Email Address
-                  <span className="text-gray-500 text-xs block">To receive your detailed report</span>
                 </label>
                 <input
                   type="email"
@@ -488,7 +482,6 @@ const WorkingROICalculator = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Building className="w-4 h-4 inline mr-1" />
                   Business Name
-                  <span className="text-gray-500 text-xs block">For business-specific insights</span>
                 </label>
                 <input
                   type="text"
