@@ -1,0 +1,1016 @@
+import React, { useState, useEffect } from 'react';
+import { TrendingUp, DollarSign, Clock, Target, User, Mail, Building, BarChart3, Zap, Users, ShoppingCart } from 'lucide-react';
+
+const OptimizedROICalculator = () => {
+  console.log('🚀 OptimizedROICalculator is loading and executing!');
+  
+  const [formData, setFormData] = useState({
+    monthly_revenue: '',
+    industry: '',
+    business_stage: '',
+    conversion_rate: '',
+    cart_abandonment: '',
+    ad_spend: '',
+    manual_hours: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    business_name: ''
+  });
+
+  const [showResults, setShowResults] = useState(false);
+  const [selectedScenario, setSelectedScenario] = useState('expected');
+  const [calculations, setCalculations] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  
+  // Live projections state
+  const [showLiveProjections, setShowLiveProjections] = useState(false);
+  const [liveCalculations, setLiveCalculations] = useState({});
+  const [businessIntelligence, setBusinessIntelligence] = useState({});
+
+  console.log('🔍 OptimizedROICalculator formData:', formData);
+  console.log('🔍 Show live projections:', showLiveProjections);
+
+  const handleInputChange = (field, value) => {
+    console.log(`📝 OptimizedROICalculator input changed: ${field} = ${value}`);
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  // Real-time calculations for ALL fields including performance data
+  useEffect(() => {
+    console.log('🔄 Real-time calculations useEffect triggered');
+    
+    const hasBasicFields = formData.monthly_revenue && formData.industry && formData.business_stage;
+    
+    if (hasBasicFields) {
+      console.log('✅ Calculating real-time projections with performance data...');
+      
+      const revenue = parseFloat(formData.monthly_revenue) || 0;
+      const conversionRate = parseFloat(formData.conversion_rate) || 2.5;
+      const cartAbandonment = parseFloat(formData.cart_abandonment) || 70;
+      const adSpend = parseFloat(formData.ad_spend) || 5000;
+      const manualHours = parseFloat(formData.manual_hours) || 35;
+      
+      const industryMultipliers = {
+        'Fashion & Apparel': 1.2,
+        'Electronics': 1.15,
+        'Health & Wellness': 1.25,
+        'Home & Garden': 1.1,
+        'Beauty & Cosmetics': 1.3,
+        'Food & Beverage': 1.05,
+        'Pet Products': 1.2,
+        'Sports & Fitness': 1.15,
+        'Automotive': 1.1,
+        'Books & Media': 1.05,
+        'Toys & Games': 1.2,
+        'Other': 1.1
+      };
+      
+      const stageMultipliers = {
+        'Startup': 1.3,
+        'Growth': 1.25,
+        'Established': 1.15,
+        'Mature': 1.1
+      };
+      
+      const industryMultiplier = industryMultipliers[formData.industry] || 1.1;
+      const stageMultiplier = stageMultipliers[formData.business_stage] || 1.1;
+      
+      const baseGrowth = revenue * industryMultiplier * stageMultiplier;
+      const conversionImprovement = (conversionRate * 0.4 * revenue) / 100;
+      const cartRecovery = (cartAbandonment * 0.3 * revenue) / 100;
+      const adEfficiency = adSpend * 0.25;
+      const timeValue = (manualHours * 50) * 4.33;
+      
+      const liveCalcs = {
+        conservative: {
+          monthlyGrowth: Math.round(baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5),
+          annualGrowth: Math.round((baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5) * 12),
+          paybackMonths: 1.8,
+          revenueIncrease: 15,
+          conversionBoost: Math.round(conversionRate * 0.3 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.2),
+          adEfficiencyGain: Math.round(adEfficiency * 0.5),
+          timeSaved: Math.round(manualHours * 0.4),
+          customerLifetimeValue: Math.round(revenue * 0.15 * 2.5),
+          marketShareGrowth: 2.5
+        },
+        expected: {
+          monthlyGrowth: Math.round(baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7),
+          annualGrowth: Math.round((baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7) * 12),
+          paybackMonths: 1.3,
+          revenueIncrease: 20,
+          conversionBoost: Math.round(conversionRate * 0.4 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.3),
+          adEfficiencyGain: Math.round(adEfficiency * 0.7),
+          timeSaved: Math.round(manualHours * 0.6),
+          customerLifetimeValue: Math.round(revenue * 0.20 * 2.8),
+          marketShareGrowth: 4.2
+        },
+        optimistic: {
+          monthlyGrowth: Math.round(baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue),
+          annualGrowth: Math.round((baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue) * 12),
+          paybackMonths: 0.9,
+          revenueIncrease: 25,
+          conversionBoost: Math.round(conversionRate * 0.5 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.4),
+          adEfficiencyGain: Math.round(adEfficiency),
+          timeSaved: Math.round(manualHours * 0.8),
+          customerLifetimeValue: Math.round(revenue * 0.25 * 3.2),
+          marketShareGrowth: 6.8
+        }
+      };
+      
+      // Generate comprehensive business intelligence
+      const biData = {
+        conservative: {
+          efficiency: {
+            operationalEfficiency: '35% improvement',
+            processAutomation: '40% of manual tasks automated',
+            resourceOptimization: '25% better resource allocation',
+            workflowStreamlining: '30% faster task completion'
+          },
+          growth: {
+            customerAcquisition: '20% increase in new customers',
+            retentionRate: '15% improvement in customer retention',
+            averageOrderValue: '12% increase in AOV',
+            repeatPurchaseRate: '18% more repeat customers'
+          },
+          financial: {
+            profitMargin: '8% improvement in profit margins',
+            cashFlow: '22% better cash flow management',
+            costReduction: '15% reduction in operational costs',
+            roiMultiplier: '2.8x return on investment'
+          },
+          competitive: {
+            marketPosition: 'Stronger competitive positioning',
+            brandPerception: 'Enhanced brand credibility',
+            customerSatisfaction: '25% improvement in satisfaction scores',
+            industryStanding: 'Top 30% in industry efficiency'
+          }
+        },
+        expected: {
+          efficiency: {
+            operationalEfficiency: '50% improvement',
+            processAutomation: '60% of manual tasks automated',
+            resourceOptimization: '40% better resource allocation',
+            workflowStreamlining: '45% faster task completion'
+          },
+          growth: {
+            customerAcquisition: '35% increase in new customers',
+            retentionRate: '25% improvement in customer retention',
+            averageOrderValue: '20% increase in AOV',
+            repeatPurchaseRate: '30% more repeat customers'
+          },
+          financial: {
+            profitMargin: '15% improvement in profit margins',
+            cashFlow: '35% better cash flow management',
+            costReduction: '25% reduction in operational costs',
+            roiMultiplier: '4.2x return on investment'
+          },
+          competitive: {
+            marketPosition: 'Market leader positioning',
+            brandPerception: 'Premium brand recognition',
+            customerSatisfaction: '40% improvement in satisfaction scores',
+            industryStanding: 'Top 15% in industry efficiency'
+          }
+        },
+        optimistic: {
+          efficiency: {
+            operationalEfficiency: '70% improvement',
+            processAutomation: '80% of manual tasks automated',
+            resourceOptimization: '60% better resource allocation',
+            workflowStreamlining: '65% faster task completion'
+          },
+          growth: {
+            customerAcquisition: '55% increase in new customers',
+            retentionRate: '40% improvement in customer retention',
+            averageOrderValue: '35% increase in AOV',
+            repeatPurchaseRate: '50% more repeat customers'
+          },
+          financial: {
+            profitMargin: '25% improvement in profit margins',
+            cashFlow: '50% better cash flow management',
+            costReduction: '40% reduction in operational costs',
+            roiMultiplier: '6.8x return on investment'
+          },
+          competitive: {
+            marketPosition: 'Industry disruption potential',
+            brandPerception: 'Innovation leader status',
+            customerSatisfaction: '60% improvement in satisfaction scores',
+            industryStanding: 'Top 5% in industry efficiency'
+          }
+        }
+      };
+      
+      console.log('📈 Live calculations with BI:', liveCalcs);
+      setLiveCalculations(liveCalcs);
+      setBusinessIntelligence(biData);
+      setShowLiveProjections(true);
+    } else {
+      console.log('❌ Not enough basic fields for live projections');
+      setShowLiveProjections(false);
+    }
+  }, [
+    formData.monthly_revenue, 
+    formData.industry, 
+    formData.business_stage,
+    formData.conversion_rate,
+    formData.cart_abandonment,
+    formData.ad_spend,
+    formData.manual_hours
+  ]);
+
+  const calculateROI = () => {
+    console.log('🧮 Calculating detailed ROI...');
+    
+    const revenue = parseFloat(formData.monthly_revenue) || 0;
+    const conversionRate = parseFloat(formData.conversion_rate) || 2.5;
+    const cartAbandonment = parseFloat(formData.cart_abandonment) || 70;
+    const adSpend = parseFloat(formData.ad_spend) || 5000;
+    const manualHours = parseFloat(formData.manual_hours) || 35;
+
+    const industryMultipliers = {
+      'Fashion & Apparel': 1.2,
+      'Electronics': 1.15,
+      'Health & Wellness': 1.25,
+      'Home & Garden': 1.1,
+      'Beauty & Cosmetics': 1.3,
+      'Food & Beverage': 1.05,
+      'Pet Products': 1.2,
+      'Sports & Fitness': 1.15,
+      'Automotive': 1.1,
+      'Books & Media': 1.05,
+      'Toys & Games': 1.2,
+      'Other': 1.1
+    };
+
+    const stageMultipliers = {
+      'Startup': 1.3,
+      'Growth': 1.25,
+      'Established': 1.15,
+      'Mature': 1.1
+    };
+
+    const industryMultiplier = industryMultipliers[formData.industry] || 1.1;
+    const stageMultiplier = stageMultipliers[formData.business_stage] || 1.1;
+
+    const baseGrowth = revenue * industryMultiplier * stageMultiplier;
+    const conversionImprovement = (conversionRate * 0.4 * revenue) / 100;
+    const cartRecovery = (cartAbandonment * 0.3 * revenue) / 100;
+    const adEfficiency = adSpend * 0.25;
+    const timeValue = (manualHours * 50) * 4.33;
+
+    const scenarios = {
+      conservative: {
+        totalMonthlyBenefit: Math.round(baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5),
+        totalAnnualBenefit: Math.round((baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5) * 12),
+        paybackPeriod: 1.8,
+        annualRevenueIncrease: 15
+      },
+      expected: {
+        totalMonthlyBenefit: Math.round(baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7),
+        totalAnnualBenefit: Math.round((baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7) * 12),
+        paybackPeriod: 1.3,
+        annualRevenueIncrease: 20
+      },
+      optimistic: {
+        totalMonthlyBenefit: Math.round(baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue),
+        totalAnnualBenefit: Math.round((baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue) * 12),
+        paybackPeriod: 0.9,
+        annualRevenueIncrease: 25
+      }
+    };
+
+    console.log('📊 Calculated detailed scenarios:', scenarios);
+    setCalculations(scenarios);
+    setShowResults(true);
+  };
+
+  const handleCalculate = () => {
+    console.log('🎯 Calculate button clicked');
+    calculateROI();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('📤 Form submitted');
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    // Map business stage for HubSpot compatibility
+    const mapBusinessStageForHubSpot = (stage) => {
+      const mapping = {
+        'Startup': 'startup',
+        'Growth': 'growing',
+        'Established': 'established',
+        'Mature': 'enterprise'
+      };
+      return mapping[stage] || stage;
+    };
+
+    // Map industry for HubSpot compatibility  
+    const mapIndustryForHubSpot = (industry) => {
+      const mapping = {
+        'Fashion & Apparel': 'fashion_apparel',
+        'Electronics': 'electronics',
+        'Health & Wellness': 'health_wellness',
+        'Home & Garden': 'home_garden',
+        'Beauty & Cosmetics': 'beauty_cosmetics',
+        'Food & Beverage': 'food_beverage',
+        'Pet Products': 'pet_products',
+        'Sports & Fitness': 'sports_fitness',
+        'Automotive': 'automotive',
+        'Books & Media': 'books_media',
+        'Toys & Games': 'toys_games',
+        'Other': 'other'
+      };
+      return mapping[industry] || industry;
+    };
+
+    // Prepare data with HubSpot-compatible values
+    const submissionData = {
+      ...formData,
+      business_stage: mapBusinessStageForHubSpot(formData.business_stage),
+      industry: mapIndustryForHubSpot(formData.industry),
+      calculations: calculations[selectedScenario] || liveCalculations[selectedScenario]
+    };
+
+    console.log('📊 Submission data with mapping:', submissionData);
+
+    try {
+      const response = await fetch('https://roi-calculator-backend-production-8b8b.up.railway.app/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      if (response.ok) {
+        setSubmitMessage('✅ Thank you! Your detailed growth report has been sent to your email.');
+      } else {
+        const errorData = await response.text();
+        console.error('Submit error response:', errorData);
+        setSubmitMessage('❌ There was an error sending your report. Please try again.');
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      setSubmitMessage('❌ There was an error sending your report. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="optimized-roi-calculator">
+      <style jsx>{`
+        .optimized-roi-calculator {
+          padding: 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .live-projections {
+          background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 2rem;
+          margin-top: 2rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .live-projections h3 {
+          color: #1e293b;
+          margin-bottom: 1.5rem;
+          font-size: 1.5rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .scenarios-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
+        
+        .scenario-card {
+          background: white;
+          border-radius: 12px;
+          padding: 1.5rem;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          border: 1px solid #e2e8f0;
+          transition: all 0.3s ease;
+        }
+        
+        .scenario-card:hover {
+          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+          transform: translateY(-2px);
+        }
+        
+        .scenario-title {
+          font-weight: 700;
+          color: #1e293b;
+          margin-bottom: 1rem;
+          font-size: 1.1rem;
+          text-align: center;
+        }
+        
+        .scenario-metrics {
+          display: grid;
+          gap: 0.75rem;
+        }
+        
+        .metric-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .metric-label {
+          font-size: 0.875rem;
+          color: #64748b;
+          font-weight: 500;
+        }
+        
+        .metric-value {
+          font-weight: 700;
+          color: #059669;
+          font-size: 0.9rem;
+        }
+        
+        .bi-section {
+          margin-top: 2rem;
+          padding-top: 2rem;
+          border-top: 1px solid #e2e8f0;
+        }
+        
+        .bi-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+        
+        .bi-category {
+          background: white;
+          border-radius: 12px;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+        }
+        
+        .bi-category h4 {
+          color: #1e293b;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .bi-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5rem 0;
+          font-size: 0.875rem;
+        }
+        
+        .bi-label {
+          color: #64748b;
+        }
+        
+        .bi-value {
+          color: #059669;
+          font-weight: 600;
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .live-projections {
+          animation: slideIn 0.5s ease-out;
+        }
+        
+        .form-section {
+          background: white;
+          border-radius: 16px;
+          padding: 2rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e2e8f0;
+        }
+        
+        .input-field {
+          width: 100%;
+          padding: 0.875rem 1rem;
+          border: 2px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.2s ease;
+          background: #fafafa;
+        }
+        
+        .input-field:focus {
+          outline: none;
+          border-color: #3b82f6;
+          background: white;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .cta-button {
+          background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+        
+        .cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+      `}</style>
+
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <TrendingUp className="w-10 h-10 inline mr-3 text-blue-600" />
+          Revenue Growth Calculator
+        </h2>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Discover your business's growth potential with AI-powered automation. 
+          See real-time projections and comprehensive business intelligence as you enter your data.
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-12">
+        {/* Left Column - Form */}
+        <div className="space-y-8">
+          {/* Business Metrics Section */}
+          <div className="form-section">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+              <BarChart3 className="w-6 h-6 mr-3 text-blue-600" />
+              Business Metrics
+            </h3>
+            
+            <div className="space-y-6">
+              {/* Monthly Revenue */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <DollarSign className="w-4 h-4 inline mr-2" />
+                  Monthly Revenue
+                </label>
+                <input
+                  type="number"
+                  value={formData.monthly_revenue}
+                  onChange={(e) => handleInputChange('monthly_revenue', e.target.value)}
+                  className="input-field"
+                  placeholder="75000"
+                />
+              </div>
+
+              {/* Industry */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Building className="w-4 h-4 inline mr-2" />
+                  Industry
+                </label>
+                <select
+                  value={formData.industry}
+                  onChange={(e) => handleInputChange('industry', e.target.value)}
+                  className="input-field"
+                >
+                  <option value="">Select your industry</option>
+                  <option value="Fashion & Apparel">Fashion & Apparel</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Health & Wellness">Health & Wellness</option>
+                  <option value="Home & Garden">Home & Garden</option>
+                  <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
+                  <option value="Food & Beverage">Food & Beverage</option>
+                  <option value="Pet Products">Pet Products</option>
+                  <option value="Sports & Fitness">Sports & Fitness</option>
+                  <option value="Automotive">Automotive</option>
+                  <option value="Books & Media">Books & Media</option>
+                  <option value="Toys & Games">Toys & Games</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              {/* Business Stage */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Target className="w-4 h-4 inline mr-2" />
+                  Business Stage
+                </label>
+                <select
+                  value={formData.business_stage}
+                  onChange={(e) => handleInputChange('business_stage', e.target.value)}
+                  className="input-field"
+                >
+                  <option value="">Select your business stage</option>
+                  <option value="Startup">Startup</option>
+                  <option value="Growth">Growth</option>
+                  <option value="Established">Established</option>
+                  <option value="Mature">Mature</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Performance Data Section */}
+          <div className="form-section">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+              <Zap className="w-6 h-6 mr-3 text-blue-600" />
+              Performance Metrics
+            </h3>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <ShoppingCart className="w-4 h-4 inline mr-2" />
+                  Conversion Rate (%)
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={formData.conversion_rate}
+                  onChange={(e) => handleInputChange('conversion_rate', e.target.value)}
+                  className="input-field"
+                  placeholder="2.5"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Users className="w-4 h-4 inline mr-2" />
+                  Cart Abandonment (%)
+                </label>
+                <input
+                  type="number"
+                  value={formData.cart_abandonment}
+                  onChange={(e) => handleInputChange('cart_abandonment', e.target.value)}
+                  className="input-field"
+                  placeholder="70"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <DollarSign className="w-4 h-4 inline mr-2" />
+                  Monthly Ad Spend ($)
+                </label>
+                <input
+                  type="number"
+                  value={formData.ad_spend}
+                  onChange={(e) => handleInputChange('ad_spend', e.target.value)}
+                  className="input-field"
+                  placeholder="5000"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Clock className="w-4 h-4 inline mr-2" />
+                  Manual Hours/Week
+                </label>
+                <input
+                  type="number"
+                  value={formData.manual_hours}
+                  onChange={(e) => handleInputChange('manual_hours', e.target.value)}
+                  className="input-field"
+                  placeholder="35"
+                />
+              </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <button
+                onClick={handleCalculate}
+                className="cta-button"
+              >
+                Get Detailed Revenue Analysis
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Live Projections */}
+        <div>
+          {showLiveProjections && (
+            <div className="live-projections">
+              <h3>
+                <TrendingUp className="w-6 h-6" />
+                Live Revenue Projections
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Real-time projections based on your business metrics and performance data:
+              </p>
+              
+              <div className="scenarios-grid">
+                {Object.entries(liveCalculations).map(([scenario, data]) => (
+                  <div key={scenario} className="scenario-card">
+                    <div className="scenario-title">
+                      {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
+                    </div>
+                    <div className="scenario-metrics">
+                      <div className="metric-row">
+                        <span className="metric-label">Monthly Growth</span>
+                        <span className="metric-value">${data.monthlyGrowth?.toLocaleString()}</span>
+                      </div>
+                      <div className="metric-row">
+                        <span className="metric-label">Annual Growth</span>
+                        <span className="metric-value">${data.annualGrowth?.toLocaleString()}</span>
+                      </div>
+                      <div className="metric-row">
+                        <span className="metric-label">Payback Period</span>
+                        <span className="metric-value">{data.paybackMonths} months</span>
+                      </div>
+                      <div className="metric-row">
+                        <span className="metric-label">Revenue Increase</span>
+                        <span className="metric-value">{data.revenueIncrease}%</span>
+                      </div>
+                      <div className="metric-row">
+                        <span className="metric-label">Conversion Boost</span>
+                        <span className="metric-value">+{data.conversionBoost}%</span>
+                      </div>
+                      <div className="metric-row">
+                        <span className="metric-label">Time Saved</span>
+                        <span className="metric-value">{data.timeSaved} hrs/week</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Business Intelligence Section */}
+              <div className="bi-section">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">
+                  Comprehensive Business Intelligence
+                </h4>
+                
+                <div className="mb-6">
+                  <select
+                    value={selectedScenario}
+                    onChange={(e) => setSelectedScenario(e.target.value)}
+                    className="input-field max-w-xs"
+                  >
+                    <option value="conservative">Conservative Scenario</option>
+                    <option value="expected">Expected Scenario</option>
+                    <option value="optimistic">Optimistic Scenario</option>
+                  </select>
+                </div>
+                
+                {businessIntelligence[selectedScenario] && (
+                  <div className="bi-grid">
+                    <div className="bi-category">
+                      <h4>
+                        <Zap className="w-5 h-5 text-blue-600" />
+                        Operational Efficiency
+                      </h4>
+                      {Object.entries(businessIntelligence[selectedScenario].efficiency).map(([key, value]) => (
+                        <div key={key} className="bi-item">
+                          <span className="bi-label">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</span>
+                          <span className="bi-value">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="bi-category">
+                      <h4>
+                        <TrendingUp className="w-5 h-5 text-green-600" />
+                        Growth Metrics
+                      </h4>
+                      {Object.entries(businessIntelligence[selectedScenario].growth).map(([key, value]) => (
+                        <div key={key} className="bi-item">
+                          <span className="bi-label">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</span>
+                          <span className="bi-value">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="bi-category">
+                      <h4>
+                        <DollarSign className="w-5 h-5 text-purple-600" />
+                        Financial Impact
+                      </h4>
+                      {Object.entries(businessIntelligence[selectedScenario].financial).map(([key, value]) => (
+                        <div key={key} className="bi-item">
+                          <span className="bi-label">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</span>
+                          <span className="bi-value">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="bi-category">
+                      <h4>
+                        <Target className="w-5 h-5 text-orange-600" />
+                        Competitive Advantage
+                      </h4>
+                      {Object.entries(businessIntelligence[selectedScenario].competitive).map(([key, value]) => (
+                        <div key={key} className="bi-item">
+                          <span className="bi-label">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</span>
+                          <span className="bi-value">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          
+          {!showLiveProjections && (
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-8 text-center border border-gray-200">
+              <h3 className="text-2xl font-semibold text-gray-700 mb-4">
+                Enter Your Business Data
+              </h3>
+              <p className="text-gray-600 text-lg">
+                Fill in your monthly revenue, industry, and business stage to see live projections and comprehensive business intelligence
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Results Section */}
+      {showResults && (
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-lg p-8 mb-8 mt-12">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Your Detailed Revenue Growth Analysis</h3>
+          
+          {/* Scenario Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-white rounded-lg p-1 shadow-md">
+              {Object.keys(calculations).map((scenario) => (
+                <button
+                  key={scenario}
+                  onClick={() => setSelectedScenario(scenario)}
+                  className={`px-8 py-4 rounded-md font-semibold transition-colors text-lg ${
+                    selectedScenario === scenario
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Results Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="text-4xl font-bold text-green-600 mb-3">
+                ${calculations[selectedScenario]?.totalMonthlyBenefit?.toLocaleString()}
+              </div>
+              <div className="text-sm text-gray-600 font-medium">Additional Monthly Benefit</div>
+            </div>
+            
+            <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="text-4xl font-bold text-blue-600 mb-3">
+                ${calculations[selectedScenario]?.totalAnnualBenefit?.toLocaleString()}
+              </div>
+              <div className="text-sm text-gray-600 font-medium">Additional Annual Benefit</div>
+            </div>
+            
+            <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="text-4xl font-bold text-purple-600 mb-3">
+                {calculations[selectedScenario]?.paybackPeriod} months
+              </div>
+              <div className="text-sm text-gray-600 font-medium">Payback Period</div>
+            </div>
+            
+            <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="text-4xl font-bold text-orange-600 mb-3">
+                {calculations[selectedScenario]?.annualRevenueIncrease}%
+              </div>
+              <div className="text-sm text-gray-600 font-medium">Annual Revenue Increase</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Form Section */}
+      {showResults && (
+        <div className="form-section">
+          <div className="text-center mb-10">
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+              Want to learn more? Get Your Detailed Growth Analysis Report
+            </h3>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Enter your contact details below to get a detailed report featuring industry-specific insights and a step-by-step implementation roadmap, delivered directly to your inbox.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* First Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <User className="w-4 h-4 inline mr-2" />
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.first_name}
+                  onChange={(e) => handleInputChange('first_name', e.target.value)}
+                  className="input-field"
+                  placeholder="John"
+                />
+              </div>
+              
+              {/* Last Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <User className="w-4 h-4 inline mr-2" />
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.last_name}
+                  onChange={(e) => handleInputChange('last_name', e.target.value)}
+                  className="input-field"
+                  placeholder="Smith"
+                />
+              </div>
+              
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Mail className="w-4 h-4 inline mr-2" />
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  className="input-field"
+                  placeholder="john@company.com"
+                />
+              </div>
+              
+              {/* Business Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <Building className="w-4 h-4 inline mr-2" />
+                  Business Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.business_name}
+                  onChange={(e) => handleInputChange('business_name', e.target.value)}
+                  className="input-field"
+                  placeholder="Your Company Inc."
+                />
+              </div>
+            </div>
+            
+            <div className="mt-10 text-center">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-green-600 text-white px-10 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors text-xl disabled:opacity-50"
+              >
+                {isSubmitting ? 'Sending...' : 'Get My Detailed Growth Report'}
+              </button>
+              <p className="text-sm text-gray-500 mt-4">
+                Free report • No spam • Unsubscribe anytime
+              </p>
+            </div>
+            
+            {submitMessage && (
+              <div className="mt-6 text-center">
+                <p className={`text-lg ${submitMessage.includes('✅') ? 'text-green-600' : 'text-red-600'}`}>
+                  {submitMessage}
+                </p>
+              </div>
+            )}
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default OptimizedROICalculator;
+
