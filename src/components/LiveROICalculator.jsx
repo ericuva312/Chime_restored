@@ -4,6 +4,8 @@ import { Calculator, TrendingUp, DollarSign, Users, ShoppingCart, Clock, Mail, U
 const API_URL = 'https://chime-roi-calculator-backend-secure-production.up.railway.app';
 
 const LiveROICalculator = () => {
+  console.log('🚀 LiveROICalculator component is loading...');
+  
   const [formData, setFormData] = useState({
     // Business fields (Section 1)
     monthly_revenue: '',
