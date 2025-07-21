@@ -51,13 +51,25 @@ const LiveROICalculator = () => {
 
   // Check if basic fields are filled for basic projections
   useEffect(() => {
+    console.log('🔍 LiveROI useEffect triggered');
+    console.log('📊 Form data:', {
+      monthly_revenue: formData.monthly_revenue,
+      industry: formData.industry,
+      business_stage: formData.business_stage
+    });
+    
     const hasBasicData = formData.monthly_revenue && formData.industry && formData.business_stage;
+    console.log('✅ Has basic data:', hasBasicData);
+    
     setShowBasicProjections(hasBasicData);
     
     // Check for advanced metrics (performance data)
     const hasPerformanceData = formData.conversion_rate && formData.cart_abandonment_rate && 
                               formData.monthly_ad_spend && formData.manual_hours_per_week;
     setShowAdvancedMetrics(hasBasicData && hasPerformanceData);
+    
+    console.log('🎯 Show basic projections:', hasBasicData);
+    console.log('🎯 Show advanced metrics:', hasBasicData && hasPerformanceData);
   }, [formData]);
 
   // Industry multipliers from rubric
