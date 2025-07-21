@@ -1,607 +1,684 @@
-import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { TrendingUp, DollarSign, Clock, Target, User, Mail, Building, BarChart3, Zap, Users, ShoppingCart, Send, CheckCircle } from 'lucide-react';
 
 const FixedROICalculator = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [submissionResult, setSubmissionResult] = useState(null);
+  console.log('🚀 FixedROICalculator is loading and executing!');
   
-  // Persistent form data that survives component re-initializations
-  const formDataRef = useRef({
-    monthly_revenue: '75000',
-    average_order_value: '125',
-    monthly_orders: '600',
+  const [formData, setFormData] = useState({
+    monthly_revenue: '',
     industry: '',
-    conversion_rate: '2.5',
-    cart_abandonment_rate: '70',
-    monthly_ad_spend: '5000',
-    manual_hours_per_week: '35',
     business_stage: '',
-    challenges: ['Manual processes', 'Low conversion rates', 'High cart abandonment'],
+    conversion_rate: '',
+    cart_abandonment: '',
+    ad_spend: '',
+    manual_hours: '',
     first_name: '',
     last_name: '',
     email: '',
-    business_name: '',
-    website: '',
-    phone: ''
+    business_name: ''
   });
-  
-  const [formData, setFormData] = useState(formDataRef.current);
 
-  console.log('🎯 FixedROICalculator initialized!');
+  const [selectedScenario, setSelectedScenario] = useState('expected');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   
-  // Debug: Monitor formData changes
-  useEffect(() => {
-    console.log('🔄 formData changed:', formData);
-    console.log('  - industry:', formData.industry);
-    console.log('  - business_stage:', formData.business_stage);
-  }, [formData]);
-  
-  // Production backend URL (deployed to Manus)
-  const API_BASE_URL = 'https://77h9ikczlzgq.manus.space';
-  
-  // Industry options
-  const industries = [
-    'Fashion & Apparel', 'Electronics', 'Health & Wellness', 'Home & Garden',
-    'Beauty & Cosmetics', 'Food & Beverage', 'Pet Products', 'Sports & Fitness',
-    'Automotive', 'Books & Media', 'Toys & Games', 'Other'
-  ];
-  
-  // Business stage options
-  const businessStages = ['Startup', 'Growth', 'Established', 'Mature'];
-  
-  // Challenge options
-  const challengeOptions = [
-    'Manual processes', 'Low conversion rates', 'High cart abandonment',
-    'Poor customer retention', 'Inventory management', 'Marketing inefficiency',
-    'Customer service issues', 'Data analysis challenges', 'Other'
-  ];
-  
-  // Handle input changes with proper state management
-  const handleInputChange = useCallback((field, value) => {
-    console.log(`🔄 handleInputChange: ${field} = "${value}"`);
-    
-    // Update both state and persistent ref
-    const newData = { ...formDataRef.current, [field]: value };
-    formDataRef.current = newData;
-    
-    setFormData(newData);
-    
-    console.log(`📊 Updated ${field}:`, newData[field]);
-    console.log(`📊 Full formData after update:`, newData);
-    
-    // Special logging for Step 2 fields
-    if (field === 'industry' || field === 'business_stage') {
-      console.log(`🎯 Step 2 validation check after ${field} update:`);
-      console.log(`  - industry: "${newData.industry}" (${!!newData.industry})`);
-      console.log(`  - business_stage: "${newData.business_stage}" (${!!newData.business_stage})`);
-      console.log(`  - Step 2 valid: ${!!(newData.industry && newData.business_stage)}`);
-    }
-  }, []);
-  
-  // Handle challenge selection
-  const handleChallengeToggle = (challenge) => {
-    console.log(`🔄 Challenge toggle: ${challenge}`);
+  // Live projections state
+  const [showLiveProjections, setShowLiveProjections] = useState(false);
+  const [liveCalculations, setLiveCalculations] = useState({});
+
+  console.log('🔍 FixedROICalculator formData:', formData);
+  console.log('🔍 Show live projections:', showLiveProjections);
+
+  const handleInputChange = (field, value) => {
+    console.log(`📝 FixedROICalculator input changed: ${field} = ${value}`);
     setFormData(prev => ({
       ...prev,
-      challenges: prev.challenges.includes(challenge)
-        ? prev.challenges.filter(c => c !== challenge)
-        : [...prev.challenges, challenge]
+      [field]: value
     }));
   };
-  
-  // Form validation with detailed logging
-  const validateStep = (step) => {
-    console.log(`🔍 Validating step ${step}`);
-    console.log(`📊 Current formData:`, formData);
+
+  // Real-time calculations for ALL fields including performance data
+  useEffect(() => {
+    console.log('🔄 Real-time calculations useEffect triggered');
     
-    switch (step) {
-      case 1:
-        const step1Valid = formData.monthly_revenue && formData.average_order_value && formData.monthly_orders;
-        console.log(`✅ Step 1 valid: ${step1Valid}`);
-        return step1Valid;
-      case 2:
-        const step2Valid = formData.industry && formData.business_stage;
-        console.log(`✅ Step 2 validation:`);
-        console.log(`  - industry: "${formData.industry}" (${!!formData.industry})`);
-        console.log(`  - business_stage: "${formData.business_stage}" (${!!formData.business_stage})`);
-        console.log(`  - challenges: ${formData.challenges.length} items (optional)`);
-        console.log(`✅ Step 2 valid: ${step2Valid}`);
-        return step2Valid;
-      case 3:
-        const step3Valid = formData.first_name && formData.last_name && formData.email && formData.business_name;
-        console.log(`✅ Step 3 valid: ${step3Valid}`);
-        return step3Valid;
-      default:
-        return true;
-    }
-  };
-  
-  // Step navigation
-  const nextStep = () => {
-    console.log(`🚀 Next step from ${currentStep}`);
-    if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, 3));
-      console.log(`✅ Advanced to step ${currentStep + 1}`);
+    const hasBasicFields = formData.monthly_revenue && formData.industry && formData.business_stage;
+    
+    if (hasBasicFields) {
+      console.log('✅ Calculating real-time projections with performance data...');
+      
+      const revenue = parseFloat(formData.monthly_revenue) || 0;
+      const conversionRate = parseFloat(formData.conversion_rate) || 2.5;
+      const cartAbandonment = parseFloat(formData.cart_abandonment) || 70;
+      const adSpend = parseFloat(formData.ad_spend) || 5000;
+      const manualHours = parseFloat(formData.manual_hours) || 35;
+      
+      const industryMultipliers = {
+        'Fashion & Apparel': 1.2,
+        'Electronics': 1.15,
+        'Health & Wellness': 1.25,
+        'Home & Garden': 1.1,
+        'Beauty & Cosmetics': 1.3,
+        'Food & Beverage': 1.05,
+        'Pet Products': 1.2,
+        'Sports & Fitness': 1.15,
+        'Automotive': 1.1,
+        'Books & Media': 1.05,
+        'Toys & Games': 1.2,
+        'Other': 1.1
+      };
+      
+      const stageMultipliers = {
+        'Startup': 1.3,
+        'Growth': 1.25,
+        'Established': 1.15,
+        'Mature': 1.1
+      };
+      
+      const industryMultiplier = industryMultipliers[formData.industry] || 1.1;
+      const stageMultiplier = stageMultipliers[formData.business_stage] || 1.1;
+      
+      const baseGrowth = revenue * industryMultiplier * stageMultiplier;
+      const conversionImprovement = (conversionRate * 0.4 * revenue) / 100;
+      const cartRecovery = (cartAbandonment * 0.3 * revenue) / 100;
+      const adEfficiency = adSpend * 0.25;
+      const timeValue = (manualHours * 50) * 4.33;
+      
+      const liveCalcs = {
+        conservative: {
+          monthlyGrowth: Math.round(baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5),
+          annualGrowth: Math.round((baseGrowth * 0.15 + conversionImprovement * 0.5 + cartRecovery * 0.5 + adEfficiency * 0.5 + timeValue * 0.5) * 12),
+          paybackMonths: 1.8,
+          revenueIncrease: 15,
+          conversionBoost: Math.round(conversionRate * 0.3 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.2),
+          adEfficiencyGain: Math.round(adEfficiency * 0.5),
+          timeSaved: Math.round(manualHours * 0.4)
+        },
+        expected: {
+          monthlyGrowth: Math.round(baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7),
+          annualGrowth: Math.round((baseGrowth * 0.20 + conversionImprovement * 0.7 + cartRecovery * 0.7 + adEfficiency * 0.7 + timeValue * 0.7) * 12),
+          paybackMonths: 1.3,
+          revenueIncrease: 20,
+          conversionBoost: Math.round(conversionRate * 0.4 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.3),
+          adEfficiencyGain: Math.round(adEfficiency * 0.7),
+          timeSaved: Math.round(manualHours * 0.6)
+        },
+        optimistic: {
+          monthlyGrowth: Math.round(baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue),
+          annualGrowth: Math.round((baseGrowth * 0.25 + conversionImprovement + cartRecovery + adEfficiency + timeValue) * 12),
+          paybackMonths: 0.9,
+          revenueIncrease: 25,
+          conversionBoost: Math.round(conversionRate * 0.5 * 10) / 10,
+          cartRecoveryRate: Math.round(cartAbandonment * 0.4),
+          adEfficiencyGain: Math.round(adEfficiency),
+          timeSaved: Math.round(manualHours * 0.8)
+        }
+      };
+      
+      console.log('📈 Live calculations:', liveCalcs);
+      setLiveCalculations(liveCalcs);
+      setShowLiveProjections(true);
     } else {
-      console.log(`❌ Validation failed for step ${currentStep}`);
+      console.log('❌ Not enough basic fields for live projections');
+      setShowLiveProjections(false);
     }
-  };
-  
-  const prevStep = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
-  };
-  
-  // Form submission
-  const handleSubmit = async () => {
-    if (!validateStep(3)) return;
-    
+  }, [
+    formData.monthly_revenue, 
+    formData.industry, 
+    formData.business_stage,
+    formData.conversion_rate,
+    formData.cart_abandonment,
+    formData.ad_spend,
+    formData.manual_hours
+  ]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('📤 Form submitted with data:', formData);
     setIsSubmitting(true);
-    console.log('🚀 Submitting form...', formData);
-    
+    setSubmitMessage('');
+    setSubmitSuccess(false);
+
+    // Prepare data with correct field names for backend
+    const submissionData = {
+      // Basic business metrics
+      monthly_revenue: parseFloat(formData.monthly_revenue) || 0,
+      industry: formData.industry,
+      business_stage: formData.business_stage,
+      
+      // Performance metrics with corrected field names
+      conversion_rate: parseFloat(formData.conversion_rate) || 2.5,
+      cart_abandonment_rate: parseFloat(formData.cart_abandonment) || 70, // ✅ Fixed field name
+      monthly_ad_spend: parseFloat(formData.ad_spend) || 5000, // ✅ Fixed field name
+      manual_hours_per_week: parseFloat(formData.manual_hours) || 35, // ✅ Fixed field name
+      
+      // Add missing required fields with intelligent defaults
+      average_order_value: parseFloat(formData.monthly_revenue) * 0.002 || 150,
+      monthly_orders: Math.max(10, parseInt(parseFloat(formData.monthly_revenue) / 150)) || 500,
+      
+      // Contact information
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      email: formData.email,
+      business_name: formData.business_name,
+      
+      // Optional fields
+      website: formData.website || null,
+      phone: formData.phone || null
+    };
+
+    console.log('📤 Sending submission data:', submissionData);
+
     try {
-      const response = await fetch(`${API_BASE_URL}/submit`, {
+      const response = await fetch('https://chime-roi-calculator-backend-secure-production.up.railway.app/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(submissionData)
       });
-      
+
+      const result = await response.json();
+      console.log('📥 Backend response:', result);
+
       if (response.ok) {
-        const result = await response.json();
-        console.log('✅ Submission successful:', result);
-        setSubmissionResult(result);
-        setShowSuccess(true);
+        setSubmitSuccess(true);
+        setSubmitMessage(result.message || 'Thank you! Your detailed growth analysis report is on the way.');
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            monthly_revenue: '',
+            industry: '',
+            business_stage: '',
+            conversion_rate: '',
+            cart_abandonment: '',
+            ad_spend: '',
+            manual_hours: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            business_name: ''
+          });
+          setSubmitSuccess(false);
+          setSubmitMessage('');
+        }, 5000);
       } else {
-        const error = await response.json();
-        console.error('❌ Submission error:', error);
-        alert('There was an error submitting your information. Please try again.');
+        setSubmitMessage(result.error || 'Something went wrong. Please try again.');
       }
     } catch (error) {
-      console.error('❌ Network error:', error);
-      alert('There was a network error. Please check your connection and try again.');
+      console.error('❌ Submission error:', error);
+      setSubmitMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  
-  // Calculations
-  const calculations = useMemo(() => {
-    const monthlyRevenue = parseFloat(formData.monthly_revenue) || 0;
-    const avgOrderValue = parseFloat(formData.average_order_value) || 0;
-    const monthlyOrders = parseFloat(formData.monthly_orders) || 0;
-    
-    // Industry multipliers
-    const industryMultipliers = {
-      'Fashion & Apparel': 1.3,
-      'Electronics': 1.25,
-      'Health & Wellness': 1.4,
-      'Home & Garden': 1.2,
-      'Beauty & Cosmetics': 1.35,
-      'Food & Beverage': 1.15,
-      'Pet Products': 1.3,
-      'Sports & Fitness': 1.25,
-      'Automotive': 1.2,
-      'Books & Media': 1.1,
-      'Toys & Games': 1.25,
-      'Other': 1.2
-    };
-    
-    const multiplier = industryMultipliers[formData.industry] || 1.25;
-    const projectedRevenue = monthlyRevenue * multiplier;
-    const additionalRevenue = projectedRevenue - monthlyRevenue;
-    
-    return {
-      currentRevenue: monthlyRevenue,
-      projectedRevenue,
-      additionalRevenue,
-      annualAdditional: additionalRevenue * 12
-    };
-  }, [formData.monthly_revenue, formData.average_order_value, formData.monthly_orders, formData.industry]);
 
-  // Success screen
-  if (showSuccess) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              Thank you! Your analysis is complete.
-            </h1>
-            
-            {submissionResult && (
-              <div className="bg-blue-50 rounded-lg p-6 mb-6">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">Your Revenue Projections</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">
-                      ${submissionResult.projections?.conservative?.monthly_revenue?.toLocaleString() || 'N/A'}
-                    </div>
-                    <div className="text-sm text-gray-600">Conservative</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">
-                      ${submissionResult.projections?.expected?.monthly_revenue?.toLocaleString() || 'N/A'}
-                    </div>
-                    <div className="text-sm text-gray-600">Expected</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">
-                      ${submissionResult.projections?.optimistic?.monthly_revenue?.toLocaleString() || 'N/A'}
-                    </div>
-                    <div className="text-sm text-gray-600">Optimistic</div>
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            <p className="text-gray-600 mb-6">
-              Check your email for your personalized growth blueprint and next steps.
-            </p>
-            
-            <button
-              onClick={() => window.location.href = '/'}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Return to Homepage
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        
+        <style>{`
+          .metric-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+          }
+          
+          .metric-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+          }
+          
+          .metric-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+          }
+          
+          .metric-value {
+            font-weight: 700;
+            color: #059669;
+            font-size: 0.9rem;
+          }
+          
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          .live-projections {
+            animation: slideIn 0.5s ease-out;
+          }
+          
+          .form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+          }
+          
+          .input-field {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: #fafafa;
+          }
+          
+          .input-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+          }
+          
+          .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            width: 100%;
+          }
+          
+          .cta-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+          }
+          
+          .cta-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+          
+          .contact-form-section {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.3);
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+          }
+          
+          .contact-form-section > * {
+            position: relative;
+            z-index: 1;
+          }
+          
+          .success-message {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+          }
+        `}</style>
+
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <TrendingUp className="w-10 h-10 inline mr-3 text-blue-600" />
             Revenue Growth Calculator
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover your potential revenue growth with AI-powered automation
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover your business's growth potential with AI-powered automation. 
+            See real-time projections as you enter your data.
           </p>
         </div>
-        
-        {/* Progress Bar */}
-        <div className="mb-8">
-          <div className="flex items-center justify-center space-x-4">
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="flex items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                  currentStep >= step 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-200 text-gray-600'
-                }`}>
-                  {step}
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Left Column - Form */}
+          <div className="space-y-8">
+            {/* Business Metrics Section */}
+            <div className="form-section">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                <BarChart3 className="w-6 h-6 mr-3 text-blue-600" />
+                Business Metrics
+              </h3>
+              
+              <div className="space-y-6">
+                {/* Monthly Revenue */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <DollarSign className="w-4 h-4 inline mr-2" />
+                    Monthly Revenue
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.monthly_revenue}
+                    onChange={(e) => handleInputChange('monthly_revenue', e.target.value)}
+                    className="input-field"
+                    placeholder="75000"
+                  />
                 </div>
-                {step < 3 && (
-                  <div className={`w-16 h-1 mx-2 ${
-                    currentStep > step ? 'bg-blue-600' : 'bg-gray-200'
-                  }`} />
+
+                {/* Industry */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <Building className="w-4 h-4 inline mr-2" />
+                    Industry
+                  </label>
+                  <select
+                    value={formData.industry}
+                    onChange={(e) => handleInputChange('industry', e.target.value)}
+                    className="input-field"
+                  >
+                    <option value="">Select your industry</option>
+                    <option value="Fashion & Apparel">Fashion & Apparel</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Health & Wellness">Health & Wellness</option>
+                    <option value="Home & Garden">Home & Garden</option>
+                    <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Pet Products">Pet Products</option>
+                    <option value="Sports & Fitness">Sports & Fitness</option>
+                    <option value="Automotive">Automotive</option>
+                    <option value="Books & Media">Books & Media</option>
+                    <option value="Toys & Games">Toys & Games</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                {/* Business Stage */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <Target className="w-4 h-4 inline mr-2" />
+                    Business Stage
+                  </label>
+                  <select
+                    value={formData.business_stage}
+                    onChange={(e) => handleInputChange('business_stage', e.target.value)}
+                    className="input-field"
+                  >
+                    <option value="">Select your business stage</option>
+                    <option value="Startup">Startup</option>
+                    <option value="Growth">Growth</option>
+                    <option value="Established">Established</option>
+                    <option value="Mature">Mature</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Performance Data Section */}
+            <div className="form-section">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                <Zap className="w-6 h-6 mr-3 text-blue-600" />
+                Performance Metrics
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <ShoppingCart className="w-4 h-4 inline mr-2" />
+                    Conversion Rate (%)
+                  </label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={formData.conversion_rate}
+                    onChange={(e) => handleInputChange('conversion_rate', e.target.value)}
+                    className="input-field"
+                    placeholder="2.5"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <Users className="w-4 h-4 inline mr-2" />
+                    Cart Abandonment (%)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.cart_abandonment}
+                    onChange={(e) => handleInputChange('cart_abandonment', e.target.value)}
+                    className="input-field"
+                    placeholder="70"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <DollarSign className="w-4 h-4 inline mr-2" />
+                    Monthly Ad Spend ($)
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.ad_spend}
+                    onChange={(e) => handleInputChange('ad_spend', e.target.value)}
+                    className="input-field"
+                    placeholder="5000"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    <Clock className="w-4 h-4 inline mr-2" />
+                    Manual Hours/Week
+                  </label>
+                  <input
+                    type="number"
+                    value={formData.manual_hours}
+                    onChange={(e) => handleInputChange('manual_hours', e.target.value)}
+                    className="input-field"
+                    placeholder="35"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form Section - Enhanced Design */}
+            {showLiveProjections && (
+              <div className="contact-form-section">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold mb-4">
+                    Want to learn more?
+                  </h3>
+                  <h4 className="text-2xl font-semibold mb-4">
+                    Get Your Detailed Growth Analysis Report
+                  </h4>
+                  <p className="text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
+                    Enter your contact details below to get a detailed report featuring industry-specific insights 
+                    and a step-by-step implementation roadmap, delivered directly to your inbox.
+                  </p>
+                </div>
+
+                {submitSuccess ? (
+                  <div className="success-message">
+                    <CheckCircle className="w-8 h-8 inline mr-3" />
+                    <span className="text-lg font-semibold">{submitMessage}</span>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold mb-3">
+                          <User className="w-4 h-4 inline mr-2" />
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.first_name}
+                          onChange={(e) => handleInputChange('first_name', e.target.value)}
+                          className="input-field"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-semibold mb-3">
+                          <User className="w-4 h-4 inline mr-2" />
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.last_name}
+                          onChange={(e) => handleInputChange('last_name', e.target.value)}
+                          className="input-field"
+                          required
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold mb-3">
+                        <Mail className="w-4 h-4 inline mr-2" />
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        className="input-field"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-semibold mb-3">
+                        <Building className="w-4 h-4 inline mr-2" />
+                        Business Name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.business_name}
+                        onChange={(e) => handleInputChange('business_name', e.target.value)}
+                        className="input-field"
+                        required
+                      />
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="cta-button"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 inline mr-3" />
+                          Get My Detailed Growth Report
+                        </>
+                      )}
+                    </button>
+                    
+                    {submitMessage && !submitSuccess && (
+                      <div className="text-red-300 text-center mt-4 p-3 bg-red-500/20 rounded-lg">
+                        {submitMessage}
+                      </div>
+                    )}
+                  </form>
                 )}
               </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-4 space-x-8">
-            <span className={`text-sm ${currentStep >= 1 ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}>
-              Business Metrics
-            </span>
-            <span className={`text-sm ${currentStep >= 2 ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}>
-              Business Details
-            </span>
-            <span className={`text-sm ${currentStep >= 3 ? 'text-blue-600 font-semibold' : 'text-gray-500'}`}>
-              Contact Info
-            </span>
-          </div>
-        </div>
-        
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left Column - Form */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            {/* Step 1: Business Metrics */}
-            {currentStep === 1 && (
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Step 1: Business Metrics</h2>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Monthly Revenue ($)
-                    </label>
-                    <input
-                      type="number"
-                      value={formData.monthly_revenue}
-                      onChange={(e) => handleInputChange('monthly_revenue', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="75000"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Average Order Value ($)
-                    </label>
-                    <input
-                      type="number"
-                      value={formData.average_order_value}
-                      onChange={(e) => handleInputChange('average_order_value', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="125"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Monthly Orders
-                    </label>
-                    <input
-                      type="number"
-                      value={formData.monthly_orders}
-                      onChange={(e) => handleInputChange('monthly_orders', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="600"
-                    />
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-end">
-                  <button
-                    onClick={nextStep}
-                    disabled={!validateStep(1)}
-                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    Next Step <ChevronRight className="inline ml-2 w-5 h-5" />
-                  </button>
-                </div>
-              </div>
             )}
-            
-            {/* Step 2: Business Details */}
-            {currentStep === 2 && (
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Step 2: Business Details</h2>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Industry
-                    </label>
-                    <select
-                      value={formData.industry}
-                      onChange={(e) => handleInputChange('industry', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="">Select your industry</option>
-                      {industries.map(industry => (
-                        <option key={industry} value={industry}>{industry}</option>
-                      ))}
-                    </select>
+          </div>
+
+          {/* Right Column - Live Projections */}
+          <div className="space-y-8">
+            {showLiveProjections ? (
+              <div className="live-projections">
+                <div className="form-section">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                    <TrendingUp className="w-6 h-6 mr-3 text-green-600" />
+                    Live Revenue Projections
+                  </h3>
+                  
+                  {/* Scenario Selector */}
+                  <div className="flex space-x-2 mb-8">
+                    {['conservative', 'expected', 'optimistic'].map((scenario) => (
+                      <button
+                        key={scenario}
+                        onClick={() => setSelectedScenario(scenario)}
+                        className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                          selectedScenario === scenario
+                            ? 'bg-blue-600 text-white shadow-lg'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        {scenario.charAt(0).toUpperCase() + scenario.slice(1)}
+                      </button>
+                    ))}
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Business Stage
-                    </label>
-                    <select
-                      value={formData.business_stage}
-                      onChange={(e) => handleInputChange('business_stage', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="">Select your business stage</option>
-                      {businessStages.map(stage => (
-                        <option key={stage} value={stage}>{stage}</option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Manual Hours per Week
-                    </label>
-                    <input
-                      type="number"
-                      value={formData.manual_hours_per_week}
-                      onChange={(e) => handleInputChange('manual_hours_per_week', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="35"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Biggest Challenges (Select all that apply)
-                    </label>
-                    <div className="grid grid-cols-1 gap-2 mt-2">
-                      {challengeOptions.map(challenge => (
-                        <label key={challenge} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.challenges.includes(challenge)}
-                            onChange={() => handleChallengeToggle(challenge)}
-                            className="mr-3 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                          />
-                          <span className="text-sm text-gray-700">{challenge}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    onClick={prevStep}
-                    className="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
-                  >
-                    <ChevronLeft className="inline mr-2 w-5 h-5" /> Previous
-                  </button>
-                  <button
-                    onClick={() => {
-                      console.log('🚀 Next Step button clicked!');
-                      console.log('  - Current formData:', formData);
-                      console.log('  - Industry:', formData.industry);
-                      console.log('  - Business Stage:', formData.business_stage);
-                      console.log('  - Step 2 validation:', !!(formData.industry && formData.business_stage));
-                      nextStep();
-                    }}
-                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Next Step <ChevronRight className="inline ml-2 w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            )}
-            
-            {/* Step 3: Contact Information */}
-            {currentStep === 3 && (
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Step 3: Contact Information</h2>
-                
-                <div className="space-y-6">
+                  {/* Live Metrics */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.first_name}
-                        onChange={(e) => handleInputChange('first_name', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="John"
-                      />
+                    <div className="metric-box">
+                      <div className="metric-label">Monthly Growth</div>
+                      <div className="metric-value">
+                        ${liveCalculations[selectedScenario]?.monthlyGrowth?.toLocaleString() || '0'}
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.last_name}
-                        onChange={(e) => handleInputChange('last_name', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Smith"
-                      />
+                    
+                    <div className="metric-box">
+                      <div className="metric-label">Annual Growth</div>
+                      <div className="metric-value">
+                        ${liveCalculations[selectedScenario]?.annualGrowth?.toLocaleString() || '0'}
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="john@company.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Business Name
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.business_name}
-                      onChange={(e) => handleInputChange('business_name', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Your Company Inc."
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Website (Optional)
-                    </label>
-                    <input
-                      type="url"
-                      value={formData.website}
-                      onChange={(e) => handleInputChange('website', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="https://yourcompany.com"
-                    />
+                    
+                    <div className="metric-box">
+                      <div className="metric-label">Payback Period</div>
+                      <div className="metric-value">
+                        {liveCalculations[selectedScenario]?.paybackMonths || '0'} months
+                      </div>
+                    </div>
+                    
+                    <div className="metric-box">
+                      <div className="metric-label">Revenue Increase</div>
+                      <div className="metric-value">
+                        {liveCalculations[selectedScenario]?.revenueIncrease || '0'}%
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="mt-8 flex justify-between">
-                  <button
-                    onClick={prevStep}
-                    className="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
-                  >
-                    <ChevronLeft className="inline mr-2 w-5 h-5" /> Previous
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    disabled={!validateStep(3) || isSubmitting}
-                    className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Get My Analysis'}
-                  </button>
-                </div>
+              </div>
+            ) : (
+              <div className="form-section text-center py-16">
+                <BarChart3 className="w-16 h-16 mx-auto text-gray-300 mb-6" />
+                <h3 className="text-xl font-semibold text-gray-600 mb-4">
+                  Enter Your Business Data
+                </h3>
+                <p className="text-gray-500">
+                  Fill in your monthly revenue, industry, and business stage to see live projections
+                </p>
               </div>
             )}
-          </div>
-          
-          {/* Right Column - Revenue Projection */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Revenue Projection</h3>
-              <p className="text-gray-600">Based on your current metrics</p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gray-900">
-                  ${calculations.currentRevenue.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">Current Monthly Revenue</div>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">
-                  ${calculations.projectedRevenue.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">Projected Monthly Revenue</div>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">
-                  +${calculations.additionalRevenue.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">Additional Monthly Revenue</div>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">
-                  +${calculations.annualAdditional.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">Additional Annual Revenue</div>
-              </div>
-            </div>
-            
-            <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-semibold text-blue-900 mb-2">Growth Potential</h4>
-              <p className="text-sm text-blue-700">
-                Based on industry benchmarks and automation opportunities, your business shows strong potential for 
-                {formData.industry ? ` ${Math.round(((calculations.projectedRevenue - calculations.currentRevenue) / calculations.currentRevenue) * 100)}%` : ' 25%'} revenue growth.
-              </p>
-            </div>
           </div>
         </div>
       </div>
