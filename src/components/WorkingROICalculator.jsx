@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calculator, TrendingUp, DollarSign, Users, ShoppingCart, Clock, Mail, User, Building, Globe, ArrowRight, Calendar } from 'lucide-react';
 
 const API_URL = 'https://chime-roi-calculator-backend-secure-production.up.railway.app';
 
 const WorkingROICalculator = () => {
+  console.log('🚀 WorkingROICalculator component is loading...');
+  
   const [formData, setFormData] = useState({
     // Business fields (Section 1)
     monthly_revenue: '75000',
@@ -29,6 +31,15 @@ const WorkingROICalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedScenario, setSelectedScenario] = useState('expected');
+  
+  // Live projections state
+  const [showBasicProjections, setShowBasicProjections] = useState(false);
+  const [showAdvancedMetrics, setShowAdvancedMetrics] = useState(false);
+  const [projections, setProjections] = useState({
+    conservative: {},
+    expected: {},
+    optimistic: {}
+  });
 
   // Industry options
   const industries = [
@@ -42,10 +53,116 @@ const WorkingROICalculator = () => {
 
   // Handle input changes
   const handleInputChange = (field, value) => {
+    console.log(`🔄 Input changed: ${field} = ${value}`);
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
+  };
+
+  // Live projections useEffect - triggers when basic fields are filled
+  useEffect(() => {
+    console.log('🔍 WorkingROI useEffect triggered');
+    console.log('📊 Form data:', {
+      monthly_revenue: formData.monthly_revenue,
+      industry: formData.industry,
+      business_stage: formData.business_stage
+    });
+    
+    const hasBasicData = formData.monthly_revenue && formData.industry && formData.business_stage;
+    console.log('✅ Has basic data:', hasBasicData);
+    
+    if (hasBasicData) {
+      const calculatedProjections = calculateLiveProjections();
+      setProjections(calculatedProjections);
+      setShowBasicProjections(true);
+      console.log('🎯 Live projections calculated and displayed');
+    } else {
+      setShowBasicProjections(false);
+      console.log('❌ Basic data incomplete, hiding projections');
+    }
+    
+    // Check for advanced metrics (performance data)
+    const hasPerformanceData = formData.conversion_rate && formData.cart_abandonment_rate && 
+                              formData.monthly_ad_spend && formData.manual_hours_per_week;
+    setShowAdvancedMetrics(hasBasicData && hasPerformanceData);
+    
+    console.log('🎯 Show basic projections:', hasBasicData);
+    console.log('🎯 Show advanced metrics:', hasBasicData && hasPerformanceData);
+  }, [formData]);
+
+  // Calculate live projections using rubric
+  const calculateLiveProjections = () => {
+    const monthlyRevenue = parseFloat(formData.monthly_revenue) || 0;
+    
+    // Industry multipliers from rubric
+    const getIndustryMultiplier = (industry) => {
+      const multipliers = {
+        'Fashion & Apparel': 1.2,
+        'Electronics': 1.1,
+        'Health & Wellness': 1.3,
+        'Home & Garden': 1.0,
+        'Beauty & Cosmetics': 1.2,
+        'Food & Beverage': 0.9,
+        'Pet Products': 1.1,
+        'Sports & Fitness': 1.2,
+        'Automotive': 0.8,
+        'Books & Media': 0.9,
+        'Toys & Games': 1.0,
+        'Other': 1.0
+      };
+      return multipliers[industry] || 1.0;
+    };
+
+    // Business stage multipliers from rubric
+    const getStageMultiplier = (stage) => {
+      const multipliers = {
+        'Startup': 0.8,
+        'Growth': 1.2,
+        'Established': 1.0,
+        'Mature': 0.9
+      };
+      return multipliers[stage] || 1.0;
+    };
+
+    const industryMultiplier = getIndustryMultiplier(formData.industry);
+    const stageMultiplier = getStageMultiplier(formData.business_stage);
+    const baseMultiplier = industryMultiplier * stageMultiplier;
+
+    const scenarios = {
+      conservative: {
+        totalMonthlyBenefit: Math.round(monthlyRevenue * 0.15 * baseMultiplier / 12),
+        totalAnnualBenefit: Math.round(monthlyRevenue * 0.15 * baseMultiplier),
+        paybackPeriod: Math.round((1.6 / baseMultiplier) * 10) / 10,
+        revenueIncreasePercent: Math.round(15 * baseMultiplier),
+        hoursSavedPerWeek: Math.round(18 * baseMultiplier),
+        fteEquivalent: Math.round(0.45 * baseMultiplier * 100) / 100,
+        monthlyCostSavings: Math.round(monthlyRevenue * 0.04 * baseMultiplier),
+        confidenceLevel: '90'
+      },
+      expected: {
+        totalMonthlyBenefit: Math.round(monthlyRevenue * 0.20 * baseMultiplier / 12),
+        totalAnnualBenefit: Math.round(monthlyRevenue * 0.20 * baseMultiplier),
+        paybackPeriod: Math.round((1.3 / baseMultiplier) * 10) / 10,
+        revenueIncreasePercent: Math.round(20 * baseMultiplier),
+        hoursSavedPerWeek: Math.round(21 * baseMultiplier),
+        fteEquivalent: Math.round(0.53 * baseMultiplier * 100) / 100,
+        monthlyCostSavings: Math.round(monthlyRevenue * 0.05 * baseMultiplier),
+        confidenceLevel: '70'
+      },
+      optimistic: {
+        totalMonthlyBenefit: Math.round(monthlyRevenue * 0.25 * baseMultiplier / 12),
+        totalAnnualBenefit: Math.round(monthlyRevenue * 0.25 * baseMultiplier),
+        paybackPeriod: Math.round((1.0 / baseMultiplier) * 10) / 10,
+        revenueIncreasePercent: Math.round(25 * baseMultiplier),
+        hoursSavedPerWeek: Math.round(25 * baseMultiplier),
+        fteEquivalent: Math.round(0.63 * baseMultiplier * 100) / 100,
+        monthlyCostSavings: Math.round(monthlyRevenue * 0.06 * baseMultiplier),
+        confidenceLevel: '40'
+      }
+    };
+
+    return scenarios;
   };
 
   // Simplified calculations
