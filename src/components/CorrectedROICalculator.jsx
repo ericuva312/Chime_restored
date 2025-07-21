@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Calculator, TrendingUp, DollarSign, Users, ShoppingCart, Clock, Mail, User, Building, Globe, ArrowRight, Calendar } from 'lucide-react';
 
+const API_URL = 'https://chime-roi-calculator-backend-secure-production.up.railway.app';
+
 const CorrectedROICalculator = () => {
   const [formData, setFormData] = useState({
     // Business fields (Section 1)
@@ -183,7 +185,7 @@ const CorrectedROICalculator = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://60h5imcydxdy.manus.space/api/roi-calculator', {
+      const response = await fetch(`${API_URL}/api/roi-calculator`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
